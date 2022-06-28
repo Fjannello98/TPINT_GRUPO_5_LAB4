@@ -1,4 +1,4 @@
-package dominio;
+package datos;
 
 public interface Dao {
 	final String host = "jdbc:mysql://localhost:3306/";

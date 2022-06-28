@@ -1,12 +1,7 @@
 package datos;
 
-public class MedicoDao {
+public class MedicoDao implements Dao{
 
-	private String host = "jdbc:mysql://localhost:3306/";
-	private String user = "root";
-	private String pass = "root";
-	private String dbName = "bdTurnos";
-	
 	public MedicoDao() {
 		
 	}
