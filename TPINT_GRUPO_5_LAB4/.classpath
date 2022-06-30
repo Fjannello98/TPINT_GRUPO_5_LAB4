@@ -4,11 +4,19 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/Servers/.project"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/Trabajo final laboratorio/TPINT_GRUPO_5_LAB4/mysql-connector-java-5.1.47-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/Trabajo final laboratorio/TPINT_GRUPO_5_LAB4/mysql-connector-java-8.0.25.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/pcaero/Desktop/ENTORNO TPFINAL/TPINT_GRUPO_5_LAB4/TPINT_GRUPO_5_LAB4/mysql-connector-java-5.1.47-bin.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/pcaero/Desktop/ENTORNO TPFINAL/TPINT_GRUPO_5_LAB4/TPINT_GRUPO_5_LAB4/mysql-connector-java-8.0.25.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

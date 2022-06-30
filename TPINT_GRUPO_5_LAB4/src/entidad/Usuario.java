@@ -5,20 +5,28 @@ private int ID;
 private String nombre_usuario;
 private String contrasena;
 private TiposUsuario tipo_usuario;
+private boolean estado;
 
 
 
 
+public boolean isEstado() {
+	return estado;
+}
+public void setEstado(boolean estado) {
+	this.estado = estado;
+}
 public Usuario() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Usuario(int iD, String nombre_usuario, String contrasena, TiposUsuario tipo_usuario) {
+public Usuario(int iD, String nombre_usuario, String contrasena, TiposUsuario tipo_usuario, boolean estado) {
 	super();
 	ID = iD;
 	this.nombre_usuario = nombre_usuario;
 	this.contrasena = contrasena;
 	this.tipo_usuario = tipo_usuario;
+	this.estado = estado;
 }
 public int getID() {
 	return ID;
