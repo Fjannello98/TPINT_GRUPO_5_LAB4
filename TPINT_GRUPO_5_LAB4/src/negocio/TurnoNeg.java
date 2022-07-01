@@ -1,13 +1,10 @@
-package datos;
+package negocio;
 
-
-
-import java.util.List;
-
+import java.util.ArrayList;
 import entidad.Turno;
 
-public interface TurnoDao {
-	public List<Turno> obtenerTodos();
+public interface TurnoNeg {
+	public ArrayList<Turno> listarTurnos();
 	public Turno obtenerUno(String dnimedico);
 	public boolean insertar(Turno turno);
 	public boolean editar(Turno turno);
