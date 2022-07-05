@@ -66,6 +66,7 @@ public class ServletMedicos extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 if(request.getParameter("btnAceptar")!=null)
 		    {
@@ -102,16 +103,11 @@ public class ServletMedicos extends HttpServlet {
 					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
 					x.setID_especialidad(especialidad);
 				
-					
-					/*try {
-						SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-						Date fecha;
-						fecha = formato.parse("05/08/1994");
-						x.setFechaNac(fecha);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
+					//CASTEO STRING A DATE
+					Date fecha = new Date();
+					fecha = request.getParameter("txtFechaNac");
+					x.setFechaNac(fecha);
+				
 					
 					
 					x.setEstado(1);
