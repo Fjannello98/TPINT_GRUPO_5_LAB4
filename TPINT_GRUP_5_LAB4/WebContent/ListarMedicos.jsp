@@ -23,48 +23,16 @@
 </style>
 </head>
 <body>
+	<% if (request.getSession().getAttribute("usuario") == null) { 
+		request.getRequestDispatcher("Login.jsp").forward(request, response);
+	} %>
+	<jsp:include page="Menu.jsp"></jsp:include>
 	<%
 		List<Medico> listaM = new ArrayList<Medico>();
 		if (request.getAttribute("listaMed") != null) {
 			listaM = (List<Medico>) request.getAttribute("listaMed");
 		}
 	%>
-
-	<div class="containerMenu">
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Pacientes</a>
-            <!-- First Tier Drop Down -->
-            <ul>
-                <<li><a href="ServletPacientes?Param=previoInsert"">Alta</a></li>
-                <li><a href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>        
-            </li>
-            <li><a href="#">Médicos</a>
-            <!-- First Tier Drop Down -->
-             <ul>
-                <li><a href="ServletMedicos?Param=previoInsert">Alta</a></li>
-                <li><a href="ServletMedicos?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>     
-            </li>
-            <li><a href="#">Turnos</a>
-            
-             <ul>
-                <li><a href="Turnos.jsp">Asignar Turno</a></li>
-                <li><a href="ServletTurnos?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>     
-            
-            </li>
-            
-            <li1><a href="Login.jsp">Usuario(Admin)</a></li>
-
-        </ul>
-    </nav>
-
-
-
-	</div>
 	<div class="table-title">
 		<h3>Tabla Medicos</h3>
 	</div>
