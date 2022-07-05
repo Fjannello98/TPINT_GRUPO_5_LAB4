@@ -27,7 +27,7 @@ import negocioImpl.MedicoNegImpl;
 @WebServlet("/ServletMedicos")
 public class ServletMedicos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EspecialidadNeg negCat = new EspecialidadNegImpl(); 
+	EspecialidadNeg negEsp = new EspecialidadNegImpl(); 
 	MedicoNeg negMed = new MedicoNegImpl();
     public ServletMedicos() {
         super();
@@ -44,8 +44,8 @@ public class ServletMedicos extends HttpServlet {
 			{
 
 				//Se quiere insertar entonces cargo la lista de categorias
-				request.setAttribute("listaCat", negCat.listarEspecialidades());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarMedico.jsp");
+				request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 				dispatcher.forward(request, response);
 
 				break;
@@ -81,12 +81,27 @@ public class ServletMedicos extends HttpServlet {
 					x.setDireccion(request.getParameter("txtDireccion"));
 					x.setNacionalidad(request.getParameter("txtNacionalidad"));
 					x.setLocalidad(request.getParameter("txtLocalidad"));
-					x.setProvincia(request.getParameter("txtProvincia"));					
-					x.setSexo("Masculino");	
+					x.setProvincia(request.getParameter("txtProvincia"));
+					
+					int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+					switch (sexo) {
+					case 1:
+						x.setSexo("Masculino");	
+						break;
+					case 2:
+						x.setSexo("Femenino");	
+						break;
+					case 3:
+						x.setSexo("Otro");	
+						break;
+					default:
+						break;
+					}
 					
 					Especialidad especialidad = new Especialidad();
-					especialidad.setID(Integer.parseInt(request.getParameter("txtEspecialidad")));
+					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
 					x.setID_especialidad(especialidad);
+				
 					
 					/*try {
 						SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

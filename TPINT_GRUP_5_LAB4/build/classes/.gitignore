@@ -1,9 +1,10 @@
-/datosImpl/
-/negocio/
-/negocioImpl/
 /presentacion/
-/entidad/
+/negocio/
 /datos/
-/UsuarioNoLoggeadoException.class
+/datosImpl/
 /excepciones/
+<<<<<<< HEAD
 /images/
+=======
+/negocioImpl/
+>>>>>>> b328233cb29a062aebcf746ad657f67e6553ca29
