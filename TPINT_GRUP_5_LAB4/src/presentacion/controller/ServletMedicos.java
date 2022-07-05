@@ -8,14 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import negocio.EspecialidadNeg;
 import negocio.MedicoNeg;
+import negocioImpl.EspecialidadNegImpl;
 import negocioImpl.MedicoNegImpl;
 
 
 @WebServlet("/ServletMedicos")
 public class ServletMedicos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	EspecialidadNeg negCat = new EspecialidadNegImpl(); 
 	MedicoNeg negMed = new MedicoNegImpl();
     public ServletMedicos() {
         super();
@@ -31,9 +33,9 @@ public class ServletMedicos extends HttpServlet {
 			case "previoInsert":
 			{
 				//Se quiere insertar entonces cargo la lista de categorias
-				//request.setAttribute("listaCat", negCat.obtenerTodos());
-				//RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarArticulos.jsp");
-				//dispatcher.forward(request, response);
+				request.setAttribute("listaCat", negCat.listarEspecialidades());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarMedico.jsp");
+				dispatcher.forward(request, response);
 				break;
 			}
 			case "list":

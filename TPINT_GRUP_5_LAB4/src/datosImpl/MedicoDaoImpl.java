@@ -2,8 +2,8 @@ package datosImpl;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import datos.MedicoDao;
+import entidad.Especialidad;
 import entidad.Medico;
 
 public class MedicoDaoImpl implements MedicoDao{
@@ -23,7 +23,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		 List<Medico> list = new ArrayList<Medico>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from Medicos");
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID");
 			 while(rs.next())
 			 {
 				 Medico medico = new Medico();
@@ -41,7 +41,10 @@ public class MedicoDaoImpl implements MedicoDao{
 				 medico.setCorreo(rs.getString("correo"));
 				 medico.setEstado(rs.getBoolean("estado"));
 				 
-				 	
+				 Especialidad esp = new Especialidad();
+				 esp.setDescripción(rs.getString("e.descripcion"));
+		 
+				 medico.setID_especialidad(esp);	
 				 list.add(medico);
 			 }
 			 
