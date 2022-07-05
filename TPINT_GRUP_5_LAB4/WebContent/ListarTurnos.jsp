@@ -1,3 +1,5 @@
+<%@page import="excepciones.UsuarioSinPermisoException"%>
+<%@page import="entidad.Usuario"%>
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -23,7 +25,13 @@
 	<% if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
-	} %>
+	} 
+	 Usuario user = (Usuario)request.getSession().getAttribute("usuario");
+	 if (user.getTipo_usuario().getID() != 2) { 
+			request.getRequestDispatcher("Home.jsp").forward(request, response);
+			throw new UsuarioSinPermisoException();
+	} 
+	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<%
 		List<Turno> listaT = new ArrayList<Turno>();
