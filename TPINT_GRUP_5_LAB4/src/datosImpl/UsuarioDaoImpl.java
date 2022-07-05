@@ -169,7 +169,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		try
 		 {
 			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp on tp.id = u.tipo_usuario where u.nombre_usuario = '"+nombreUsuario+ "' and u.contrasena = '"+contrasena+"'");
-			 rs.next();
+			if (rs.next()) {
 			 
 				
 				 usuario.setID(rs.getInt("u.id"));
@@ -182,7 +182,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				 
 				 usuario.setTipo_usuario(tipo);
 				 usuario.setEstado(rs.getBoolean("u.estado"));
-			 
+			}			 
 		 }
 		 catch(Exception e)
 		 {

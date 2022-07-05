@@ -8,12 +8,12 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style type="text/css">
 	<jsp:include page="css\StyleSheetLogin.css"></jsp:include>
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -57,7 +57,11 @@
            
         </div>
    </div>   
-
+   <% if(request.getAttribute("errorLogin")!= null) { %>
+   	<script type="text/javascript">
+   		swal("¡ERROR!", "Usuario ingresado inválido", "error");
+   	</script>
+   <% } %>
 
 </body>
 </html>

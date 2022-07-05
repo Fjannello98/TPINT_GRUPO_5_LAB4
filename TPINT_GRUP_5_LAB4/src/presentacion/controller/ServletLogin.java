@@ -38,10 +38,13 @@ public class ServletLogin extends HttpServlet {
 	    
 	    UsuarioNegImpl u = new UsuarioNegImpl();
 	    Usuario user = u.buscarUsuario(username, userpass);
-	    if (user.tieneValores()) {
-	    	System.out.println(user.getNombre_usuario());
-	        // RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");  
-	        // rd.forward(request,response);  
+	    if (user.existe()) {
+	        RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");  
+	        rd.forward(request,response);  
+	    }
+	    else { 
+	    	request.setAttribute("errorLogin", 1);
+	    	request.getRequestDispatcher("Login.jsp").forward(request, response); 
 	    }
 	}
 

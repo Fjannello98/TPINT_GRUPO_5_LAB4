@@ -57,19 +57,8 @@ private boolean estado;
 				+ tipo_usuario.getDescripcion() + "]";
 	}
 	
-	public boolean tieneValores()  {
-
-	    for (java.lang.reflect.Field field : this.getClass().getDeclaredFields()) {
-	        try {
-	            field.setAccessible(true);
-	            if (field.get(this)!=null) {
-	                return true;
-	            }
-	        } catch (Exception e) {
-	          System.out.println("Error al procesar campos de usuario");
-	        }
-	    }
-	    return false;
+	public boolean existe()  {
+		return ID != 0; 
 	}
 
 }
