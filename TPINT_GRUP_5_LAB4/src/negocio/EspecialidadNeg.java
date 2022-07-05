@@ -1,12 +1,11 @@
-package datos;
+package negocio;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import entidad.Especialidad;
 
-
-public interface EspecialidadDao {
-	public List<Especialidad> obtenerTodos();
+public interface EspecialidadNeg {
+	public ArrayList<Especialidad>listarEspecialidades();
 	public Especialidad obtenerUno(int id );
 	public boolean insertar(Especialidad especialidad);
 	public boolean editar(Especialidad especialidad);

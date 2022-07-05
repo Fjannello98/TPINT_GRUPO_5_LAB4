@@ -101,7 +101,7 @@
 				<td><%=a.getCorreo()%></td>
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
-				<th class="text-left">Especialidad</th>
+				<th><%=a.getID_especialidad().getDescripcion() %></th>
 			</tr>
 
 			<%

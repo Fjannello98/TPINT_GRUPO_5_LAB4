@@ -3,6 +3,24 @@ create schema bdTurnos;
 
 use bdTurnos;
 
+create table Especialidades
+(
+ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+descripcion VARCHAR(25)
+);
+
+INSERT into Especialidades (descripcion) VALUES ("Guardia");
+INSERT into Especialidades (descripcion) VALUES ("Traumatologia");
+INSERT into Especialidades (descripcion) VALUES ("Cardiologia");
+INSERT into Especialidades (descripcion) VALUES ("Ecografia");
+INSERT into Especialidades (descripcion) VALUES ("Dermatologia");
+INSERT into Especialidades (descripcion) VALUES ("Nutricion");
+INSERT into Especialidades (descripcion) VALUES ("Alergista");
+INSERT into Especialidades (descripcion) VALUES ("Psiquiatria");
+INSERT into Especialidades (descripcion) VALUES ("Neurologia");
+INSERT into Especialidades (descripcion) VALUES ("Pediatria");
+INSERT into Especialidades (descripcion) VALUES ("Kinesiologia");
+
 create table Medicos
 (
 dni VARCHAR(11) NOT NULL PRIMARY KEY,
@@ -17,25 +35,28 @@ provincia VARCHAR(50),
 telefono VARCHAR(25),
 celular VARCHAR(25),
 correo VARCHAR(25),
-estado boolean
+estado boolean,
+id_especialidad INT,
+FOREIGN KEY(id_especialidad) REFERENCES Especialidades(ID)
 );
 
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("41215514", "Mateo", "Ghidini", "Masculino", "Argentina", "1998-10-02", "Av Santa María de las Conchas 7300", "Tigre", "Buenos Aires", "1136176018", "1136176018","ghidinimateo1@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("4121242", "Facundo", "Jannello", "Masculino", "Argentina", "1998-09-21", "Viamonte 200", "CABA", "Buenos Aires", "1136122222", "11333338","fjannello@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("40676447", "Tomas", "Rodriguez", "Masculino", "Argentina", "1997-02-11", "Av Cazon 190", "Tigre", "Buenos Aires", "1136173338", "1136173333","rodriguezt@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("42666533", "Gonzalo", "Perez", "Masculino", "Argentina", "1997-02-11", "Hipolito Yrigoyen 210", "Pacheco", "Buenos Aires", "112345433", "1236173333","perezgonzalo@hotmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("40676442", "Tomas", "Rodriguez", "Masculino", "Argentina", "1997-02-11", "Av Cazon 190", "Tigre", "Buenos Aires", "1136173338", "1136173333","rodriguezt@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("40216447", "Alejandro", "Herrera", "Masculino", "Argentina", "1996-03-01", "Zavalia 300", "Tigre", "Buenos Aires", "12345678", "12345678","aherrera@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("41213434", "Valentina", "Gimenez", "Femenino", "Argentina", "1997-02-11", "Superi 4303", "Saavedra", "Buenos Aires", "12345678", "1133445566","vgimenez@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("41213444", "Sofia", "Supacha", "Femenino", "Argentina", "1999-02-17", "Av Cazon 190", "Tigre", "Buenos Aires", "1133887755", "50321144","ssupacha@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("27009999", "Martina", "Rodriguez", "Femenino", "Argentina", "1980-02-10", "Av Alvear 290", "Martinez", "Buenos Aires", "115548748", "4732-4444","mrodriguez123@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("24000998", "Agustin", "Coronel", "Masculino", "Argentina", "1973-02-12", "Av Cazon 347", "Tigre", "Buenos Aires", "1236175538", "44224731","agustincoronela@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("26443346", "Milagros", "Insua", "Femenino", "Argentina", "1985-02-11", "Av Cabildo 5010", "Belgrano", "Buenos Aires", "113132666", "43325000","minsua@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("41666777", "Francisco", "Gimenez", "Masculino", "Argentina", "1997-05-30", "Superi 4322", "Saavedra", "Buenos Aires", "12345338", "1133465566","fgimenez@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("41213322", "Guido", "Rodriguez", "Masculino", "Argentina", "1999-04-26", "Av Cazon 1978", "Tigre", "Buenos Aires", "1133883355", "50322244","grodriguez@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("27009888", "Felicitas", "Pereira", "Femenino", "Argentina", "1980-02-08", "Av Alvear 2910", "Martinez", "Buenos Aires", "115668748", "4777-4444","fpereira@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("24004322", "Martin", "Pugliese", "Masculino", "Argentina", "1973-05-12", "Av Cazon 3000", "Tigre", "Buenos Aires", "1236175778", "445524731","mpugliese@gmail.com", TRUE);
-INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ("26443333", "Joaquin", "Forster", "Femenino", "Argentina", "1985-03-09", "Av Cabildo 4200", "Belgrano", "Buenos Aires", "113138866", "42325000","jforster@gmail.com", TRUE);
+
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("41215514", "Mateo", "Ghidini", "Masculino", "Argentina", "1998-10-02", "Av Santa María de las Conchas 7300", "Tigre", "Buenos Aires", "1136176018", "1136176018","ghidinimateo1@gmail.com",1, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("4121242", "Facundo", "Jannello", "Masculino", "Argentina", "1998-09-21", "Viamonte 200", "CABA", "Buenos Aires", "1136122222", "11333338","fjannello@gmail.com",2, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("40676447", "Tomas", "Rodriguez", "Masculino", "Argentina", "1997-02-11", "Av Cazon 190", "Tigre", "Buenos Aires", "1136173338", "1136173333","rodriguezt@gmail.com",2, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("42666533", "Gonzalo", "Perez", "Masculino", "Argentina", "1997-02-11", "Hipolito Yrigoyen 210", "Pacheco", "Buenos Aires", "112345433", "1236173333","perezgonzalo@hotmail.com",5, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("40676442", "Tomas", "Rodriguez", "Masculino", "Argentina", "1997-02-11", "Av Cazon 190", "Tigre", "Buenos Aires", "1136173338", "1136173333","rodriguezt@gmail.com",1, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("40216447", "Alejandro", "Herrera", "Masculino", "Argentina", "1996-03-01", "Zavalia 300", "Tigre", "Buenos Aires", "12345678", "12345678","aherrera@gmail.com",4, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("41213434", "Valentina", "Gimenez", "Femenino", "Argentina", "1997-02-11", "Superi 4303", "Saavedra", "Buenos Aires", "12345678", "1133445566","vgimenez@gmail.com",4, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("41213444", "Sofia", "Supacha", "Femenino", "Argentina", "1999-02-17", "Av Cazon 190", "Tigre", "Buenos Aires", "1133887755", "50321144","ssupacha@gmail.com",4, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("27009999", "Martina", "Rodriguez", "Femenino", "Argentina", "1980-02-10", "Av Alvear 290", "Martinez", "Buenos Aires", "115548748", "4732-4444","mrodriguez123@gmail.com",7, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("24000998", "Agustin", "Coronel", "Masculino", "Argentina", "1973-02-12", "Av Cazon 347", "Tigre", "Buenos Aires", "1236175538", "44224731","agustincoronela@gmail.com",7, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("26443346", "Milagros", "Insua", "Femenino", "Argentina", "1985-02-11", "Av Cabildo 5010", "Belgrano", "Buenos Aires", "113132666", "43325000","minsua@gmail.com",7,TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("41666777", "Francisco", "Gimenez", "Masculino", "Argentina", "1997-05-30", "Superi 4322", "Saavedra", "Buenos Aires", "12345338", "1133465566","fgimenez@gmail.com",7, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("41213322", "Guido", "Rodriguez", "Masculino", "Argentina", "1999-04-26", "Av Cazon 1978", "Tigre", "Buenos Aires", "1133883355", "50322244","grodriguez@gmail.com",7,TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("27009888", "Felicitas", "Pereira", "Femenino", "Argentina", "1980-02-08", "Av Alvear 2910", "Martinez", "Buenos Aires", "115668748", "4777-4444","fpereira@gmail.com",8, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("24004322", "Martin", "Pugliese", "Masculino", "Argentina", "1973-05-12", "Av Cazon 3000", "Tigre", "Buenos Aires", "1236175778", "445524731","mpugliese@gmail.com",9, TRUE);
+INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,id_especialidad, estado) VALUES ("26443333", "Joaquin", "Forster", "Femenino", "Argentina", "1985-03-09", "Av Cabildo 4200", "Belgrano", "Buenos Aires", "113138866", "42325000","jforster@gmail.com",10, TRUE);
 
 
 create table Pacientes
@@ -93,24 +114,7 @@ horario_inicio TIME,
 horario_fin TIME
 );
 
-create table Especialidades
-(
-ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-descripcion VARCHAR(25)
-);
-
-INSERT into Especialidades (descripcion) VALUES ("Guardia");
-INSERT into Especialidades (descripcion) VALUES ("Traumatologia");
-INSERT into Especialidades (descripcion) VALUES ("Cardiologia");
-INSERT into Especialidades (descripcion) VALUES ("Ecografia");
-INSERT into Especialidades (descripcion) VALUES ("Dermatologia");
-INSERT into Especialidades (descripcion) VALUES ("Nutricion");
-INSERT into Especialidades (descripcion) VALUES ("Alergista");
-INSERT into Especialidades (descripcion) VALUES ("Psiquiatria");
-INSERT into Especialidades (descripcion) VALUES ("Neurologia");
-INSERT into Especialidades (descripcion) VALUES ("Pediatria");
-INSERT into Especialidades (descripcion) VALUES ("Kinesiologia");
-
+/*ESTA TABLA CREO QUE QUEDA AL PEDO */
 create table EspecialidadesxMedico
 (
 ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -160,6 +164,9 @@ create table TiposUsuario
 ID INT NOT NULL PRIMARY KEY auto_increment,
 DESCRIPCION VARCHAR(25)
 );
+insert into TiposUsuario (Descripcion) values ("Administrativo");
+insert into TiposUsuario (Descripcion) values ("Medico");
+
 create table Usuarios
 (
 ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -170,8 +177,4 @@ TIPO_USUARIO INT NOT NULL,
 FOREIGN KEY (TIPO_USUARIO) REFERENCES TiposUsuario(ID)
 );
 
-INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ("3121242", "4121242", 1, 2, "2022-07-04", "2022-07-04 11:45:30", "TODO FLAMA");
-
-insert into TiposUsuario (Descripcion) values ("Administrativo");
-insert into TiposUsuario (Descripcion) values ("Medico");
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("FacuJannello", "1234", 1)

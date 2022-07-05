@@ -35,7 +35,6 @@ public class MedicoNegImpl implements MedicoNeg{
 	public boolean insertar(Medico medico) {
 		return medicoDao.insertar(medico);
 	}
-
 	@Override
 	public boolean editar(Medico medico) {
 		return medicoDao.editar(medico);
