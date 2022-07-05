@@ -23,7 +23,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		 List<Medico> list = new ArrayList<Medico>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID");
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, e.id, e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID");
 			 while(rs.next())
 			 {
 				 Medico medico = new Medico();
@@ -42,6 +42,7 @@ public class MedicoDaoImpl implements MedicoDao{
 				 medico.setEstado(rs.getInt("estado"));
 				 
 				 Especialidad esp = new Especialidad();
+				 esp.setID(rs.getInt("e.id"));
 				 esp.setDescripción(rs.getString("e.descripcion"));
 		 
 				 medico.setID_especialidad(esp);	
@@ -67,7 +68,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		Medico medico = new Medico();
 		try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID where dni = " + dni);
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, e.id, e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID where dni = " + dni);
 			 rs.next();
 			 
 			 medico.setDni(rs.getString("dni"));
@@ -83,6 +84,7 @@ public class MedicoDaoImpl implements MedicoDao{
 			 medico.setCelular(rs.getString("celular"));
 			 medico.setCorreo(rs.getString("correo"));
 			 Especialidad esp = new Especialidad();
+			 esp.setID(rs.getInt("e.id"));
 			 esp.setDescripción(rs.getString("e.descripcion"));
 	 
 			 medico.setID_especialidad(esp);	
@@ -109,7 +111,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn.Open();	
 
 		//HARDCODEO DEL INSERT DE FECHANAC
-		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '1984-09-21', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"' )";
+		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '1984-09-21', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
 		System.out.println(query);
 		try
 		 {

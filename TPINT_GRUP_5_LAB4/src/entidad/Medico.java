@@ -17,6 +17,8 @@ public class Medico extends Persona {
 
 		super(dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,
 				estado);
+		
+		this.ID_especialidad = id_especialidad;
 		// TODO Auto-generated constructor stub
 	}
 	

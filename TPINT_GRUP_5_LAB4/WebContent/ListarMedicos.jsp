@@ -26,7 +26,7 @@
 	<%
 		List<Medico> listaM = new ArrayList<Medico>();
 		if (request.getAttribute("listaMed") != null) {
-			listaM = (List<Medico> ) request.getAttribute("listaMed");
+			listaM = (List<Medico>) request.getAttribute("listaMed");
 		}
 	%>
 
