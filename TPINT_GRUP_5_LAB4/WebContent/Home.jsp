@@ -5,48 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style type="text/css">
 	<jsp:include page="css\StyleSheetHome.css"></jsp:include>
 </style>
 <title>Home</title>
 </head>
 <body>
-
-<div class="containerMenu">
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Pacientes</a>
-            <!-- First Tier Drop Down -->
-            <ul>
-                <li><a href="ServletPacientes?Param=previoInsert"">Alta</a></li>
-                <li><a href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>        
-            </li>
-            <li><a href="#">Médicos</a>
-            <!-- First Tier Drop Down -->
-              <ul>
-                <li><a href="ServletMedicos?Param=previoInsert">Alta</a></li>
-                <li><a href="ServletMedicos?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>   
-            </li>
-            <li><a href="#">Turnos</a>
-            
-             <ul>
-                <li><a href="Turnos.jsp">Asignar Turno</a></li>
-                <li><a href="ServletTurnos?Param=list">Listar/Modificar/Eliminar</a></li>
-            </ul>     
-            
-            </li>
-            
-            <li><a href="Login.jsp">Usuario(Admin)</a></li>
-
-        </ul>
-    </nav>
-
-
-
+	<% if (request.getSession().getAttribute("usuario") == null) { 
+		request.getRequestDispatcher("Login.jsp").forward(request, response);
+	} %>
+	<jsp:include page="Menu.jsp"></jsp:include>
+	<h1> ¡Bienvenido/a!</h1>
+	<div class="d-flex flex-row justify-content-center">
+		<img class="col-8 mt-5" src="images/utn.svg" alt="logo de la utn" width="300" height="200">
 	</div>
-
 </body>
 </html>

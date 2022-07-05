@@ -31,7 +31,7 @@
 
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
-                        <form action="ServletLogin" method="get"> 
+                        <form action="ServletLogin" method="post"> 
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
                                 <input type="text" class="form-control" name="username">
@@ -59,7 +59,7 @@
    </div>   
    <% if(request.getAttribute("errorLogin")!= null) { %>
    	<script type="text/javascript">
-   		swal("¡ERROR!", "Usuario ingresado inválido", "error");
+   		swal("¡Error!", "Datos ingresados inválidos", "error");
    	</script>
    <% } %>
 

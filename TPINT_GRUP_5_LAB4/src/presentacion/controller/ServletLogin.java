@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entidad.Usuario;
 import negocioImpl.UsuarioNegImpl;
@@ -32,20 +33,6 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    String username = request.getParameter("username");  
-	    String userpass = request.getParameter("userpass");
-	    /*TODO: Agregar validaciones */
-	    
-	    UsuarioNegImpl u = new UsuarioNegImpl();
-	    Usuario user = u.buscarUsuario(username, userpass);
-	    if (user.existe()) {
-	        RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");  
-	        rd.forward(request,response);  
-	    }
-	    else { 
-	    	request.setAttribute("errorLogin", 1);
-	    	request.getRequestDispatcher("Login.jsp").forward(request, response); 
-	    }
 	}
 
 	/**
@@ -53,7 +40,21 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+	    String username = request.getParameter("username");  
+	    String userpass = request.getParameter("userpass");
+	    
+	    UsuarioNegImpl u = new UsuarioNegImpl();
+	    Usuario user = u.buscarUsuario(username, userpass);
+	    if (user.existe()) {
+	        RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+	        HttpSession session = request.getSession();
+	        session.setAttribute("usuario", user);
+	        rd.forward(request,response);  
+	    }
+	    else { 
+	    	request.setAttribute("errorLogin", 1);
+	    	request.getRequestDispatcher("Login.jsp").forward(request, response); 
+	    }
 	}
 
 }

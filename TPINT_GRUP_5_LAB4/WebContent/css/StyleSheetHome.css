@@ -5,11 +5,10 @@
 @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
 
 body {
-	background: gray;
+	background-color:#102562;
 	font-size:22px;
-	line-height: 32px;
 	color: #ffffff;
-	word-wrap:break-word !important;
+	word-wrap: break-word !important;
 	font-family: 'Roboto', sans-serif;
 	}
 
@@ -49,13 +48,12 @@ p {
 }
 
 nav {
-	margin: 50px 0;
 	background-color: #1A2226;
 }
 
 nav ul {
 	padding: 0;
-  margin: 0;
+  	margin: 0;
 	list-style: none;
 	position: relative;
 	}
@@ -63,12 +61,6 @@ nav ul {
 nav ul li {
 	display:inline-block;
 	background-color: #1A2226;
-	}
-nav ul li1 {
-	display:inline-block;
-	background-color:  #c0c0c0;
-		
-	
 	}
 nav a {
 	display:block;
