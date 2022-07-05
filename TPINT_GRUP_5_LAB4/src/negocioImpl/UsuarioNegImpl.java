@@ -47,8 +47,9 @@ public class UsuarioNegImpl implements UsuarioNeg{
 		return usuarioDao.borrar(id);
 	}
 	
-	public Usuario buscarUsuario(String nombreUsuario) {
-		return usuarioDao.buscarUsuario(nombreUsuario);
+	@Override
+	public Usuario buscarUsuario(String nombreUsuario, String contrasena) {
+		return usuarioDao.buscarUsuario(nombreUsuario, contrasena);
 	}
 
 	

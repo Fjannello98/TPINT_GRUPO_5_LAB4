@@ -162,13 +162,13 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	
 	
 	//METODO DE FACU
-	public Usuario buscarUsuario(String nombreUsuario) {
+	public Usuario buscarUsuario(String nombreUsuario, String contrasena) {
 		cn = new Conexion();
 		cn.Open();
 		Usuario usuario = new Usuario();
 		try
 		 {
-			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp where tp.id = u.tipo_usuario and u.nombre_usuario = "+nombreUsuario);
+			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp on tp.id = u.tipo_usuario where u.nombre_usuario = '"+nombreUsuario+ "' and u.contrasena = '"+contrasena+"'");
 			 rs.next();
 			 
 				

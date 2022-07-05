@@ -39,7 +39,7 @@
             
             </li>
             
-            <li1><a href="Login.jsp">Usuario(Admin)</a></li>
+            <li><a href="Login.jsp">Usuario(Admin)</a></li>
 
         </ul>
     </nav>

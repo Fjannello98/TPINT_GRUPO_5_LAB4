@@ -12,7 +12,7 @@ public class Conexion {
 	final String pass = "root";
 	final String dbName = "bdTurnos";
 	final String driver = "com.mysql.jdbc.Driver";
-	
+	final String sslParam = "?useSSL=false";
 
 	protected Connection connection;
 	
@@ -20,8 +20,8 @@ public class Conexion {
 	{
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			this.connection = DriverManager.getConnection(host+dbName, user, pass);
+			Class.forName(driver);
+			this.connection = DriverManager.getConnection(host+ dbName+ sslParam, user, pass);
 		}
 		catch(Exception e)
 		{

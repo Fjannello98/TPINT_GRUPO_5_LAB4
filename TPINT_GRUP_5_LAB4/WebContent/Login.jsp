@@ -10,15 +10,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style type="text/css">
 	<jsp:include page="css\StyleSheetLogin.css"></jsp:include>
 </style>
 
 </head>
 
-<body>
-<form action="Login.jsp" method="get">    
+<body>   
   <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
@@ -32,14 +31,14 @@
 
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
-                        <form>
+                        <form action="ServletLogin" method="get"> 
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="username">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">PASSWORD</label>
-                                <input type="password" class="form-control" i>
+                                <input type="password" class="form-control" name="userpass">
                             </div>
 
                             <div class="col-lg-12 loginbttm">
@@ -57,8 +56,7 @@
             </div>
            
         </div>
-        
- </form>
+   </div>   
 
 
 </body>

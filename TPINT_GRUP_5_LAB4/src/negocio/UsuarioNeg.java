@@ -12,5 +12,5 @@ public interface UsuarioNeg {
 	public boolean insertar(Usuario usuario);
 	public boolean editar(Usuario usuario);
 	public boolean borrar(int id);
-	public Usuario buscarUsuario(String nombreUsuario);
+	public Usuario buscarUsuario(String nombreUsuario, String contrasena);
 }
