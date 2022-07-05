@@ -1,4 +1,8 @@
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
+<%@page import="entidad.Especialidad"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,6 +23,15 @@
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
 	} %>
+	
+	<%
+		List<Especialidad> listaE = new ArrayList<Especialidad>();
+		if (request.getAttribute("listaEsp") != null) {
+			listaE = (List<Especialidad>)request.getAttribute("listaEsp");
+		}
+	%>
+	
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1 class="h1 mb-5" >Ingresar Nuevo Médico</h1>
 	  <div class="row">
@@ -45,8 +58,17 @@
 	        
 	        <!-- ESTO TIENE QUE SER UN COMBOBOX!!! -->
 	        <div class="form-group">
-	          <label>ID ESPECIALIDAD: </label>
-	          <input type="text" class="form-control" name="txtEspecialidad">
+	          <label>Especialidad: </label>
+	          <select class="form-control col-8" name="comboEspecialidad" >
+	          	<!-- Esto debería leerlo desde una DB -->
+	            		<%
+							for (Especialidad e : listaE) {
+						%>
+						<option value="<%=e.getID()%>"><%=e.getDescripcion()%></option>
+						<%
+							}
+						%>
+	          </select>
 	        </div>
 	        
 	        <div class="form-group">
@@ -82,19 +104,13 @@
 	          <input type="text" class="form-control" name="txtDireccion">
 	        </div>
 	        <div class="form-group">
-	        	<label class="col-12">Sexo: </label>
-		        <div class="form-group custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-masculino" name="sexo" class="custom-control-input">
-		          <label for="radio-masculino" class="custom-control-label">Masculino</label>
-		        </div>
-		        <div class="custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-femenino" name="sexo" class="custom-control-input">
-		          <label for="radio-femenino" class="custom-control-label">Femenino</label>
-		        </div>
-		        <div class="custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-otro" name="sexo" class="custom-control-input">
-		          <label for="radio-otro" class="custom-control-label">Otro</label>
-		        </div>
+	          <label>Sexo: </label>
+	          <select class="form-control col-8" name="comboSexo" >
+	          	<!-- Esto debería leerlo desde una DB -->
+	            <option value="1">Masculino</option>
+	            <option value="2">Femenino</option>
+	            <option value="3">Otro</option>
+	          </select>
 	        </div>
 	        <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">

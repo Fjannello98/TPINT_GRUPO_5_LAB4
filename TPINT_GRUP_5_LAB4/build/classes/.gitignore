@@ -1,8 +1,2 @@
-/datosImpl/
-/negocio/
-/negocioImpl/
 /presentacion/
-/entidad/
-/datos/
-/UsuarioNoLoggeadoException.class
-/excepciones/
+/negocio/
