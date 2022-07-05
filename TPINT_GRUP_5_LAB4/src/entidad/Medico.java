@@ -12,11 +12,9 @@ public class Medico extends Persona {
 
 	public Medico(String dni, String nombre, String apellido, String sexo, String nacionalidad, Date fechaNac,
 			String direccion, String localidad, String provincia, String telefono, String celular, String correo,
-<<<<<<< HEAD
-			int estado) {
-=======
-			Especialidad id_especialidad ,boolean estado) {
->>>>>>> aa73edb4fac06b7cf7d09c9eed4a2d8d81fc92da
+
+			int estado, Especialidad id_especialidad) {
+
 		super(dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,
 				estado);
 		// TODO Auto-generated constructor stub

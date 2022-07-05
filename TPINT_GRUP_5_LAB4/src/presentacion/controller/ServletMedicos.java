@@ -13,12 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 
+import entidad.Especialidad;
 import entidad.Medico;
-=======
+
 import negocio.EspecialidadNeg;
->>>>>>> aa73edb4fac06b7cf7d09c9eed4a2d8d81fc92da
+
 import negocio.MedicoNeg;
 import negocioImpl.EspecialidadNegImpl;
 import negocioImpl.MedicoNegImpl;
@@ -42,17 +42,17 @@ public class ServletMedicos extends HttpServlet {
 			switch (opcion) {
 			case "previoInsert":
 			{
-<<<<<<< HEAD
+
 				/*//Se quiere insertar entonces cargo la lista de categorias
 				request.setAttribute("listaCat", negCat.obtenerTodos());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 				dispatcher.forward(request, response);*/
-=======
+
 				//Se quiere insertar entonces cargo la lista de categorias
 				request.setAttribute("listaCat", negCat.listarEspecialidades());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarMedico.jsp");
 				dispatcher.forward(request, response);
->>>>>>> aa73edb4fac06b7cf7d09c9eed4a2d8d81fc92da
+
 				break;
 			}
 			case "list":
@@ -88,6 +88,10 @@ public class ServletMedicos extends HttpServlet {
 					x.setLocalidad(request.getParameter("txtLocalidad"));
 					x.setProvincia(request.getParameter("txtProvincia"));					
 					x.setSexo("Masculino");	
+					
+					Especialidad especialidad = new Especialidad();
+					especialidad.setID(Integer.parseInt(request.getParameter("txtEspecialidad")));
+					x.setID_especialidad(especialidad);
 					
 					/*try {
 						SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

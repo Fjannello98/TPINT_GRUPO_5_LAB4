@@ -67,7 +67,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		Medico medico = new Medico();
 		try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from Medicos where dni = " + dni);
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID where dni = " + dni);
 			 rs.next();
 			 
 			 medico.setDni(rs.getString("dni"));
@@ -82,6 +82,10 @@ public class MedicoDaoImpl implements MedicoDao{
 			 medico.setTelefono(rs.getString("telefono"));
 			 medico.setCelular(rs.getString("celular"));
 			 medico.setCorreo(rs.getString("correo"));
+			 Especialidad esp = new Especialidad();
+			 esp.setDescripción(rs.getString("e.descripcion"));
+	 
+			 medico.setID_especialidad(esp);	
 			 medico.setEstado(rs.getInt("estado"));
 			 
 		 }
@@ -105,7 +109,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn.Open();	
 
 		//HARDCODEO DEL INSERT DE FECHANAC
-		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '1984-09-21', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"')";
+		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '1984-09-21', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"' )";
 		System.out.println(query);
 		try
 		 {
@@ -130,7 +134,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn = new Conexion();
 		cn.Open();	
 
-		String query = "UPDATE Medicos SET dni='"+medico.getDni()+"', nombre='"+medico.getNombre()+"', apellido='"+medico.getApellido()+"', sexo = '"+medico.getSexo()+"', nacionalidad = '"+medico.getNacionalidad()+"', fechaNac='"+medico.getFechaNac()+"', direccion='"+medico.getDireccion()+"', localidad = '"+medico.getLocalidad()+"', provincia = '"+medico.getProvincia()+"', telefono='"+medico.getTelefono()+"', celular = '"+medico.getCelular()+"', correo='"+medico.getCorreo()+"', estado = '"+medico.isEstado()+"' WHERE dni='"+medico.getDni()+"'";
+		String query = "UPDATE Medicos SET dni='"+medico.getDni()+"', nombre='"+medico.getNombre()+"', apellido='"+medico.getApellido()+"', sexo = '"+medico.getSexo()+"', nacionalidad = '"+medico.getNacionalidad()+"', fechaNac='"+medico.getFechaNac()+"', direccion='"+medico.getDireccion()+"', localidad = '"+medico.getLocalidad()+"', provincia = '"+medico.getProvincia()+"', telefono='"+medico.getTelefono()+"', celular = '"+medico.getCelular()+"', correo='"+medico.getCorreo()+"', estado = '"+medico.isEstado()+"', id_especialidad = '"+medico.getID_especialidad().getID()+"' WHERE dni='"+medico.getDni()+"'";
 		try
 		 {
 			estado=cn.execute(query);

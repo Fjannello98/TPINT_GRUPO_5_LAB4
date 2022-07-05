@@ -73,6 +73,13 @@
 	          <label>Correo electrónico: </label>
 	          <input type="email" class="form-control" name="txtCorreo">
 	        </div>
+	        
+	        <!-- ESTO TIENE QUE SER UN COMBOBOX!!! -->
+	        <div class="form-group">
+	          <label>ID ESPECIALIDAD: </label>
+	          <input type="text" class="form-control" name="txtEspecialidad">
+	        </div>
+	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
 	          <input type="phone" class="form-control" name="txtTelefono">
