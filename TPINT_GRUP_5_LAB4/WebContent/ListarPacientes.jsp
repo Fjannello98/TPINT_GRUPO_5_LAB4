@@ -1,5 +1,6 @@
 
 
+<%@page import="excepciones.UsuarioNoLoggeadoException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="entidad.Paciente"%>
@@ -29,6 +30,7 @@
 <body>
 	<% if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
+		throw new UsuarioNoLoggeadoException();
 	} %>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<%
