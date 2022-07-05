@@ -177,4 +177,8 @@ TIPO_USUARIO INT NOT NULL,
 FOREIGN KEY (TIPO_USUARIO) REFERENCES TiposUsuario(ID)
 );
 
-insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("FacuJannello", "1234", 1)
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("FacuJannello", "1234", 1);
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("AleHerrera", "1234", 2);
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("MateoGhidini", "1234", 1);
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("PabloCaero", "1234", 1);
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("DiameDevia", "1234", 1);

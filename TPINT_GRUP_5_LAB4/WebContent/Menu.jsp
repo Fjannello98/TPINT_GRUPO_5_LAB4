@@ -30,6 +30,9 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="Home.jsp"><i class="fa-solid fa-house"></i> Home</a>
 	      </li>
+	      <% Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+	      	if (user.getTipo_usuario().getID() == 1) {
+	      %>
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          <i class="fa-solid fa-user"></i> Pacientes
@@ -57,6 +60,14 @@
 	          <a class="dropdown-item text-light" href="ServletTurnos?Param=list">Listar/Modificar/Eliminar</a>
 	        </div>
 	      </li>
+	      <% } 
+	      	if (user.getTipo_usuario().getID() == 2)
+	      	{
+	      %>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="TurnosMedico.jsp"><i class="fa-solid fa-calendar-check"></i> Mis Turnos</a>
+	      	</li>
+	      <% } %>	
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          <i class="fa-solid fa-circle-user"></i> <%= ((Usuario)session.getAttribute("usuario")).getNombre_usuario() %>
