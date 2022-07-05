@@ -32,7 +32,10 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if (request.getParameter("logout") != null) {
+			request.getSession().removeAttribute("usuario");
+		} 
+		request.getRequestDispatcher("Login.jsp").forward(request,response);
 	}
 
 	/**
@@ -46,7 +49,7 @@ public class ServletLogin extends HttpServlet {
 	    UsuarioNegImpl u = new UsuarioNegImpl();
 	    Usuario user = u.buscarUsuario(username, userpass);
 	    if (user.existe()) {
-	        RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+	    	RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
 	        HttpSession session = request.getSession();
 	        session.setAttribute("usuario", user);
 	        rd.forward(request,response);  

@@ -17,7 +17,10 @@
 
 </head>
 
-<body>   
+<body>
+	<% if (request.getSession().getAttribute("usuario") != null) { 
+		request.getRequestDispatcher("Home.jsp").forward(request, response);
+	} %>
   <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
