@@ -39,7 +39,7 @@ public class PacienteDaoImpl implements PacienteDao{
 				 paciente.setTelefono(rs.getString("telefono"));
 				 paciente.setCelular(rs.getString("celular"));
 				 paciente.setCorreo(rs.getString("correo"));
-				 paciente.setEstado(rs.getBoolean("estado"));
+				 paciente.setEstado(rs.getInt("estado"));
 				 
 				 	
 				 list.add(paciente);
@@ -79,7 +79,7 @@ public class PacienteDaoImpl implements PacienteDao{
 			 paciente.setTelefono(rs.getString("telefono"));
 			 paciente.setCelular(rs.getString("celular"));
 			 paciente.setCorreo(rs.getString("correo"));
-			 paciente.setEstado(rs.getBoolean("estado"));
+			 paciente.setEstado(rs.getInt("estado"));
 			 
 		 }
 		 catch(Exception e)

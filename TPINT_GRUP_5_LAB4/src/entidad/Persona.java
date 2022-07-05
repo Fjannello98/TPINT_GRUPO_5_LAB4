@@ -15,13 +15,13 @@ public class Persona {
 	private String telefono;
 	private String celular;
 	private String correo;
-	private boolean estado;
+	private int estado;
 	
-	public boolean isEstado() {
+	public int isEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
@@ -31,7 +31,7 @@ public class Persona {
 	}
 
 	public Persona(String dni, String nombre, String apellido, String sexo, String nacionalidad, Date fechaNac,
-			String direccion, String localidad, String provincia, String telefono, String celular, String correo, boolean estado) {
+			String direccion, String localidad, String provincia, String telefono, String celular, String correo, int estado) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;

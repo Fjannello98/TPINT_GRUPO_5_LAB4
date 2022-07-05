@@ -39,7 +39,7 @@ public class MedicoDaoImpl implements MedicoDao{
 				 medico.setTelefono(rs.getString("telefono"));
 				 medico.setCelular(rs.getString("celular"));
 				 medico.setCorreo(rs.getString("correo"));
-				 medico.setEstado(rs.getBoolean("estado"));
+				 medico.setEstado(rs.getInt("estado"));
 				 
 				 	
 				 list.add(medico);
@@ -79,7 +79,7 @@ public class MedicoDaoImpl implements MedicoDao{
 			 medico.setTelefono(rs.getString("telefono"));
 			 medico.setCelular(rs.getString("celular"));
 			 medico.setCorreo(rs.getString("correo"));
-			 medico.setEstado(rs.getBoolean("estado"));
+			 medico.setEstado(rs.getInt("estado"));
 			 
 		 }
 		 catch(Exception e)
@@ -101,7 +101,8 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn = new Conexion();
 		cn.Open();	
 
-		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+medico.getFechaNac()+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"')";
+		//HARDCODEO DEL INSERT DE FECHANAC
+		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '1984-09-21', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"')";
 		System.out.println(query);
 		try
 		 {
@@ -110,6 +111,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			System.out.println("LLEGO ACA");
 		}
 		finally
 		{

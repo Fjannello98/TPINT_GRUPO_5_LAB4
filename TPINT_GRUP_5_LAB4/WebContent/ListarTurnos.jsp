@@ -41,7 +41,7 @@
             <li><a href="#">Médicos</a>
             <!-- First Tier Drop Down -->
              <ul>
-                <li><a href="FormularioMedico.jsp">Alta</a></li>
+                <li><a href="ServletMedicos?Param=previoInsert">Alta</a></li>
                 <li><a href="ServletMedicos?Param=list">Listar/Modificar/Eliminar</a></li>
             </ul>     
             </li>

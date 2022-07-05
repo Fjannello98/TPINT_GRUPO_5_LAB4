@@ -13,7 +13,7 @@ public class Paciente extends Persona {
 
 	public Paciente(String dni, String nombre, String apellido, String sexo, String nacionalidad, Date fechaNac,
 			String direccion, String localidad, String provincia, String telefono, String celular, String correo,
-			boolean estado) {
+			int estado) {
 		super(dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo,
 				estado);
 		// TODO Auto-generated constructor stub
