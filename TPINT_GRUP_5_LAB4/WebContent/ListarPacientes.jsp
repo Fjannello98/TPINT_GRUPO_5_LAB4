@@ -65,16 +65,18 @@
 		%>
 			
 			<tr>
-
+				<form action="ServletPacientes" method="post">
 				<td><%=a.getNombre()%></td>
 				<td><%=a.getApellido()%></td>
-				<td><%=a.getDni()%></td>
+				<td><%=a.getDni()%> <input type="hidden" name="dniPaciente" value="<%=a.getDni()%>" ></td>
 				<td><%=a.getSexo()%></td>
 				<td><%=a.getDireccion()%></td>
 				<td><%=a.getFechaNac()%></td>
 				<td><%=a.getCorreo()%></td>
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
+				<td> <input type="submit" name="btnEliminar" value="Eliminar" style="background-color: #f44336;"></td>
+				</form>
 				
 			</tr>
 
@@ -86,9 +88,7 @@
 	</table>
 	<br>
 	<div align="center">
-		<button type="button" style="background-color: #f44336;">
-			<i class="glyphicon glyphicon-trash"></i> Eliminar
-		</button>
+		
 		<button type="button" style="background-color: #008CBA;">
 			<i class="glyphicon glyphicon-trash"></i> Modificar
 		</button>

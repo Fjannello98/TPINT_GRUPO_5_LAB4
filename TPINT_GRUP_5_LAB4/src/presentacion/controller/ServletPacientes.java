@@ -1,6 +1,8 @@
 package presentacion.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datosImpl.PacienteDaoImpl;
 import entidad.Especialidad;
 import entidad.Medico;
 import entidad.Paciente;
@@ -22,6 +25,7 @@ public class ServletPacientes extends HttpServlet {
 	
 	PacienteNeg negPac = new PacienteNegImpl();
     Paciente paciente = new Paciente();
+    PacienteDaoImpl pacDao = new PacienteDaoImpl();
     public ServletPacientes() {
         super();
         // TODO Auto-generated constructor stub
@@ -98,10 +102,20 @@ public class ServletPacientes extends HttpServlet {
 				request.setAttribute("estadoPaciente", estado);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
 				dispatcher.forward(request, response);
-				
-							    	
-	    	
+					
 	    }
+		
+		if(request.getParameter("btnEliminar")!=null) 
+		{
+			String dni = request.getParameter("dniPaciente");
+			negPac.borrar(dni);
+			
+			ArrayList<Paciente> lista = negPac.listarPacientes();
+			request.setAttribute("listaPac", lista);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }
