@@ -150,10 +150,10 @@ FOREIGN KEY(DNI_Medico) REFERENCES Medicos(dni),
 FOREIGN KEY(ID_Estado) REFERENCES  Estados(ID),
 FOREIGN KEY(ID_Especialidad) REFERENCES  Especialidades(ID),
 fecha DATE,
-hora DATETIME,
+hora time,
 observacion VARCHAR(200)
 );
-
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ("3121242", "4121242", 1, 2, "2022-07-04", "11:45:30", "TODO FLAMA");
 
 create table TiposUsuario
 (
@@ -169,10 +169,6 @@ estado boolean,
 TIPO_USUARIO INT NOT NULL,
 FOREIGN KEY (TIPO_USUARIO) REFERENCES TiposUsuario(ID)
 );
-
-
-USE BDTURNOS;
-Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad;
 
 INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ("3121242", "4121242", 1, 2, "2022-07-04", "2022-07-04 11:45:30", "TODO FLAMA");
 

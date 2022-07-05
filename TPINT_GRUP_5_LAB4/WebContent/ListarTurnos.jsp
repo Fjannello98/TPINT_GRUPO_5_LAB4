@@ -92,8 +92,8 @@
 				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %></td>
 				<td><%=a.getDNI_medico().getApellido() +", "+ a.getDNI_medico().getNombre()%></td>
 				<td><%=a.getID_especialidad().getDescripcion()%></td>
-				<td><%="DESARROLLAR DATE"%></td>
-				<td><%="DESARROLLAR HORA"%></td>
+				<td><%=a.getFecha() %></td>
+				<td><%=a.getHora() %></td>
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
 				

@@ -2,7 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 
-import datos.List;
+
 import entidad.Turno;
 
 public interface TurnoNeg {

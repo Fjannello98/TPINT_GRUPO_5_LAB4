@@ -1,4 +1,4 @@
-LISTAR PACIENTES
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -84,7 +84,7 @@ LISTAR PACIENTES
 				<th class="text-left">Email</th>
 				<th class="text-left">Telefono</th>
 				<th class="text-left">Nacionalidad</th>
-				<th class="text-left">Especialidad</th>
+				
 			</tr>
 		</thead>
 		<tbody class="table-hover">
@@ -105,7 +105,7 @@ LISTAR PACIENTES
 				<td><%=a.getCorreo()%></td>
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
-				<th class="text-left">Especialidad</th>
+				
 			</tr>
 
 			<%

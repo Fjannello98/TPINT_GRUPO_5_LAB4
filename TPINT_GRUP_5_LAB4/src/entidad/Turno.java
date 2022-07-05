@@ -1,5 +1,8 @@
 package entidad;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /*import java.sql.Time;
 import java.sql.Date;*/
 
@@ -10,8 +13,55 @@ public class Turno {
 	private Estado ID_estado;
 	private Especialidad ID_especialidad;
 	private String observacion;
-	//private  Date fecha;
-	//private DateTime hora;
+	private  Date fecha;
+	private Time hora;
+
+	
+	
+	public Turno() {
+		
+	}
+	
+	public Turno(int id, Paciente DNI_paciente, Medico DNI_medico, Estado ID_estado, Especialidad ID_especialidad, String observacion , Date fecha,Time hora) {
+		super();
+		this.id = id;
+		this.DNI_paciente = DNI_paciente;
+		this.DNI_medico = DNI_medico;
+		this.ID_estado = ID_estado;
+		this.ID_especialidad = ID_especialidad;
+		this.observacion = observacion;
+		this.fecha = fecha;
+		this.hora = hora;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Turno [id=" + id + ", DNI_paciente=" + DNI_paciente + ", DNI_medico=" + DNI_medico + ", ID_estado="
+				+ ID_estado + ", ID_especialidad=" + ID_especialidad + ", observacion=" + observacion + ", fecha="
+				+ fecha + ", hora=" + hora + "]";
+	}
+	
+	
+	public Paciente getDNI_paciente() {
+		return DNI_paciente;
+	}
+	public void setDNI_paciente(Paciente DNI_paciente) {
+		this.DNI_paciente = DNI_paciente;
+	}
+	public Medico getDNI_medico() {
+		return DNI_medico;
+	}
+	public void setDNI_medico(Medico DNI_medico) {
+		this.DNI_medico = DNI_medico;
+	}
+	public Estado getID_estado() {
+		return ID_estado;
+	}
+	public void setID_estado(Estado ID_estado) {
+		this.ID_estado = ID_estado;
+	}
+	
 	
 	public String getObservacion() {
 		return observacion;
@@ -37,7 +87,7 @@ public class Turno {
 		this.id = id;
 	}
 
-	/*public Date getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
@@ -45,56 +95,16 @@ public class Turno {
 		this.fecha = fecha;
 	}
 
-	public DateTime getHora() {
+	public Time getHora() {
 		return hora;
 	}
 
-	public void setHora(DateTime hora) {
+	
+
+	public void setHora(Time hora) {
 		this.hora = hora;
-	}*/
-	
-	
-	
-	public Turno() {
-		
 	}
 	
-	public Turno(int id, Paciente DNI_paciente, Medico DNI_medico, Estado ID_estado, Especialidad ID_especialidad, String observacion/*, Date fecha, DateTime hora*/) {
-		super();
-		this.id = id;
-		this.DNI_paciente = DNI_paciente;
-		this.DNI_medico = DNI_medico;
-		this.ID_estado = ID_estado;
-		this.ID_especialidad = ID_especialidad;
-		this.observacion = observacion;
-		/*this.fecha = fecha;
-		this.hora = hora;*/
-		
-	}
-	
-	@Override
-	public String toString() {
-		return "Paciente [DNI del medico=" + DNI_medico.getDni() + ", DNI del paciente=" + DNI_paciente.getDni() + ", Estado del turno=" + ID_estado.getDescripcion() + "]";
-	}
-	
-	public Paciente getDNI_paciente() {
-		return DNI_paciente;
-	}
-	public void setDNI_paciente(Paciente DNI_paciente) {
-		this.DNI_paciente = DNI_paciente;
-	}
-	public Medico getDNI_medico() {
-		return DNI_medico;
-	}
-	public void setDNI_medico(Medico DNI_medico) {
-		this.DNI_medico = DNI_medico;
-	}
-	public Estado getID_estado() {
-		return ID_estado;
-	}
-	public void setID_estado(Estado ID_estado) {
-		this.ID_estado = ID_estado;
-	}
 	
 }
 
