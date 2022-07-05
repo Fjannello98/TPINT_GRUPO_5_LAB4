@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import datos.PacienteDao;
+import entidad.Medico;
 import entidad.Paciente;
 
 public class PacienteDaoImpl implements PacienteDao{
@@ -95,28 +96,32 @@ public class PacienteDaoImpl implements PacienteDao{
 
 	@Override
 	public boolean insertar(Paciente paciente) {
-		
-		boolean estado=true;
+				
+			boolean estado=true;
 
-		cn = new Conexion();
-		cn.Open();	
+			cn = new Conexion();
+			cn.Open();	
 
-		String query = "INSERT INTO pacientes (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado) VALUES ('"+paciente.getDni()+"','"+paciente.getNombre()+"','"+paciente.getApellido()+"', '"+paciente.getSexo()+"', '"+paciente.getNacionalidad()+"', '"+paciente.getFechaNac()+"', '"+paciente.getDireccion()+"', '"+paciente.getLocalidad()+"', '"+paciente.getProvincia()+"', '"+paciente.getTelefono()+"', '"+paciente.getCelular()+"', '"+paciente.getCorreo()+"', '"+paciente.isEstado()+"')";
-		System.out.println(query);
-		try
-		 {
-			estado=cn.execute(query);
-		 }
-		catch(Exception e)
-		{
-			e.printStackTrace();
+			//HARDCODEO DEL INSERT DE FECHANAC
+			String query = "INSERT INTO Pacientes (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, correo, estado) VALUES ('"+paciente.getDni()+"','"+paciente.getNombre()+"','"+paciente.getApellido()+"', '"+paciente.getSexo()+"', '"+paciente.getNacionalidad()+"', '1984-09-21', '"+paciente.getDireccion()+"', '"+paciente.getLocalidad()+"', '"+paciente.getProvincia()+"', '"+paciente.getTelefono()+"',  '"+paciente.getCorreo()+"', '"+paciente.isEstado()+"')";
+			System.out.println(query);
+			try
+			 {
+				estado=cn.execute(query);
+			 }
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				System.out.println("LLEGO ACA");
+			}
+			finally
+			{
+				cn.close();
+			}
+			return estado;
 		}
-		finally
-		{
-			cn.close();
-		}
-		return estado;
-	}
+
+	
 
 	@Override
 	public boolean editar(Paciente paciente) {

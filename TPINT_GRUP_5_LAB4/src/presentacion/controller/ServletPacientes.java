@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidad.Especialidad;
+import entidad.Medico;
+import entidad.Paciente;
 import negocio.PacienteNeg;
 import negocioImpl.PacienteNegImpl;
 
@@ -17,7 +21,7 @@ public class ServletPacientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	PacienteNeg negPac = new PacienteNegImpl();
-    
+    Paciente paciente = new Paciente();
     public ServletPacientes() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,9 +40,9 @@ public class ServletPacientes extends HttpServlet {
 			case "previoInsert":
 			{
 				//Se quiere insertar entonces cargo la lista de categorias
-				//request.setAttribute("listaCat", negCat.obtenerTodos());
-				//RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarArticulos.jsp");
-				//dispatcher.forward(request, response);
+				request.setAttribute("listaPac", negPac.insertar(paciente ));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarArticulos.jsp");
+				dispatcher.forward(request, response);
 				break;
 			}
 			case "list":
@@ -58,8 +62,46 @@ public class ServletPacientes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		if(request.getParameter("btnAceptar")!=null)
+	    {
+	    	Paciente x = new Paciente();
+	    		    	
+		
+				x.setNombre(request.getParameter("txtNombre"));
+				x.setApellido(request.getParameter("txtApellido"));
+				x.setDni(request.getParameter("txtDNI"));
+				x.setTelefono(request.getParameter("txtTelefono"));
+				
+				x.setCorreo(request.getParameter("txtCorreo"));
+				x.setDireccion(request.getParameter("txtDireccion"));
+				x.setNacionalidad(request.getParameter("txtNacionalidad"));
+				x.setLocalidad(request.getParameter("txtLocalidad"));
+				x.setProvincia(request.getParameter("txtProvincia"));					
+				x.setSexo("Masculino");	
+				
+				
+				
+				/*try {
+					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					Date fecha;
+					fecha = formato.parse("05/08/1994");
+					x.setFechaNac(fecha);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+				
+				
+				x.setEstado(1);
+				boolean estado=true;
+				estado = negPac.insertar(x);
+				request.setAttribute("estadoPaciente", estado);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
+				dispatcher.forward(request, response);
+				
+							    	
+	    	
+	    }
 	}
 
 }

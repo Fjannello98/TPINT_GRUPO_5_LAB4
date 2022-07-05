@@ -43,11 +43,6 @@ public class ServletMedicos extends HttpServlet {
 			case "previoInsert":
 			{
 
-				/*//Se quiere insertar entonces cargo la lista de categorias
-				request.setAttribute("listaCat", negCat.obtenerTodos());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
-				dispatcher.forward(request, response);*/
-
 				//Se quiere insertar entonces cargo la lista de categorias
 				request.setAttribute("listaCat", negCat.listarEspecialidades());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarMedico.jsp");

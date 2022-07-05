@@ -24,7 +24,7 @@
             <li><a href="#">Pacientes</a>
             <!-- First Tier Drop Down -->
             <ul>
-                <li><a href="FormularioPaciente.jsp">Alta</a></li>
+               <li><a href="ServletPacientes?Param=previoInsert"">Alta</a></li>
                 <li><a href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a></li>
             </ul>        
             </li>
