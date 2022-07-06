@@ -36,36 +36,41 @@
 		if (request.getAttribute("listaPac") != null) {
 			listaM = (List<Paciente>)request.getAttribute("listaPac");
 		}
-	 
+		
+	
+	Paciente p = new Paciente();
+	if(request.getAttribute("dniPaciente")!=null){
+		p = (Paciente)request.getAttribute("dniPac");
+	}
 	 
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1 class="h1 mb-5" >Editar paciente</h1>
 	  <div class="row">
 	    <div class="col-6">
-	     <form method="post" action="ServletPacientes">
+	     <form method="post" action="ServletPacientes?Param=editar&dni=<%p.getDni();%>">
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre" value="">
+	          <input type="text" class="form-control" name="txtNombre" value="<%p.getNombre();%>">
 	        </div>
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido" value="">
+	          <input type="text" class="form-control" name="txtApellido" value="<%p.getApellido();%>">
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control" name="txtDNI" value="">
+	          <input type="text" disabled="disabled" class="form-control" name="txtDNI" value="<%p.getDni();%>">
 	        </div>
 	        <div class="form-group">
-	          <label>Correo electrónico: </label>
-	          <input type="email" class="form-control" name="txtCorreo" value="">
+	          <label>Correo electrÃ³nico: </label>
+	          <input type="email" class="form-control" name="txtCorreo" value="<%p.getCorreo();%>">
 	        </div>
 	        
 	        
 	        
 	        <div class="form-group">
-	          <label>Teléfono: </label>
+	          <label>TelÃ©fono: </label>
 	          <input type="phone" class="form-control" name="txtTelefono" value="">
 	        </div>
 	        
@@ -93,14 +98,14 @@
 	        </div>
 	        
 	        <div class="form-group">
-	          <label>Dirección:</label>
+	          <label>DirecciÃ³n:</label>
 	          <input type="text" class="form-control" name="txtDireccion" value="">
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Sexo: </label>
 	          <select class="form-control col-8" name="comboSexo" >
-	          	<!-- Esto debería leerlo desde una DB -->
+	          	<!-- Esto deberÃ­a leerlo desde una DB -->
 	            <option value="1">Masculino</option>
 	            <option value="2">Femenino</option>
 	            <option value="3">Otro</option>
