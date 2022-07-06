@@ -94,6 +94,7 @@
 	            <option value="3">Otro</option>
 	          </select>
 	        </div>
+	        
 	        <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
 	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>

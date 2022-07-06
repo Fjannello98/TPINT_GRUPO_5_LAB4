@@ -132,6 +132,57 @@ public class ServletTurnos extends HttpServlet {
 					dispatcher.forward(request, response);
 					
 		    }
+		 
+		//BUSQUEDA POR DNI
+		 if(request.getParameter("btnBuscar")!=null)
+		 {
+		    	String parametro = request.getParameter("txtBuscar");	    				
+		    	request.setAttribute("listaTurno", negTur.obtenerBusqueda(parametro));	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");
+				dispatcher.forward(request, response);
+					
+		 }
+		 
+	
+		 
+		//BUSQUEDA DINAMICA COMBO
+		 if(request.getParameter("btnBuscarEstado")!=null)
+		 {
+		    	int idEstado = Integer.parseInt(request.getParameter("comboEstado"));
+		    	String parametro = "";
+		    	switch (idEstado) {
+				case 1:
+					parametro = "LIBRE";
+					
+					break;
+					
+				case 2:
+					
+					parametro = "OCUPADO";
+					
+					break;
+					
+				case 3:
+					
+					parametro = "AUSENTE";
+					
+					break;
+
+				case 4:
+					
+					parametro = "PRESENTE";
+				
+					break;
+				default:
+					
+					break;
+				}
+		    	
+				request.setAttribute("listaTurno", negTur.obtenerBusquedaxEstado(parametro));	
+		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");
+				dispatcher.forward(request, response);
+					
+		 }
 	}
 
 }

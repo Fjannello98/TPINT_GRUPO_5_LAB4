@@ -1,6 +1,7 @@
 package negocioImpl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import datos.PacienteDao;
 import datosImpl.PacienteDaoImpl;
@@ -46,6 +47,12 @@ public class PacienteNegImpl implements PacienteNeg{
 		
 		return pacienteDao.borrar(dni);
 	}
+	
+	public List<Paciente> obtenerBusqueda(String parametro){
+		return (ArrayList<Paciente>) pacienteDao.obtenerBusqueda(parametro);
+	}
+
+	
 
 	
 	

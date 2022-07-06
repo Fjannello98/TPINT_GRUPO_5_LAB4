@@ -1,6 +1,7 @@
 package datos;
 import java.util.List;
 import entidad.Medico;
+import entidad.Paciente;
 
 public interface MedicoDao{
 
@@ -10,5 +11,6 @@ public interface MedicoDao{
 	public boolean editar(Medico medico);
 	public boolean borrar(String dni);
 	
-	
+	//PARA BUSQUEDA DINAMICA
+	public List<Medico> obtenerBusqueda(String parametro);
 }

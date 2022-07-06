@@ -138,11 +138,17 @@ public class ServletMedicos extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
 				dispatcher.forward(request, response);
 			}
-	}
+	
 
-	private Date Parse(String parameter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	//BUSQUEDA DINAMICA
+	 if(request.getParameter("btnBuscar")!=null)
+	 {
+	    	String parametro = request.getParameter("txtBuscar");	    				
+	    	request.setAttribute("listaMed", negMed.obtenerBusqueda(parametro));	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+			dispatcher.forward(request, response);
+				
+	 }
 
+	}
 }

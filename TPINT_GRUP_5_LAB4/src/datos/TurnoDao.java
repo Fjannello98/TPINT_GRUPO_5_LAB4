@@ -1,5 +1,7 @@
 package datos;
 import java.util.List;
+
+import entidad.Medico;
 import entidad.Turno;
 
 import java.util.List;
@@ -16,5 +18,8 @@ public interface TurnoDao {
 	public boolean cambiarEstadoOcupado(int id);
 	public boolean cambiarEstadoPresente(int id);
 	
+	//PARA BUSQUEDA DINAMICA
+	public List<Turno> obtenerBusqueda(String parametro);
+	public List<Turno> obtenerBusquedaxEstado(String parametro);
 
 }

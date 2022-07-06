@@ -170,4 +170,47 @@ public class PacienteDaoImpl implements PacienteDao{
 		}
 		return estado;
 	}
+	
+	//BUSQUEDA DINAMICA POR APELLIDO, NOMBRE O APELLIDO
+	public List<Paciente> obtenerBusqueda(String parametro){
+		cn = new Conexion();
+		cn.Open();
+		 List<Paciente> list = new ArrayList<Paciente>();
+		 try
+		 {
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from pacientes WHERE estado = 1 AND dni LIKE '%"+parametro+"%' OR nombre LIKE '%"+parametro+"%' OR apellido LIKE '%"+parametro+"%'");
+			 while(rs.next())
+			 {
+				 Paciente paciente = new Paciente();
+				 paciente.setDni(rs.getString("dni"));
+				 paciente.setNombre(rs.getString("nombre"));
+				 paciente.setApellido(rs.getString("apellido"));
+				 paciente.setSexo(rs.getString("sexo"));
+				 paciente.setNacionalidad(rs.getString("nacionalidad"));
+				 paciente.setFechaNac(rs.getDate("fechaNac"));
+				 paciente.setDireccion(rs.getString("direccion"));
+				 paciente.setLocalidad(rs.getString("localidad"));
+				 paciente.setProvincia(rs.getString("provincia"));
+				 paciente.setTelefono(rs.getString("telefono"));
+				 paciente.setCelular(rs.getString("celular"));
+				 paciente.setCorreo(rs.getString("correo"));
+				 paciente.setEstado(rs.getInt("estado"));
+				 
+				 	
+				 list.add(paciente);
+			 }
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 finally
+		 {
+			 cn.close();
+		 }
+		 return list;
+	}
+	
 }
+

@@ -1,10 +1,12 @@
 package negocioImpl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import datos.MedicoDao;
 import datosImpl.MedicoDaoImpl;
 import entidad.Medico;
+import entidad.Paciente;
 import negocio.MedicoNeg;
 
 public class MedicoNegImpl implements MedicoNeg{
@@ -46,6 +48,9 @@ public class MedicoNegImpl implements MedicoNeg{
 		return medicoDao.borrar(dni);
 	}
 
+	public List<Medico> obtenerBusqueda(String parametro){
+		return (ArrayList<Medico>) medicoDao.obtenerBusqueda(parametro);
+	}
 	
 	
 }

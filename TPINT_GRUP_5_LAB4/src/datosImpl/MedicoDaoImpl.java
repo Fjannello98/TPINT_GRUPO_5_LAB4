@@ -8,6 +8,7 @@ import java.util.List;
 import datos.MedicoDao;
 import entidad.Especialidad;
 import entidad.Medico;
+import entidad.Paciente;
 
 public class MedicoDaoImpl implements MedicoDao{
 	
@@ -181,4 +182,51 @@ public class MedicoDaoImpl implements MedicoDao{
 		}
 		return estado;
 	}
+	
+	
+	public List<Medico> obtenerBusqueda(String parametro){
+	
+	cn = new Conexion();
+	cn.Open();
+	 List<Medico> list = new ArrayList<Medico>();
+	 try
+	 {
+		 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, e.id, e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID WHERE estado = 1 AND dni LIKE '%"+parametro+"%' OR nombre LIKE '%"+parametro+"%' OR apellido LIKE '%"+parametro+"%' OR e.descripcion LIKE '%"+parametro+"%'");
+		 while(rs.next())
+		 {
+			 Medico medico = new Medico();
+			 medico.setDni(rs.getString("dni"));
+			 medico.setNombre(rs.getString("nombre"));
+			 medico.setApellido(rs.getString("apellido"));
+			 medico.setSexo(rs.getString("sexo"));
+			 medico.setNacionalidad(rs.getString("nacionalidad"));
+			 medico.setFechaNac(rs.getDate("fechaNac"));
+			 medico.setDireccion(rs.getString("direccion"));
+			 medico.setLocalidad(rs.getString("localidad"));
+			 medico.setProvincia(rs.getString("provincia"));
+			 medico.setTelefono(rs.getString("telefono"));
+			 medico.setCelular(rs.getString("celular"));
+			 medico.setCorreo(rs.getString("correo"));
+			 medico.setEstado(rs.getInt("estado"));
+			 
+			 Especialidad esp = new Especialidad();
+			 esp.setID(rs.getInt("e.id"));
+			 esp.setDescripción(rs.getString("e.descripcion"));
+	 
+			 medico.setID_especialidad(esp);	
+			 list.add(medico);
+		 }
+		 
+	 }
+	 catch(Exception e)
+	 {
+		 e.printStackTrace();
+	 }
+	 finally
+	 {
+		 cn.close();
+	 }
+	 return list;
+	}
+	
 }

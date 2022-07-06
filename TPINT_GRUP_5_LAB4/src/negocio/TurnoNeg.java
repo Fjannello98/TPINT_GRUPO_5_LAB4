@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidad.Paciente;
 import entidad.Turno;
 
 public interface TurnoNeg {
@@ -17,4 +18,8 @@ public interface TurnoNeg {
 	public boolean cambiarEstadoLibre(int id);
 	public boolean cambiarEstadoOcupado(int id);
 	public boolean cambiarEstadoPresente(int id);
+	
+	public List<Turno> obtenerBusqueda(String parametro);
+	public List<Turno> obtenerBusquedaxEstado(String parametro);
+	
 }

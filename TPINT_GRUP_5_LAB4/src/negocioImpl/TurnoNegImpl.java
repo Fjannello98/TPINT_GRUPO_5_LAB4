@@ -80,6 +80,17 @@ private TurnoDao turnoDao = new TurnoDaoImpl();
 	public List<Turno> obtenerPorDniMedico(String dniMedico) {
 		return turnoDao.obtenerPorDniMedico(dniMedico);
 	}
+	
+	//BUSQUEDA DINAMICA
+	public List<Turno> obtenerBusqueda(String parametro){
+		return (ArrayList<Turno>) turnoDao.obtenerBusqueda(parametro);
+	}
+	
+	public List<Turno> obtenerBusquedaxEstado(String parametro){
+		return (ArrayList<Turno>) turnoDao.obtenerBusquedaxEstado(parametro);
+	}
+
+
 
 
 }

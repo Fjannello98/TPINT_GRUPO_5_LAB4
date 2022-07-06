@@ -11,5 +11,8 @@ public interface PacienteDao{
 	public boolean editar(Paciente paciente);
 	public boolean borrar(String dni);
 	
+	//PARA BUSQUEDA DINAMICA
+	public List<Paciente> obtenerBusqueda(String parametro);
+	
 	
 }
