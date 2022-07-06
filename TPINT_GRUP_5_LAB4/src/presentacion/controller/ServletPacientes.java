@@ -52,7 +52,7 @@ public class ServletPacientes extends HttpServlet {
 			case "list":
 			{
 				request.setAttribute("listaPac", negPac.listarPacientes());	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp?buscarLista=1");
 				dispatcher.forward(request, response);
 				break;
 			}

@@ -42,6 +42,9 @@
 	} 
 	%>
 	<%
+	 if (request.getParameter("buscarLista") == null) {
+		 	request.getRequestDispatcher("ServletPacientes?Param=list").forward(request, response);
+     }
 		List<Paciente> listaM = new ArrayList<Paciente>();
 		if (request.getAttribute("listaPac") != null) {
 			listaM = (List<Paciente>)request.getAttribute("listaPac");

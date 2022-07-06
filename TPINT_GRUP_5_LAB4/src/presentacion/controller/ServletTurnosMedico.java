@@ -33,7 +33,7 @@ public class ServletTurnosMedico extends HttpServlet {
 		if (request.getParameter("buscarLista") != null) {
 			Usuario usuarioMedico = (Usuario)request.getSession().getAttribute("usuario");
 			request.setAttribute("listaTurnosMedico", negTur.obtenerPorDniMedico(usuarioMedico.getDni()));
-			request.getRequestDispatcher("TurnosMedico.jsp?buscarLista=1").forward(request, response);
+			request.getRequestDispatcher("/ListarTurnosMedico.jsp?buscarLista=1").forward(request, response);
 		}
 	}
 
