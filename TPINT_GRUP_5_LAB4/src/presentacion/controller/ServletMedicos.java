@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidad.Especialidad;
 import entidad.Medico;
-
+import entidad.Paciente;
 import negocio.EspecialidadNeg;
 
 import negocio.MedicoNeg;
@@ -119,9 +120,19 @@ public class ServletMedicos extends HttpServlet {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 					dispatcher.forward(request, response);
 					
-								    	
-		    	
 		    }
+		 
+		 if(request.getParameter("btnEliminar")!=null) 
+			{
+				String dni = request.getParameter("dniMedico");
+				negMed.borrar(dni);
+				
+				ArrayList<Medico> lista = negMed.listarMedicos();
+				request.setAttribute("listaMed", lista);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+				dispatcher.forward(request, response);
+			}
 	}
 
 	private Date Parse(String parameter) {

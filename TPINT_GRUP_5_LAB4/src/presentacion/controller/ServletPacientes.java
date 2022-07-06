@@ -105,14 +105,16 @@ public class ServletPacientes extends HttpServlet {
 		if(request.getParameter("btnEliminar")!=null) 
 		{
 			String dni = request.getParameter("dniPaciente");
-			negPac.borrar(dni);
 			
+			if(negPac.borrar(dni)) {
 			ArrayList<Paciente> lista = negPac.listarPacientes();
 			request.setAttribute("listaPac", lista);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
 			dispatcher.forward(request, response);
+			}
 		}
+			
 	}
 
 }
