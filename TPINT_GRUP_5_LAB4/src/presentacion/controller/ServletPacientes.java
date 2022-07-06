@@ -56,6 +56,13 @@ public class ServletPacientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "editar":
+			{
+				request.setAttribute("dniPac", request.getParameter("dni"));	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}
@@ -120,6 +127,63 @@ public class ServletPacientes extends HttpServlet {
 					dispatcher.forward(request, response);
 					
 		    }
+		 
+		 
+		 
+		 if(request.getParameter("btnGuardar")!=null)
+		    {
+		    	Paciente x = new Paciente();
+		    		    	
+			
+					x.setNombre(request.getParameter("txtNombre"));
+					x.setApellido(request.getParameter("txtApellido"));
+					x.setDni(request.getParameter("txtDNI"));
+					x.setTelefono(request.getParameter("txtTelefono"));
+					x.setCelular(request.getParameter("txtCelular"));
+					x.setCorreo(request.getParameter("txtCorreo"));
+					x.setDireccion(request.getParameter("txtDireccion"));
+					x.setNacionalidad(request.getParameter("txtNacionalidad"));
+					x.setLocalidad(request.getParameter("txtLocalidad"));
+					x.setProvincia(request.getParameter("txtProvincia"));
+					
+					int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+					switch (sexo) {
+					case 1:
+						x.setSexo("Masculino");	
+						break;
+					case 2:
+						x.setSexo("Femenino");	
+						break;
+					case 3:
+						x.setSexo("Otro");	
+						break;
+					default:
+						break;
+					}
+					
+				
+					
+					//IMPORTANTISIMO PARA FECHA					
+					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+					Date fecha;
+					try {
+						fecha = formato.parse(request.getParameter("txtFechaNac"));
+						x.setFechaNac(fecha);						
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}				
+					
+				
+					
+					x.setEstado(1);
+					boolean estado=true;
+					estado = negPac.insertar(x);
+					request.setAttribute("estadoPaciente", estado);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
+					dispatcher.forward(request, response);
+					
+		    }
 		
 		if(request.getParameter("btnEliminar")!=null) 
 		{
@@ -133,7 +197,13 @@ public class ServletPacientes extends HttpServlet {
 			dispatcher.forward(request, response);
 			}
 		}
+		
+		
+		
 			
 	}
-
+	
 }
+
+
+
