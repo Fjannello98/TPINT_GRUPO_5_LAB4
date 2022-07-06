@@ -105,7 +105,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		return medico;
 	}
 
-	@SuppressWarnings("deprecation")
+	
 	@Override
 	public boolean insertar(Medico medico) {
 		
@@ -115,13 +115,15 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn.Open();	
 		
 		
-		String fecha;
+		//ACA TIENE QUE HABER ALGO QUE LO SOLUCIONE
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaComoCadena = formato.format(medico.getFechaNac());
+		System.out.println(fechaComoCadena);
 		
 		
-		fecha = medico.getFechaNac().;
 
 
-		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+fecha+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
+		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+fechaComoCadena+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
 		System.out.println(query);
 		try
 		 {
