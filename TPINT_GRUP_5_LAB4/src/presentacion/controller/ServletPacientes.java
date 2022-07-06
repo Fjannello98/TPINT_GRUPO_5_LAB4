@@ -66,7 +66,7 @@ public class ServletPacientes extends HttpServlet {
 				request.setAttribute("dniPac", p);	
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
 				dispatcher.forward(request, response);
-				System.
+				
 				break;
 			}
 			default:
