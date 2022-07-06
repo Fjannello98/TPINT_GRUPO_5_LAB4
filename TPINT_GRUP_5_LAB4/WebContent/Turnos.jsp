@@ -1,5 +1,10 @@
 <%@page import="excepciones.UsuarioSinPermisoException"%>
 <%@page import="entidad.Usuario"%>
+<%@page import="entidad.Especialidad"%>
+<%@page import="entidad.Medico"%>
+<%@page import="entidad.Paciente"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -26,51 +31,114 @@
 			throw new UsuarioSinPermisoException();
 	} 
 	%>
+	
+	
+	<%
+		List<Especialidad> listaE = new ArrayList<Especialidad>();
+		if (request.getAttribute("listaEsp") != null) {
+			listaE = (List<Especialidad>)request.getAttribute("listaEsp");
+		}
+	%>
+	
+	<%
+		List<Medico> listaM = new ArrayList<Medico>();
+		if (request.getAttribute("listaMed") != null) {
+			listaM = (List<Medico>)request.getAttribute("listaMed");
+		}
+	%>
+	
+	<%
+		List<Paciente> listaP = new ArrayList<Paciente>();
+		if (request.getAttribute("listaPac") != null) {
+			listaP = (List<Paciente>)request.getAttribute("listaPac");
+		}
+	%>
+	
+	
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
 
-	<h1 class="h1 mb-5">Ingresar nuevo Turno</h1>
-	  <div class="row">
-	    <div class="col-6">
-	      <form>
-			<div class="form-group">
-
-	          <label>Especialidad:</label>
-	          <select class="form-control col-8">
+ 		<form method="post" action="ServletTurnos">
+	 		<!-- ESPECIALIDAD  -->
+	        <div class="form-group">
+	          <label>Seleccione una Especialidad: </label>
+	          <select class="form-control col-8" name="comboEspecialidad" >
 	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>Traumatologia</option>
-	            <option>Clinico</option>
+	            		<%
+							for (Especialidad e : listaE) {
+						%>
+						<option value="<%=e.getID()%>"><%=e.getDescripcion() %></option>
+						<%
+							}
+						%>
 	          </select>
 	        </div>
 	        
+	        <!-- MEDICOS  -->
 	        <div class="form-group">
-	          <label>Medico:</label>
-	          <select class="form-control col-8">
+	          <label>Seleccione un Médico: </label>
+	          <select class="form-control col-8" name="comboMedico" >
 	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>Ramirez ,Pedro</option>
-	            <option>Lopez ,Maximiliano</option>
-	            <option>Garcia ,Mirtha</option>
-	            <option>Farinelli ,Lucia</option>
+	            		<%
+							for (Medico m : listaM) {
+						%>
+						<option value="<%=m.getDni()%>"><%=m.getApellido() + ", " + m.getNombre() %></option>
+						<%
+							}
+						%>
 	          </select>
 	        </div>
-	        <p> Fecha: <input type="date" name="Fecha"></input></p>
-	        <p>  Hora: <input type="number" name="Numero"></input>
+	        
+	         <!-- PACIENTES  -->
 	        <div class="form-group">
-	          <label>Paciente:</label>
-	          <select class="form-control col-8">
-	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>Rodriguez, Juana</option>
-	            <option>Pirez, Mario</option>
-	            <option>Gutierrez ,Lucia</option>
+	          <label>Seleccione un Paciente: </label>
+	          <select class="form-control col-8" name="comboPaciente" >
+	      
+	            		<%
+							for (Paciente p : listaP) {
+						%>
+						<option value="<%=p.getDni()%>"><%=p.getApellido() + ", " + p.getNombre() %></option>
+						<%
+							}
+						%>
 	          </select>
-	           <p>
+	        </div>
+	        
+	        
+	         <!-- FECHA  -->
+	         <div class="form-group">
+	          <label>Fecha: </label>
+	          <input type="date" class="form-control col-8" name="txtFecha">
+	        </div>
+	        
+	        <!-- HORA  -->
+	         <div class="form-group">
+	          <label>Hora: </label>
+	          <input type="time" class="form-control col-8" name="txtHora">
+	        </div>
+	        	        	        
+	        
+	         <!-- OBSERVACIONES  -->
+	         <div class="form-group">
+	          <label>Observaciones: </label>
+	          <input type="text" style="WIDTH: 228px; HEIGHT: 98px" class="form-control" name="txtObservacion">
+	        </div>
+	           
 	       <div class="col-12">
-	        	<button type="submit" class="btn btn-success">Alta turno</button>
+	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
 	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
 	        </div></p>
 	      </form>
-	    </div>
-	  </div>
-	</div>
+	      
+	      
+	          <%
+		if (request.getAttribute("estadoTurno") != null) {
+	%>
+	Turno agregado con exito
+	<%
+		}
+	%>
+	  
 
 </body>
 </html>
