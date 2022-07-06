@@ -31,13 +31,6 @@
 </head>
 
 <body>
-	<%
-		List<Paciente> listaM = new ArrayList<Paciente>();
-		if (request.getAttribute("listaPac") != null) {
-			listaM = (List<Paciente>)request.getAttribute("listaPac");
-		}
-	%>
-	
 	<% if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
@@ -48,6 +41,13 @@
 			throw new UsuarioSinPermisoException();
 	} 
 	%>
+	<%
+		List<Paciente> listaM = new ArrayList<Paciente>();
+		if (request.getAttribute("listaPac") != null) {
+			listaM = (List<Paciente>)request.getAttribute("listaPac");
+		}
+	%>
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
 	
 	<div class="table-title">
