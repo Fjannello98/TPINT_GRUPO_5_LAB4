@@ -24,7 +24,7 @@ public class PacienteDaoImpl implements PacienteDao{
 		 List<Paciente> list = new ArrayList<Paciente>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from pacientes");
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from pacientes WHERE estado = 1");
 			 while(rs.next())
 			 {
 				 Paciente paciente = new Paciente();
@@ -151,7 +151,7 @@ public class PacienteDaoImpl implements PacienteDao{
 		boolean estado=true;
 		cn = new Conexion();
 		cn.Open();		 
-		String query = "UPDATE Pacientes SET estado=0 WHERE dni="+dni;
+		String query = "UPDATE Pacientes SET estado=0 WHERE dni="+"'"+dni+"'";
 		try
 		 {
 			estado=cn.execute(query);
