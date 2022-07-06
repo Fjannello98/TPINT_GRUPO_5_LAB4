@@ -31,76 +31,71 @@
 	<h1 class="h1 mb-5" >Ingresar nuevo paciente</h1>
 	  <div class="row">
 	    <div class="col-6">
-	      <form>
+	     <form method="post" action="ServletPacientes">
+	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control">
+	          <input type="text" class="form-control" name="txtNombre">
 	        </div>
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control">
+	          <input type="text" class="form-control" name="txtApellido">
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control">
+	          <input type="text" class="form-control" name="txtDNI">
 	        </div>
 	        <div class="form-group">
 	          <label>Correo electrónico: </label>
-	          <input type="email" class="form-control">
+	          <input type="email" class="form-control" name="txtCorreo">
 	        </div>
+	        
+	        
+	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control">
+	          <input type="phone" class="form-control" name="txtTelefono">
 	        </div>
+	        
+	         <div class="form-group">
+	          <label>Celular: </label>
+	          <input type="phone" class="form-control" name="txtCelular">
+	        </div>
+	        
 	        <div class="form-group">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8">
+	          <input type="date" class="form-control col-8" name="txtFechaNac">
 	        </div>
 	        <div class="form-group">
-	          <label>Nacionalidad:</label>
-	          <select class="form-control col-8">
-	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>Argentina</option>
-	            <option>Brasil</option>
-	          </select>
+	          <label>Nacionalidad: </label>
+	          <input type="text" class="form-control" name="txtNacionalidad">
 	        </div>
+	       <div class="form-group">
+	          <label>Localidad: </label>
+	          <input type="text" class="form-control" name="txtLocalidad">
+	        </div>
+	      
 	        <div class="form-group">
-	          <label>Localidad:</label>
-	          <select class="form-control col-8">
-	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>CABA</option>
-	            <option>Tigre</option>
-	          </select>
+	          <label>Provincia: </label>
+	          <input type="text" class="form-control" name="txtProvincia">
 	        </div>
-	        <div class="form-group">
-	          <label>Provincia:</label>
-	          <select class="form-control col-8">
-	          	<!-- Esto debería leerlo desde una DB -->
-	            <option>CABA</option>
-	            <option>Provincia de Bs As</option>
-	          </select>
-	        </div>
+	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
-	          <input type="text" class="form-control">
+	          <input type="text" class="form-control" name="txtDireccion">
 	        </div>
+	        
 	        <div class="form-group">
-	        	<label class="col-12">Sexo: </label>
-		        <div class="form-group custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-masculino" name="sexo" class="custom-control-input">
-		          <label for="radio-masculino" class="custom-control-label">Masculino</label>
-		        </div>
-		        <div class="custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-femenino" name="sexo" class="custom-control-input">
-		          <label for="radio-femenino" class="custom-control-label">Femenino</label>
-		        </div>
-		        <div class="custom-control custom-control-inline custom-radio">
-		          <input type="radio" id="radio-otro" name="sexo" class="custom-control-input">
-		          <label for="radio-otro" class="custom-control-label">Otro</label>
-		        </div>
+	          <label>Sexo: </label>
+	          <select class="form-control col-8" name="comboSexo" >
+	          	<!-- Esto debería leerlo desde una DB -->
+	            <option value="1">Masculino</option>
+	            <option value="2">Femenino</option>
+	            <option value="3">Otro</option>
+	          </select>
 	        </div>
 	        <div class="col-12">
-	        	<button type="submit" class="btn btn-success">Crear</button>
+	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
 	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
 	        </div>
 	      </form>

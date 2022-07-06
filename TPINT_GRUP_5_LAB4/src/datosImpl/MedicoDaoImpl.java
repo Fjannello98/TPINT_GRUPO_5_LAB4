@@ -26,7 +26,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		 List<Medico> list = new ArrayList<Medico>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, e.id, e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID");
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, e.id, e.descripcion, estado from Medicos inner join Especialidades as e on id_especialidad=e.ID WHERE estado = 1");
 			 while(rs.next())
 			 {
 				 Medico medico = new Medico();
@@ -105,6 +105,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		return medico;
 	}
 
+	
 	@Override
 	public boolean insertar(Medico medico) {
 		
@@ -113,12 +114,13 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn = new Conexion();
 		cn.Open();	
 		
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		String fecha;
-		fecha = formato.format(medico.getFechaNac());
+		
+		//IMPORTANTISIMO PARA INSERTAR FECHA
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+		String fechaComoCadena = formato.format(medico.getFechaNac());
+		
 
-
-		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+fecha+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
+		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+fechaComoCadena+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
 		System.out.println(query);
 		try
 		 {
@@ -164,7 +166,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		boolean estado=true;
 		cn = new Conexion();
 		cn.Open();		 
-		String query = "UPDATE Medicos SET estado=0 WHERE dni="+dni;
+		String query = "UPDATE Medicos SET estado=0 WHERE dni="+"'"+dni+"'";
 		try
 		 {
 			estado=cn.execute(query);

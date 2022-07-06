@@ -1,5 +1,6 @@
 package datosImpl;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,8 +84,17 @@ public class TurnoDaoImpl implements TurnoDao{
 
 		cn = new Conexion();
 		cn.Open();	
+		
+		//IMPORTANTISIMO PARA INSERTAR FECHA
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+		String fechaComoCadena = formato.format(turno.getFecha());
+				
+		//IMPORTANTISIMO PARA INSERTAR HORA
+		SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");	
+		String horaComoCadena = formatoHora.format(turno.getHora());
+		System.out.println(horaComoCadena);
 
-		String query = "INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora) VALUES ('"+turno.getDNI_paciente()+"','"+turno.getDNI_medico()+"','"+turno.getID_estado()+"', '"+turno.getID_especialidad()+"', '2022-07-04', '2022-07-04 11:45:30')";
+		String query = "INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('"+turno.getDNI_paciente().getDni()+"','"+turno.getDNI_medico().getDni()+"','"+turno.getID_estado().getID()+"', '"+turno.getID_especialidad().getID()+"', '"+fechaComoCadena+"', '"+horaComoCadena+"', '"+turno.getObservacion()+"')";
 		System.out.println(query);
 		try
 		 {

@@ -1,7 +1,10 @@
 package presentacion.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -63,56 +66,74 @@ public class ServletPacientes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("btnAceptar")!=null)
-	    {
-	    	Paciente x = new Paciente();
-	    		    	
-		
-				x.setNombre(request.getParameter("txtNombre"));
-				x.setApellido(request.getParameter("txtApellido"));
-				x.setDni(request.getParameter("txtDNI"));
-				x.setTelefono(request.getParameter("txtTelefono"));
-				
-				x.setCorreo(request.getParameter("txtCorreo"));
-				x.setDireccion(request.getParameter("txtDireccion"));
-				x.setNacionalidad(request.getParameter("txtNacionalidad"));
-				x.setLocalidad(request.getParameter("txtLocalidad"));
-				x.setProvincia(request.getParameter("txtProvincia"));					
-				x.setSexo("Masculino");	
-				
-				
-				
-				/*try {
-					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-					Date fecha;
-					fecha = formato.parse("05/08/1994");
-					x.setFechaNac(fecha);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-				
-				
-				x.setEstado(1);
-				boolean estado=true;
-				estado = negPac.insertar(x);
-				request.setAttribute("estadoPaciente", estado);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
-				dispatcher.forward(request, response);
+		 if(request.getParameter("btnAceptar")!=null)
+		    {
+		    	Paciente x = new Paciente();
+		    		    	
+			
+					x.setNombre(request.getParameter("txtNombre"));
+					x.setApellido(request.getParameter("txtApellido"));
+					x.setDni(request.getParameter("txtDNI"));
+					x.setTelefono(request.getParameter("txtTelefono"));
+					x.setCelular(request.getParameter("txtCelular"));
+					x.setCorreo(request.getParameter("txtCorreo"));
+					x.setDireccion(request.getParameter("txtDireccion"));
+					x.setNacionalidad(request.getParameter("txtNacionalidad"));
+					x.setLocalidad(request.getParameter("txtLocalidad"));
+					x.setProvincia(request.getParameter("txtProvincia"));
 					
-	    }
+					int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+					switch (sexo) {
+					case 1:
+						x.setSexo("Masculino");	
+						break;
+					case 2:
+						x.setSexo("Femenino");	
+						break;
+					case 3:
+						x.setSexo("Otro");	
+						break;
+					default:
+						break;
+					}
+					
+				
+					
+					//IMPORTANTISIMO PARA FECHA					
+					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+					Date fecha;
+					try {
+						fecha = formato.parse(request.getParameter("txtFechaNac"));
+						x.setFechaNac(fecha);						
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}				
+					
+				
+					
+					x.setEstado(1);
+					boolean estado=true;
+					estado = negPac.insertar(x);
+					request.setAttribute("estadoPaciente", estado);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
+					dispatcher.forward(request, response);
+					
+		    }
 		
 		if(request.getParameter("btnEliminar")!=null) 
 		{
 			String dni = request.getParameter("dniPaciente");
-			negPac.borrar(dni);
 			
+			if(negPac.borrar(dni)) {
 			ArrayList<Paciente> lista = negPac.listarPacientes();
 			request.setAttribute("listaPac", lista);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
 			dispatcher.forward(request, response);
+			}
 		}
+			
 	}
 
 }

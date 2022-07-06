@@ -111,6 +111,7 @@
 	          <label>Dirección:</label>
 	          <input type="text" class="form-control" name="txtDireccion">
 	        </div>
+	        
 	        <div class="form-group">
 	          <label>Sexo: </label>
 	          <select class="form-control col-8" name="comboSexo" >

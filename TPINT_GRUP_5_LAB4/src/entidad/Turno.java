@@ -1,7 +1,7 @@
 package entidad;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+
 
 /*import java.sql.Time;
 import java.sql.Date;*/
@@ -13,8 +13,8 @@ public class Turno {
 	private Estado ID_estado;
 	private Especialidad ID_especialidad;
 	private String observacion;
-	private  Date fecha;
-	private Time hora;
+	private Date fecha;
+	private Date hora;
 
 	
 	
@@ -22,7 +22,7 @@ public class Turno {
 		
 	}
 	
-	public Turno(int id, Paciente DNI_paciente, Medico DNI_medico, Estado ID_estado, Especialidad ID_especialidad, String observacion , Date fecha,Time hora) {
+	public Turno(int id, Paciente DNI_paciente, Medico DNI_medico, Estado ID_estado, Especialidad ID_especialidad, String observacion , Date fecha,Date hora) {
 		super();
 		this.id = id;
 		this.DNI_paciente = DNI_paciente;
@@ -95,15 +95,14 @@ public class Turno {
 		this.fecha = fecha;
 	}
 
-	public Time getHora() {
+	public Date getHora() {
 		return hora;
 	}
 
-	
-
-	public void setHora(Time hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}
+
 	
 	
 }

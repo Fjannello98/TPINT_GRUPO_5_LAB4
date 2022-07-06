@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidad.Especialidad;
 import entidad.Medico;
-
+import entidad.Paciente;
 import negocio.EspecialidadNeg;
 
 import negocio.MedicoNeg;
@@ -66,7 +67,7 @@ public class ServletMedicos extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("deprecation")
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 if(request.getParameter("btnAceptar")!=null)
 		    {
@@ -103,14 +104,19 @@ public class ServletMedicos extends HttpServlet {
 					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
 					x.setID_especialidad(especialidad);
 				
-					/*//CASTEO STRING A DATE
-					Date fecha = new Date();
-					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-					fecha.
-					fecha = Date.parse(request.getParameter("txtFechaNac"));
-					x.setFechaNac(fecha);*/
-				
 					
+					//IMPORTANTISIMO PARA FECHA					
+					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+					Date fecha;
+					try {
+						fecha = formato.parse(request.getParameter("txtFechaNac"));
+						x.setFechaNac(fecha);						
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}				
+					
+				
 					
 					x.setEstado(1);
 					boolean estado=true;
@@ -119,9 +125,24 @@ public class ServletMedicos extends HttpServlet {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 					dispatcher.forward(request, response);
 					
-								    	
-		    	
 		    }
+		 
+		 if(request.getParameter("btnEliminar")!=null) 
+			{
+				String dni = request.getParameter("dniMedico");
+				negMed.borrar(dni);
+				
+				ArrayList<Medico> lista = negMed.listarMedicos();
+				request.setAttribute("listaMed", lista);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+				dispatcher.forward(request, response);
+			}
+	}
+
+	private Date Parse(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

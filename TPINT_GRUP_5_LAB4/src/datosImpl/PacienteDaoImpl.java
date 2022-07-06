@@ -1,5 +1,6 @@
 package datosImpl;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class PacienteDaoImpl implements PacienteDao{
 		 List<Paciente> list = new ArrayList<Paciente>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from pacientes");
+			 ResultSet rs= cn.query("Select dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado from pacientes WHERE estado = 1");
 			 while(rs.next())
 			 {
 				 Paciente paciente = new Paciente();
@@ -102,8 +103,11 @@ public class PacienteDaoImpl implements PacienteDao{
 			cn = new Conexion();
 			cn.Open();	
 
-			//HARDCODEO DEL INSERT DE FECHANAC
-			String query = "INSERT INTO Pacientes (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, correo, estado) VALUES ('"+paciente.getDni()+"','"+paciente.getNombre()+"','"+paciente.getApellido()+"', '"+paciente.getSexo()+"', '"+paciente.getNacionalidad()+"', '1984-09-21', '"+paciente.getDireccion()+"', '"+paciente.getLocalidad()+"', '"+paciente.getProvincia()+"', '"+paciente.getTelefono()+"',  '"+paciente.getCorreo()+"', '"+paciente.isEstado()+"')";
+			//IMPORTANTISIMO PARA INSERTAR FECHA
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+			String fechaComoCadena = formato.format(paciente.getFechaNac());
+			
+			String query = "INSERT INTO Pacientes (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, correo, estado) VALUES ('"+paciente.getDni()+"','"+paciente.getNombre()+"','"+paciente.getApellido()+"', '"+paciente.getSexo()+"', '"+paciente.getNacionalidad()+"', '"+fechaComoCadena+"', '"+paciente.getDireccion()+"', '"+paciente.getLocalidad()+"', '"+paciente.getProvincia()+"', '"+paciente.getTelefono()+"',  '"+paciente.getCorreo()+"', '"+paciente.isEstado()+"')";
 			System.out.println(query);
 			try
 			 {
@@ -151,7 +155,7 @@ public class PacienteDaoImpl implements PacienteDao{
 		boolean estado=true;
 		cn = new Conexion();
 		cn.Open();		 
-		String query = "UPDATE Pacientes SET estado=0 WHERE dni="+dni;
+		String query = "UPDATE Pacientes SET estado=0 WHERE dni="+"'"+dni+"'";
 		try
 		 {
 			estado=cn.execute(query);
