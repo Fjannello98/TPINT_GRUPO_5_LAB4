@@ -54,7 +54,7 @@ public class ServletMedicos extends HttpServlet {
 			case "list":
 			{
 				request.setAttribute("listaMed", negMed.listarMedicos());	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp?buscarLista=1");
 				dispatcher.forward(request, response);
 				break;
 			}

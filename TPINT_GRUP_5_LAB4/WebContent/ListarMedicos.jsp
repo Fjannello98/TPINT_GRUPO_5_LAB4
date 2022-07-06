@@ -38,6 +38,9 @@
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<%
+	 	if (request.getParameter("buscarLista") == null) {
+		 	request.getRequestDispatcher("ServletMedicos?Param=list").forward(request, response);
+		 }
 		List<Medico> listaM = new ArrayList<Medico>();
 		if (request.getAttribute("listaMed") != null) {
 			listaM = (List<Medico>) request.getAttribute("listaMed");

@@ -66,7 +66,7 @@ public class ServletTurnos extends HttpServlet {
 			case "list":
 			{
 				request.setAttribute("listaTurno", negTur.listarTurnos());	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp?buscarLista=1");
 				dispatcher.forward(request, response);
 				break;
 			}

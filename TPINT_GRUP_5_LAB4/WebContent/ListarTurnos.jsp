@@ -34,6 +34,9 @@
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<%
+	 	if (request.getParameter("buscarLista") == null) {
+		 	request.getRequestDispatcher("ServletTurnos?Param=list").forward(request, response);
+		 }
 		List<Turno> listaT = new ArrayList<Turno>();
 		if (request.getAttribute("listaTurno") != null) {
 			listaT = (List<Turno>) request.getAttribute("listaTurno");

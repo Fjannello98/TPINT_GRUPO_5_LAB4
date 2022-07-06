@@ -32,7 +32,7 @@
 	}
 	 List<Turno> listaT = new ArrayList<Turno>();
 	 if (request.getParameter("buscarLista") == null) {
-	 	request.getRequestDispatcher("ServletTurnosMedico?buscarLista").forward(request, response);
+	 	request.getRequestDispatcher("ServletTurnosMedico?buscarLista=1").forward(request, response);
 	 }
 	 else {
      	listaT = (List<Turno>) request.getAttribute("listaTurnosMedico");
