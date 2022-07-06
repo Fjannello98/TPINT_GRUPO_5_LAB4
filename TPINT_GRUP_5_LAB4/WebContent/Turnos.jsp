@@ -41,6 +41,7 @@
 	            <option>Clinico</option>
 	          </select>
 	        </div>
+	        
 	        <div class="form-group">
 	          <label>Medico:</label>
 	          <select class="form-control col-8">
