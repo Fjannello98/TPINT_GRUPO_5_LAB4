@@ -105,6 +105,7 @@ public class MedicoDaoImpl implements MedicoDao{
 		return medico;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean insertar(Medico medico) {
 		
@@ -113,9 +114,11 @@ public class MedicoDaoImpl implements MedicoDao{
 		cn = new Conexion();
 		cn.Open();	
 		
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
 		String fecha;
-		fecha = formato.format(medico.getFechaNac());
+		
+		
+		fecha = medico.getFechaNac().;
 
 
 		String query = "INSERT INTO Medicos (dni, nombre, apellido, sexo, nacionalidad, fechaNac, direccion, localidad, provincia, telefono, celular, correo, estado, id_especialidad) VALUES ('"+medico.getDni()+"','"+medico.getNombre()+"','"+medico.getApellido()+"', '"+medico.getSexo()+"', '"+medico.getNacionalidad()+"', '"+fecha+"', '"+medico.getDireccion()+"', '"+medico.getLocalidad()+"', '"+medico.getProvincia()+"', '"+medico.getTelefono()+"', '"+medico.getCelular()+"', '"+medico.getCorreo()+"', '"+medico.isEstado()+"', '"+medico.getID_especialidad().getID()+"')";
