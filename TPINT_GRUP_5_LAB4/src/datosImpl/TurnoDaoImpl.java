@@ -23,63 +23,6 @@ public class TurnoDaoImpl implements TurnoDao{
 	}
 	
 	
-	@Override
-	public List<Turno> obtenerTodos() {
-		cn = new Conexion();
-		cn.Open();
-		 List<Turno> list = new ArrayList<Turno>();
-		 try
-		 {
-			 ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad");
-			 while(rs.next())
-			 {
-				 Turno turno = new Turno();
-				 turno.setId(rs.getInt("T.id"));			 
-				 turno.setFecha(rs.getDate("T.fecha"));
-				 turno.setHora(rs.getTime("T.hora"));
-				 
-				 Paciente paciente = new Paciente();
-				 paciente.setDni(rs.getString("T.dni_paciente"));
-				 paciente.setNombre(rs.getString("P.nombre"));
-				 paciente.setApellido(rs.getString("P.apellido"));
-				 
-				 Medico medico = new Medico();
-				 medico.setDni(rs.getString("T.dni_medico"));
-				 medico.setNombre(rs.getString("M.nombre"));
-				 medico.setApellido(rs.getString("M.apellido"));
-				 
-				 Estado estado = new Estado();
-				 estado.setID(rs.getInt("T.id_estado"));
-				 estado.setDescripcion(rs.getString("E.descripcion"));
-				 
-				 Especialidad especialidad = new Especialidad();
-				 especialidad.setID(rs.getInt("T.ID_especialidad"));
-				 especialidad.setDescripción(rs.getString("ES.descripcion"));
-				 
-				 turno.setObservacion(rs.getString("T.observacion"));
-				 
-				 
-				 turno.setDNI_paciente(paciente);
-				 turno.setDNI_medico(medico);
-				 turno.setID_estado(estado);
-				 turno.setID_especialidad(especialidad);
-				 
-	 
-				 				 			 	
-				 list.add(turno);
-			 }
-			 
-		 }
-		 catch(Exception e)
-		 {
-			 e.printStackTrace();
-		 }
-		 finally
-		 {
-			 cn.close();
-		 }
-		 return list;
-	}
 
 	@Override
 	public Turno obtenerUno(int id) {
@@ -289,6 +232,126 @@ public class TurnoDaoImpl implements TurnoDao{
 			cn.close();
 		}
 		return estado;
+	}
+
+
+
+	@Override
+	public List<Turno> obtenerTodos() {
+		cn = new Conexion();
+		cn.Open();
+		 List<Turno> list = new ArrayList<Turno>();
+		 try
+		 {
+			 ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad");
+			 while(rs.next())
+			 {
+				 Turno turno = new Turno();
+				 turno.setId(rs.getInt("T.id"));			 
+				 turno.setFecha(rs.getDate("T.fecha"));
+				 turno.setHora(rs.getTime("T.hora"));
+				 
+				 Paciente paciente = new Paciente();
+				 paciente.setDni(rs.getString("T.dni_paciente"));
+				 paciente.setNombre(rs.getString("P.nombre"));
+				 paciente.setApellido(rs.getString("P.apellido"));
+				 
+				 Medico medico = new Medico();
+				 medico.setDni(rs.getString("T.dni_medico"));
+				 medico.setNombre(rs.getString("M.nombre"));
+				 medico.setApellido(rs.getString("M.apellido"));
+				 
+				 Estado estado = new Estado();
+				 estado.setID(rs.getInt("T.id_estado"));
+				 estado.setDescripcion(rs.getString("E.descripcion"));
+				 
+				 Especialidad especialidad = new Especialidad();
+				 especialidad.setID(rs.getInt("T.ID_especialidad"));
+				 especialidad.setDescripción(rs.getString("ES.descripcion"));
+				 
+				 turno.setObservacion(rs.getString("T.observacion"));
+				 
+				 
+				 turno.setDNI_paciente(paciente);
+				 turno.setDNI_medico(medico);
+				 turno.setID_estado(estado);
+				 turno.setID_especialidad(especialidad);
+				 
+	 
+				 				 			 	
+				 list.add(turno);
+			 }
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 finally
+		 {
+			 cn.close();
+		 }
+		 return list;
+	}
+
+
+
+	@Override
+	public List<Turno> obtenerPorDniMedico(String dniMedico) {
+		cn = new Conexion();
+		cn.Open();
+		 List<Turno> list = new ArrayList<Turno>();
+		 try
+		 {
+			 ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T inner join Pacientes P on T.dni_paciente = P.dni inner join Medicos M on T.dni_medico = M.dni inner join Estados E on T.id_estado = E.ID inner join Especialidades ES on ES.ID = T.ID_Especialidad where T.dni_medico = '"+ dniMedico+"'");
+			 while(rs.next())
+			 {
+				 Turno turno = new Turno();
+				 turno.setId(rs.getInt("T.id"));			 
+				 turno.setFecha(rs.getDate("T.fecha"));
+				 turno.setHora(rs.getTime("T.hora"));
+				 
+				 Paciente paciente = new Paciente();
+				 paciente.setDni(rs.getString("T.dni_paciente"));
+				 paciente.setNombre(rs.getString("P.nombre"));
+				 paciente.setApellido(rs.getString("P.apellido"));
+				 
+				 Medico medico = new Medico();
+				 medico.setDni(rs.getString("T.dni_medico"));
+				 medico.setNombre(rs.getString("M.nombre"));
+				 medico.setApellido(rs.getString("M.apellido"));
+				 
+				 Estado estado = new Estado();
+				 estado.setID(rs.getInt("T.id_estado"));
+				 estado.setDescripcion(rs.getString("E.descripcion"));
+				 
+				 Especialidad especialidad = new Especialidad();
+				 especialidad.setID(rs.getInt("T.ID_especialidad"));
+				 especialidad.setDescripción(rs.getString("ES.descripcion"));
+				 
+				 turno.setObservacion(rs.getString("T.observacion"));
+				 
+				 
+				 turno.setDNI_paciente(paciente);
+				 turno.setDNI_medico(medico);
+				 turno.setID_estado(estado);
+				 turno.setID_especialidad(especialidad);
+				 
+	 
+				 				 			 	
+				 list.add(turno);
+			 }
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 finally
+		 {
+			 cn.close();
+		 }
+		 return list;
 	}
 	
 	

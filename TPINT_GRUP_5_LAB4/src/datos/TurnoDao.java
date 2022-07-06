@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface TurnoDao {
 	public List<Turno> obtenerTodos();
+	public List<Turno> obtenerPorDniMedico(String dniMedico);
 	public Turno obtenerUno(int id);
 	public boolean insertar(Turno turno);
 	public boolean editar(Turno turno);
@@ -14,5 +15,6 @@ public interface TurnoDao {
 	public boolean cambiarEstadoLibre(int id);
 	public boolean cambiarEstadoOcupado(int id);
 	public boolean cambiarEstadoPresente(int id);
+	
 
 }

@@ -174,11 +174,13 @@ NOMBRE_USUARIO VARCHAR(200) NOT NULL,
 CONTRASENA VARCHAR(30) NOT NULL,
 estado boolean,
 TIPO_USUARIO INT NOT NULL,
-FOREIGN KEY (TIPO_USUARIO) REFERENCES TiposUsuario(ID)
+FOREIGN KEY (TIPO_USUARIO) REFERENCES TiposUsuario(ID),
+dni varchar(11) NULL,
+FOREIGN KEY (dni) REFERENCES Medicos(DNI)
 );
 
-insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("FacuJannello", "1234", 1);
-insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("AleHerrera", "1234", 2);
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO, dni) values ("FacuJannello", "1234", 2, "4121242");
+insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO, dni) values ("AleHerrera", "1234", 2, "40216447");
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("MateoGhidini", "1234", 1);
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("PabloCaero", "1234", 1);
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("DiameDevia", "1234", 1);

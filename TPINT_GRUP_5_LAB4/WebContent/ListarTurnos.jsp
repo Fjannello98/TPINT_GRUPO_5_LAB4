@@ -36,7 +36,7 @@
 	<%
 		List<Turno> listaT = new ArrayList<Turno>();
 		if (request.getAttribute("listaTurno") != null) {
-			listaT = (List<Turno> ) request.getAttribute("listaTurno");
+			listaT = (List<Turno>) request.getAttribute("listaTurno");
 		}
 	%>
 	<div class="table-title">

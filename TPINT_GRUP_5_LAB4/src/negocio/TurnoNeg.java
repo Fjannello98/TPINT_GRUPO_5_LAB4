@@ -1,13 +1,14 @@
 package negocio;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import entidad.Turno;
 
 public interface TurnoNeg {
 
 	public ArrayList<Turno> listarTurnos();
+	public List<Turno> obtenerPorDniMedico(String dniMedico);
 	public Turno obtenerUno(int id);
 	public boolean insertar(Turno turno);
 	public boolean editar(Turno turno);

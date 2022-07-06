@@ -7,7 +7,14 @@ private String nombre_usuario;
 private String contrasena;
 private TiposUsuario tipo_usuario;
 private boolean estado;
+private String dni; 
 	
+	public String getDni() {
+	return dni;
+}
+public void setDni(String dni) {
+	this.dni = dni;
+}
 	public boolean isEstado() {
 		return estado;
 	}
@@ -18,13 +25,14 @@ private boolean estado;
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Usuario(int iD, String nombre_usuario, String contrasena, TiposUsuario tipo_usuario, boolean estado) {
+	public Usuario(int iD, String nombre_usuario, String contrasena, TiposUsuario tipo_usuario, boolean estado, String dni) {
 		super();
 		ID = iD;
 		this.nombre_usuario = nombre_usuario;
 		this.contrasena = contrasena;
 		this.tipo_usuario = tipo_usuario;
 		this.estado = estado;
+		this.dni = dni;
 	}
 	public int getID() {
 		return ID;

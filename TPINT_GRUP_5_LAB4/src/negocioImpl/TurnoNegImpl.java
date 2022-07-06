@@ -2,7 +2,7 @@ package negocioImpl;
 
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import datos.TurnoDao;
 import datosImpl.PacienteDaoImpl;
@@ -74,6 +74,11 @@ private TurnoDao turnoDao = new TurnoDaoImpl();
 	public boolean cambiarEstadoPresente(int id) {
 		
 		return turnoDao.cambiarEstadoPresente(id);
+	}
+
+	@Override
+	public List<Turno> obtenerPorDniMedico(String dniMedico) {
+		return turnoDao.obtenerPorDniMedico(dniMedico);
 	}
 
 

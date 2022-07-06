@@ -25,7 +25,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		 List<Usuario> list = new ArrayList<Usuario>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp where tp.id = u.tipo_usuario");
+			 ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado, u.dni from usuarios as u inner join tiposusuario as tp where tp.id = u.tipo_usuario");
 			 while(rs.next())
 			 {
 				 Usuario usuario = new Usuario();
@@ -39,7 +39,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				 
 				 usuario.setTipo_usuario(tipo);
 				 usuario.setEstado(rs.getBoolean("u.estado"));
-				 
+				 usuario.setDni(rs.getString("u.dni"));
 			 	
 				 list.add(usuario);
 			 }
@@ -63,7 +63,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		Usuario usuario = new Usuario();
 		try
 		 {
-			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp where tp.id = u.tipo_usuario and u.id = "+id);
+			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado, u.dni from usuarios as u inner join tiposusuario as tp where tp.id = u.tipo_usuario and u.id = "+id);
 			 rs.next();
 			 
 				
@@ -77,7 +77,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				 
 				 usuario.setTipo_usuario(tipo);
 				 usuario.setEstado(rs.getBoolean("u.estado"));
-			 
+				 usuario.setDni(rs.getString("u.dni"));
 		 }
 		 catch(Exception e)
 		 {
@@ -98,7 +98,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		cn = new Conexion();
 		cn.Open();	
 
-		String query = "INSERT INTO usuarios (nombre_usuario, contrasena, tipo_usuario, estado) VALUES ('"+usuario.getNombre_usuario()+"','"+usuario.getContrasena()+"','"+usuario.getTipo_usuario().getID()+"','"+usuario.isEstado()+"')";
+		String query = "INSERT INTO usuarios (nombre_usuario, contrasena, tipo_usuario, estado, dni) VALUES ('"+usuario.getNombre_usuario()+"','"+usuario.getContrasena()+"','"+usuario.getTipo_usuario().getID()+"','"+usuario.isEstado()+"','"+usuario.getDni()+"')";
 		System.out.println(query);
 		try
 		 {
@@ -122,7 +122,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		cn = new Conexion();
 		cn.Open();	
 
-		String query = "UPDATE usuarios SET nombre_usuario='"+usuario.getNombre_usuario()+"', contrasena='"+usuario.getContrasena()+"', tipo_usuario='"+usuario.getTipo_usuario().getID()+"', estado='"+usuario.isEstado()+"' WHERE id='"+usuario.getID()+"'";
+		String query = "UPDATE usuarios SET nombre_usuario='"+usuario.getNombre_usuario()+"', contrasena='"+usuario.getContrasena()+"', tipo_usuario='"+usuario.getTipo_usuario().getID()+"', estado='"+usuario.isEstado()+"', dni='"+usuario.getDni()+"' WHERE id='"+usuario.getID()+"'";
 		try
 		 {
 			estado=cn.execute(query);
@@ -168,7 +168,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		Usuario usuario = new Usuario();
 		try
 		 {
-			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado from usuarios as u inner join tiposusuario as tp on tp.id = u.tipo_usuario where u.nombre_usuario = '"+nombreUsuario+ "' and u.contrasena = '"+contrasena+"'");
+			ResultSet rs= cn.query("Select u.id, u.nombre_usuario, u.contrasena, tp.id, tp.descripcion, u.estado, u.dni from usuarios as u inner join tiposusuario as tp on tp.id = u.tipo_usuario where u.nombre_usuario = '"+nombreUsuario+ "' and u.contrasena = '"+contrasena+"'");
 			if (rs.next()) {
 			 
 				
@@ -182,6 +182,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				 
 				 usuario.setTipo_usuario(tipo);
 				 usuario.setEstado(rs.getBoolean("u.estado"));
+				 usuario.setDni(rs.getString("u.dni"));
 			}			 
 		 }
 		 catch(Exception e)

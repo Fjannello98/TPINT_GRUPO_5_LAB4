@@ -18,7 +18,7 @@ import negocioImpl.TurnoNegImpl;
 public class ServletTurnos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-TurnoNeg negTur = new TurnoNegImpl();
+	private static final TurnoNeg negTur = new TurnoNegImpl();
 	
     public ServletTurnos() {
         super();
