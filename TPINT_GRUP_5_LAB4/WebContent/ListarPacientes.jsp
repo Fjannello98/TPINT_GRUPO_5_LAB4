@@ -102,7 +102,8 @@
 				<td><%=a.getCorreo()%></td>
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
-				<td> <input type="submit" name="btnEliminar" value="Eliminar" style="background-color: #f44336;"></td>
+				<td> <input type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
+				<td> <a href="ServletPacientes?Param=editar&dni=<%a.getDni();%>"><input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></a></td>
 				</form>
 				
 			</tr>
