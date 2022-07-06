@@ -22,7 +22,7 @@ public class Conexion {
 		{
 			Class.forName(driver);
 			this.connection = DriverManager.getConnection(host+ dbName+ sslParam, user, pass);
-			System.out.println("CONEXIONNNNNNNNN: "+ this.connection);
+			System.out.println("CONEXION: "+ this.connection);
 		}
 		catch(Exception e)
 		{

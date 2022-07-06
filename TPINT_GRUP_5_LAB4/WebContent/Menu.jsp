@@ -38,7 +38,7 @@
 	          <i class="fa-solid fa-user"></i> Pacientes
 	        </a>
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item text-light" href="ServletPacientes?Param=previoInsert">Dar de alta</a>
+	          <a class="dropdown-item text-light" href="FormularioPaciente.jsp">Dar de alta</a>
 	          <a class="dropdown-item text-light" href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a>
 	        </div>
 	      </li>

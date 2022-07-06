@@ -103,10 +103,12 @@ public class ServletMedicos extends HttpServlet {
 					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
 					x.setID_especialidad(especialidad);
 				
-					//CASTEO STRING A DATE
+					/*//CASTEO STRING A DATE
 					Date fecha = new Date();
-					fecha = request.getParameter("txtFechaNac");
-					x.setFechaNac(fecha);
+					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+					fecha.
+					fecha = Date.parse(request.getParameter("txtFechaNac"));
+					x.setFechaNac(fecha);*/
 				
 					
 					

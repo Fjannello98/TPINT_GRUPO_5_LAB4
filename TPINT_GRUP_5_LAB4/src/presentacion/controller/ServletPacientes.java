@@ -24,8 +24,8 @@ public class ServletPacientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	PacienteNeg negPac = new PacienteNegImpl();
-    Paciente paciente = new Paciente();
-    PacienteDaoImpl pacDao = new PacienteDaoImpl();
+  
+    
     public ServletPacientes() {
         super();
         // TODO Auto-generated constructor stub
@@ -43,10 +43,7 @@ public class ServletPacientes extends HttpServlet {
 			switch (opcion) {
 			case "previoInsert":
 			{
-				//Se quiere insertar entonces cargo la lista de categorias
-				request.setAttribute("listaPac", negPac.insertar(paciente ));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarArticulos.jsp");
-				dispatcher.forward(request, response);
+				
 				break;
 			}
 			case "list":
