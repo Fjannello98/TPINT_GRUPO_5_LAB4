@@ -70,9 +70,13 @@ public class ServletPacientes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 if(request.getParameter("btnAceptar")!=null)
 		    {
+		    	Paciente prueba = new Paciente();
+		    	prueba = negPac.obtenerUno(request.getParameter("txtDNI"));
+		    	
+		    	//PARA NO INGRESAR CLAVES REPETIDAS
+		    	if(prueba.getDni() == null) {
+		    		
 		    	Paciente x = new Paciente();
-		    		    	
-			
 					x.setNombre(request.getParameter("txtNombre"));
 					x.setApellido(request.getParameter("txtApellido"));
 					x.setDni(request.getParameter("txtDNI"));
@@ -115,11 +119,19 @@ public class ServletPacientes extends HttpServlet {
 				
 					
 					x.setEstado(1);
-					boolean estado=true;
+					boolean estado=true;				
 					estado = negPac.insertar(x);
-					request.setAttribute("estadoPaciente", estado);
+					request.setAttribute("estadoPaciente","Paciente agregado con exito");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
 					dispatcher.forward(request, response);
+		    	}
+		    	else {
+		    				    				    		
+		    		boolean estado=false;
+					request.setAttribute("estadoPaciente", "DNI repetido, no se pudo cargar");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioPaciente.jsp");
+					dispatcher.forward(request, response);
+		    	}
 					
 		    }
 		 

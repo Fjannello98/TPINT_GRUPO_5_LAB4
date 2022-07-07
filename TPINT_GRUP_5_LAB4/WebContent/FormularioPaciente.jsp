@@ -26,6 +26,8 @@
 			request.getRequestDispatcher("Home.jsp").forward(request, response);
 			throw new UsuarioSinPermisoException();
 	} 
+	 
+	 String mensaje = "";
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1 class="h1 mb-5" >Ingresar nuevo paciente</h1>
@@ -100,15 +102,23 @@
 	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
 	        </div>
 	      </form>
-	       <%
+	      
+	      
+	    </div>
+	  </div>
+	  
+	 
+		 <%
 		if (request.getAttribute("estadoPaciente") != null) {
 	%>
-	Paciente agregado con exito
+	<%=request.getAttribute("estadoPaciente")%>
 	<%
 		}
 	%>
-	    </div>
-	  </div>
+	
+	
+	
+	
 	
 
 </body>

@@ -71,6 +71,12 @@ public class ServletMedicos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 if(request.getParameter("btnAceptar")!=null)
 		    {
+			 Medico prueba = new Medico();
+		    	prueba = negMed.obtenerUno(request.getParameter("txtDNI"));
+		    	
+		    	//PARA NO INGRESAR CLAVES REPETIDAS
+		    	if(prueba.getDni() == null) {
+		    		
 		    	Medico x = new Medico();
 		    		    	
 			
@@ -119,11 +125,19 @@ public class ServletMedicos extends HttpServlet {
 				
 					
 					x.setEstado(1);
-					boolean estado=true;
+					boolean estado=true;				
 					estado = negMed.insertar(x);
-					request.setAttribute("estadoMedico", estado);
+					request.setAttribute("estadoMedico","Medico agregado con exito");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 					dispatcher.forward(request, response);
+		    	}
+		    	else {
+		    				    				    		
+		    		boolean estado=false;
+					request.setAttribute("estadoMedico", "DNI repetido, no se pudo cargar");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
+					dispatcher.forward(request, response);
+		    	}
 					
 		    }
 		 

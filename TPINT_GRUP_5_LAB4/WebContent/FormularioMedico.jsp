@@ -127,14 +127,13 @@
 	        </div>
 	      </form>
 	      
-	      <%
+		 <%
 		if (request.getAttribute("estadoMedico") != null) {
-	%>
-	Medico agregado con exito
-	<%
-		}
-	%>
-	      
+		%>
+		<%=request.getAttribute("estadoMedico")%>
+		<%
+			}
+		%>
 	    </div>
 	  </div>
 
