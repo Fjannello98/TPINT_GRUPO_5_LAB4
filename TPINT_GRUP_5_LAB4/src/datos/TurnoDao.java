@@ -1,4 +1,5 @@
 package datos;
+import java.util.Date;
 import java.util.List;
 
 import entidad.Medico;
@@ -17,6 +18,10 @@ public interface TurnoDao {
 	public boolean cambiarEstadoLibre(int id);
 	public boolean cambiarEstadoOcupado(int id);
 	public boolean cambiarEstadoPresente(int id);
+	
+	//PARA CONSULTA DE TURNOS 
+	public boolean consultaTurnoxFechayHoraDNIMed(Turno comparacion);
+	
 	
 	//PARA BUSQUEDA DINAMICA
 	public List<Turno> obtenerBusqueda(String parametro);

@@ -2,6 +2,7 @@ package negocioImpl;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import datos.TurnoDao;
@@ -89,7 +90,12 @@ private TurnoDao turnoDao = new TurnoDaoImpl();
 	public List<Turno> obtenerBusquedaxEstado(String parametro){
 		return (ArrayList<Turno>) turnoDao.obtenerBusquedaxEstado(parametro);
 	}
-
+	
+	//PARA CONSULTA DE TURNOS 
+		public boolean consultaTurnoxFechayHoraDNIMed(Turno comparacion) {
+			return turnoDao.consultaTurnoxFechayHoraDNIMed(comparacion);
+		}
+		
 
 
 

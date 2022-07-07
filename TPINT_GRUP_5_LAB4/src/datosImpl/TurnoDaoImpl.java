@@ -2,6 +2,7 @@ package datosImpl;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class TurnoDaoImpl implements TurnoDao{
 		
 	}
 	
-	
+
 
 	@Override
 	public Turno obtenerUno(int id) {
@@ -496,6 +497,75 @@ public class TurnoDaoImpl implements TurnoDao{
 		 }
 		 return list;
 	}
+
+
+
+	
+	
+	public boolean consultaTurnoxFechayHoraDNIMed(Turno comparacion) {
+
+	
+		cn = new Conexion();
+		cn.Open();	
+		
+		Turno turno = new Turno();
+		
+		//IMPORTANTISIMO PARA COMPARAR FECHA
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+		String fechaComoCadena = formato.format(comparacion.getFecha());
+				
+		//IMPORTANTISIMO PARA COMPARAR HORA
+		SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");	
+		String horaComoCadena = formatoHora.format(comparacion.getHora());
+		System.out.println(horaComoCadena);
+
+		try
+		 {
+			ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad AND T.fecha = '"+fechaComoCadena+"' AND T.hora = '"+horaComoCadena+"' AND T.dni_medico = '"+comparacion.getDNI_medico().getDni()+"'");
+			 rs.next();
+			 		
+			 turno.setId(rs.getInt("T.id"));			 
+			 turno.setFecha(rs.getDate("T.fecha"));
+			 turno.setHora(rs.getDate("T.hora"));
+			 
+			 Paciente paciente = new Paciente();
+			 paciente.setDni(rs.getString("T.dni_paciente"));
+			 paciente.setNombre(rs.getString("P.nombre"));
+			 paciente.setApellido(rs.getString("P.apellido"));
+			 
+			 Medico medico = new Medico();
+			 medico.setDni(rs.getString("T.dni_medico"));
+			 medico.setNombre(rs.getString("M.nombre"));
+			 medico.setApellido(rs.getString("M.apellido"));
+			 
+			 
+			 
+			 turno.setDNI_medico(medico);	
+			 
+				
+			 //EL MEDICO YA TIENE UN TURNO EN ESA FECHA Y HORARIO		
+			return true;
+			
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 //EL MEDICO NO TIENE UN TURNO EN ESA FECHA Y HORARIO		
+			return false;
+		 }
+		 finally
+		 {
+			 cn.close();
+		 }
+	
+		
+	}
+
+
+
+	
+	
+
 
 
 	

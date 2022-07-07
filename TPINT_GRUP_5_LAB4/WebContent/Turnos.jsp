@@ -111,10 +111,24 @@
 	          <input type="date" class="form-control col-8" name="txtFecha" required >
 	        </div>
 	        
-	        <!-- HORA  -->
-	         <div class="form-group">
+	        <!-- HORA  -->	      
+	        <div class="form-group">
 	          <label>Hora: </label>
-	          <input type="time" class="form-control col-8" name="txtHora" required >
+	          <select class="form-control col-8" name="comboHora" >
+	                  		
+						<option value="07:00">07:00</option>
+						<option value="08:00">08:00</option>
+						<option value="09:00">09:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+					
+	          </select>
 	        </div>
 	        	        	        
 	        
@@ -131,13 +145,14 @@
 	      </form>
 	      
 	      
-	          <%
+	           
+		 <%
 		if (request.getAttribute("estadoTurno") != null) {
-	%>
-	Turno agregado con exito
-	<%
-		}
-	%>
+		%>
+		<%=request.getAttribute("estadoTurno")%>
+		<%
+			}
+		%>
 	  
 
 </body>

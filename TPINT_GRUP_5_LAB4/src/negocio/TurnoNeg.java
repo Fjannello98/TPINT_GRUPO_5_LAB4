@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import entidad.Paciente;
@@ -18,6 +19,9 @@ public interface TurnoNeg {
 	public boolean cambiarEstadoLibre(int id);
 	public boolean cambiarEstadoOcupado(int id);
 	public boolean cambiarEstadoPresente(int id);
+	
+	//PARA CONSULTA DE TURNOS
+	public boolean consultaTurnoxFechayHoraDNIMed(Turno comparacion);
 	
 	public List<Turno> obtenerBusqueda(String parametro);
 	public List<Turno> obtenerBusquedaxEstado(String parametro);
