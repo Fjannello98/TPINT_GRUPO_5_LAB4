@@ -78,8 +78,10 @@ public class ServletTurnos extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 if(request.getParameter("btnAceptar")!=null)
-		    {
+		
+		//PARA AGREGAR TURNO
+		if(request.getParameter("btnAceptar")!=null)
+		    {		 
 		    		Turno x = new Turno();
 		    		    	
 			
@@ -116,21 +118,32 @@ public class ServletTurnos extends HttpServlet {
 					SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
 					Date hora;
 					try {
-						hora = formatoHora.parse(request.getParameter("txtHora"));
+						hora = formatoHora.parse(request.getParameter("comboHora"));
 						x.setHora(hora);						
 	
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}				
+								
+					//VERIFICO SI EL MEDICO YA TIENE UN TURNO ASIGNADO EN ESA FECHA Y HORARIO
+					boolean status = negTur.consultaTurnoxFechayHoraDNIMed(x);
 					
 					
-						
-					boolean status=true;
-					status = negTur.insertar(x);
-					request.setAttribute("estadoTurno", status);
+					String mensaje = "";
+					if(status){
+						mensaje = "El médico ya tiene un turno asignado para la hora indicada. Seleccione otro horario.";
+						request.setAttribute("estadoTurno", mensaje);
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
+						dispatcher.forward(request, response);
+					}
+					else {				
+					negTur.insertar(x);
+					mensaje = "Turno asignado con éxito.";
+					request.setAttribute("estadoTurno", mensaje);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
 					dispatcher.forward(request, response);
+					}
 					
 		    }
 		 
