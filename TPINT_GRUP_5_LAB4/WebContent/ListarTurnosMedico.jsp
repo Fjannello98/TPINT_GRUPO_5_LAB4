@@ -49,14 +49,13 @@
 	<table class="table-fill">
 	<thead>
 	<tr>
-	<th class="text-left">ID</th>
-	<th class="text-left">Paciente</th>
-	<th class="text-left">Fecha</th>
-	<th class="text-left">Horario</th>
-	<th class="text-left">Estado</th>
-	<th class="text-left">Observación</th>
-	
-
+		<th class="text-left">ID</th>
+		<th class="text-left">Paciente</th>
+		<th class="text-left">Fecha</th>
+		<th class="text-left">Horario</th>
+		<th class="text-left">Estado</th>
+		<th class="text-left">Observación</th>
+		<th class="text-center" COLSPAN="3">Acciones</th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
@@ -75,10 +74,10 @@
 				<td><%=a.getHora() %></td>
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
-				<td> <input type="submit" name="btnPacienteM" value="PACIENTE" class="btn btn-primary"></td>
-				<td> <input type="submit" name="btnPresenteM" value="PRESENTE" class="btn btn-warning"></td>
-				<td> <input type="submit" name="btnAusenteM" value="AUSENTE" class="btn btn-danger"></td>
-			</form>
+					<td> <input type="submit" name="btnPacienteM" value="PACIENTE" class="btn btn-primary"></td>
+					<td> <input type="submit" name="btnPresenteM" value="PRESENTE" class="btn btn-warning"></td>
+					<td> <input type="submit" name="btnAusenteM" value="AUSENTE" class="btn btn-danger"></td>
+				</form>
 				
 			</tr>
 
