@@ -108,20 +108,20 @@
 	         <!-- FECHA  -->
 	         <div class="form-group">
 	          <label>Fecha: </label>
-	          <input type="date" class="form-control col-8" name="txtFecha">
+	          <input type="date" class="form-control col-8" name="txtFecha" required >
 	        </div>
 	        
 	        <!-- HORA  -->
 	         <div class="form-group">
 	          <label>Hora: </label>
-	          <input type="time" class="form-control col-8" name="txtHora">
+	          <input type="time" class="form-control col-8" name="txtHora" required >
 	        </div>
 	        	        	        
 	        
 	         <!-- OBSERVACIONES  -->
 	         <div class="form-group">
 	          <label>Observaciones: </label>
-	          <input type="text" style="WIDTH: 228px; HEIGHT: 98px" class="form-control" name="txtObservacion">
+	          <input type="text" style="WIDTH: 228px; HEIGHT: 98px" class="form-control" name="txtObservacion" required>
 	        </div>
 	           
 	       <div class="col-12">
