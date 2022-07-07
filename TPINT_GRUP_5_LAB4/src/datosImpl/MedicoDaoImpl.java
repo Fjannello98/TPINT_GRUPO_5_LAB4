@@ -145,8 +145,12 @@ public class MedicoDaoImpl implements MedicoDao{
 
 		cn = new Conexion();
 		cn.Open();	
+		
+		//IMPORTANTISIMO PARA INSERTAR FECHA
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+				String fechaComoCadena = formato.format(medico.getFechaNac());
 
-		String query = "UPDATE Medicos SET dni='"+medico.getDni()+"', nombre='"+medico.getNombre()+"', apellido='"+medico.getApellido()+"', sexo = '"+medico.getSexo()+"', nacionalidad = '"+medico.getNacionalidad()+"', fechaNac='"+medico.getFechaNac()+"', direccion='"+medico.getDireccion()+"', localidad = '"+medico.getLocalidad()+"', provincia = '"+medico.getProvincia()+"', telefono='"+medico.getTelefono()+"', celular = '"+medico.getCelular()+"', correo='"+medico.getCorreo()+"', estado = '"+medico.isEstado()+"', id_especialidad = '"+medico.getID_especialidad().getID()+"' WHERE dni='"+medico.getDni()+"'";
+		String query = "UPDATE Medicos SET dni='"+medico.getDni()+"', nombre='"+medico.getNombre()+"', apellido='"+medico.getApellido()+"', sexo = '"+medico.getSexo()+"', nacionalidad = '"+medico.getNacionalidad()+"', fechaNac='"+fechaComoCadena+"', direccion='"+medico.getDireccion()+"', localidad = '"+medico.getLocalidad()+"', provincia = '"+medico.getProvincia()+"', telefono='"+medico.getTelefono()+"', celular = '"+medico.getCelular()+"', correo='"+medico.getCorreo()+"', estado = '"+medico.isEstado()+"', id_especialidad = '"+medico.getID_especialidad().getID()+"' WHERE dni='"+medico.getDni()+"'";
 		try
 		 {
 			estado=cn.execute(query);

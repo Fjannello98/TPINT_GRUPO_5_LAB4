@@ -138,6 +138,78 @@ public class ServletMedicos extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
 				dispatcher.forward(request, response);
 			}
+		 
+		//PARA MODIFICAR
+			if(request.getParameter("btnEditar")!=null) 
+			{
+				String dni = request.getParameter("dniMedico");					
+				Medico p = new Medico();
+				
+				p = negMed.obtenerUno(dni);			
+				request.setAttribute("dniMed", p);	
+				request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarMedico.jsp");
+				dispatcher.forward(request, response);
+						
+			}
+			
+			if(request.getParameter("btnModificar")!=null)
+		    {
+				Medico x = new Medico();
+		    	
+				
+				x.setNombre(request.getParameter("txtNombre"));
+				x.setApellido(request.getParameter("txtApellido"));
+				x.setDni(request.getParameter("txtDNI"));
+				x.setTelefono(request.getParameter("txtTelefono"));
+				x.setCelular(request.getParameter("txtCelular"));
+				x.setCorreo(request.getParameter("txtCorreo"));
+				x.setDireccion(request.getParameter("txtDireccion"));
+				x.setNacionalidad(request.getParameter("txtNacionalidad"));
+				x.setLocalidad(request.getParameter("txtLocalidad"));
+				x.setProvincia(request.getParameter("txtProvincia"));
+				
+				int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+				switch (sexo) {
+				case 1:
+					x.setSexo("Masculino");	
+					break;
+				case 2:
+					x.setSexo("Femenino");	
+					break;
+				case 3:
+					x.setSexo("Otro");	
+					break;
+				default:
+					break;
+				}
+				
+				Especialidad especialidad = new Especialidad();
+				especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
+				x.setID_especialidad(especialidad);
+			
+				
+				//IMPORTANTISIMO PARA FECHA					
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+				Date fecha;
+				try {
+					fecha = formato.parse(request.getParameter("txtFechaNac"));
+					x.setFechaNac(fecha);						
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+				
+			
+				
+				x.setEstado(1);
+				boolean estado=true;
+				estado = negMed.editar(x);
+				request.setAttribute("estadoMedico", estado);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarMedico.jsp");
+				dispatcher.forward(request, response);
+					
+		    }
 	
 
 	//BUSQUEDA DINAMICA

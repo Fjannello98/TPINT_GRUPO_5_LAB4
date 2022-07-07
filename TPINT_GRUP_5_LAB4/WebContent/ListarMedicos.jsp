@@ -50,7 +50,7 @@
 		<h3>Tabla Medicos</h3>
 	</div>
 	
-	<form method="post" action="ServletMedicos">
+
 	
 	<div class="form-group">
 	
@@ -101,7 +101,8 @@
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
 				<th><%=a.getID_especialidad().getDescripcion() %></th>
-				<td> <input type="submit" name="btnEliminar" value="Eliminar" style="background-color: #f44336;"></td>
+				<td> <input type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
+				<td> <input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></td>
 				</form>
 			</tr>
 
@@ -117,7 +118,7 @@
 			<i class="glyphicon glyphicon-trash"></i> Modificar
 		</button>
 	</div>
-	</form>
+
 
 </body>
 </html>

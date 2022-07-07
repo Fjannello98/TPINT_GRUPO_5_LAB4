@@ -1,8 +1,8 @@
 <%@page import="excepciones.UsuarioSinPermisoException"%>
 <%@page import="entidad.Usuario"%>
+<%@page import="entidad.Medico" %>
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
-<%@page import="entidad.Paciente" %>
-<%@page import="datosImpl.PacienteDaoImpl" %>
+<%@page import="entidad.Especialidad"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ingresar paciente</title>
+<title>Ingresar Médico</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style type="text/css">
@@ -22,8 +22,7 @@
 </head>
 <body>
 
-	<% 
-	if (request.getSession().getAttribute("usuario") == null) { 
+	<% if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
 	} 
@@ -32,116 +31,122 @@
 			request.getRequestDispatcher("Home.jsp").forward(request, response);
 			throw new UsuarioSinPermisoException();
 	} 
-	 
-	 
-	 List<Paciente> listaM = new ArrayList<Paciente>();
-		if (request.getAttribute("listaPac") != null) {
-			listaM = (List<Paciente>)request.getAttribute("listaPac");
+	%>
+	
+	<%
+		List<Especialidad> listaE = new ArrayList<Especialidad>();
+		if (request.getAttribute("listaEsp") != null) {
+			listaE = (List<Especialidad>)request.getAttribute("listaEsp");
+		}
+		
+		//PARA EDITAR
+		Medico m = new Medico();
+		if (request.getAttribute("dniMed") != null) {
+		m = (Medico)request.getAttribute("dniMed");
 		}
 		
 		
-	//PARA EDITAR
-	Paciente p = new Paciente();
-	if (request.getAttribute("dniPac") != null) {
-	p = (Paciente)request.getAttribute("dniPac");
-	}
-	
-	 
 	%>
 	
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
-	<h1 class="h1 mb-5" >Editar paciente</h1>
+	<h1 class="h1 mb-5" >Ingresar Nuevo Médico</h1>
 	  <div class="row">
 	    <div class="col-6">
 	    
-	     <form method="post" action="ServletPacientes">
-	      
-	      
-	          <div class="form-group">
+	      <form method="post" action="ServletMedicos">
+	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control" name="TxtDNI" value="<%=p.getDni()%>" readonly>
+	          <input type="text" class="form-control" name="txtDNI" value="<%=m.getDni()%>" readonly>
 	        </div>
 	      
-	        
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="TxtNombre" value="<%=p.getNombre()%>">
+	          <input type="text" class="form-control" name="txtNombre" value="<%=m.getNombre()%>" required>
 	        </div>
-	        
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="TxtApellido" value="<%=p.getApellido()%>">
+	          <input type="text" class="form-control" name="txtApellido" value="<%=m.getApellido()%>" required>
 	        </div>
-	        
 	        <div class="form-group">
 	          <label>Correo electrónico: </label>
-	          <input type="email" class="form-control" name="TxtCorreo" value="<%=p.getCorreo()%>">
+	          <input type="email" class="form-control" name="txtCorreo" value="<%=m.getCorreo()%>" required>
 	        </div>
 	        
-	        
+	        <!-- ESTO TIENE QUE SER UN COMBOBOX!!! -->
+	        <div class="form-group">
+	          <label>Especialidad: </label>
+	          <select class="form-control col-8" name="comboEspecialidad" >
+	          	<!-- Esto debería leerlo desde una DB -->
+	            		<%
+							for (Especialidad e : listaE) {
+						%>
+						<option value="<%=e.getID()%>"><%=e.getDescripcion()%></option>
+						<%
+							}
+						%>
+	          </select>
+	        </div>
 	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control" name="TxtTelefono" value="<%=p.getTelefono()%>">
+	          <input type="phone" class="form-control" name="txtTelefono" value="<%=m.getTelefono()%>" required>
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="TxtCelular" value="<%=p.getCelular()%>">
+	          <input type="phone" class="form-control" name="txtCelular" value="<%=m.getCelular()%>" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8" name="TxtFechaNac" value="<%=p.getFechaNac()%>">
+	          <input type="date" class="form-control col-8" name="txtFechaNac" value="<%=m.getFechaNac()%>" required>
 	        </div>
-	        
 	        <div class="form-group">
 	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="TxtNacionalidad" value="<%=p.getNacionalidad()%>">
+	          <input type="text" class="form-control" name="txtNacionalidad" value="<%=m.getNacionalidad()%>" required>
 	        </div>
-	        
 	       <div class="form-group">
 	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="TxtLocalidad" value="<%=p.getLocalidad()%>">
+	          <input type="text" class="form-control" name="txtLocalidad" value="<%=m.getLocalidad()%>" required>
 	        </div>
 	      
 	        <div class="form-group">
 	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="TxtProvincia" value="<%=p.getProvincia()%>">
+	          <input type="text" class="form-control" name="txtProvincia" value="<%=m.getProvincia()%>" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
-	          <input type="text" class="form-control" name="TxtDireccion" value="<%=p.getDireccion()%>">
+	          <input type="text" class="form-control" name="txtDireccion" value="<%=m.getDireccion()%>" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Sexo: </label>
-	          <select class="form-control col-8" name="ComboSexo" >
-	          	<!-- Esto deberÃ­a leerlo desde una DB -->
+	          <select class="form-control col-8" name="comboSexo"  >
+	          	<!-- Esto debería leerlo desde una DB -->
 	            <option value="1">Masculino</option>
 	            <option value="2">Femenino</option>
 	            <option value="3">Otro</option>
 	          </select>
 	        </div>
-	        
 	        <div class="col-12">
-	        
-	        	<input type="submit" class="btn btn-success" value="Modificar" name="btnModificar">	        	
+	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnModificar">
+	 
 	        </div>
 	      </form>
 	      
-	       <%
-		if (request.getAttribute("estadoPaciente") != null) {
+	      <%
+		if (request.getAttribute("estadoMedico") != null) {
 	%>
-	
-	Paciente modificado con exito
+	Medico modificado con exito
 	<%
 		}
 	%>
-	    </div>
+	      
+	          </div>
 	  </div>
-	
+
 
 </body>
 </html>

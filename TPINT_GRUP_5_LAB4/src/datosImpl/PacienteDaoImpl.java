@@ -63,6 +63,9 @@ public class PacienteDaoImpl implements PacienteDao{
 	public Paciente obtenerUno(String dni) {
 		cn = new Conexion();
 		cn.Open();
+		
+		
+		
 		Paciente paciente = new Paciente();
 		try
 		 {
@@ -133,8 +136,12 @@ public class PacienteDaoImpl implements PacienteDao{
 
 		cn = new Conexion();
 		cn.Open();	
+		
+		//IMPORTANTISIMO PARA INSERTAR FECHA
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+		String fechaComoCadena = formato.format(paciente.getFechaNac());
 
-		String query = "UPDATE pacientes SET dni='"+paciente.getDni()+"', nombre='"+paciente.getNombre()+"', apellido='"+paciente.getApellido()+"', sexo = '"+paciente.getSexo()+"', nacionalidad = '"+paciente.getNacionalidad()+"', fechaNac='"+paciente.getFechaNac()+"', direccion='"+paciente.getDireccion()+"', localidad = '"+paciente.getLocalidad()+"', provincia = '"+paciente.getProvincia()+"', telefono='"+paciente.getTelefono()+"', celular = '"+paciente.getCelular()+"', correo='"+paciente.getCorreo()+"', estado = '"+paciente.isEstado()+"' WHERE dni='"+paciente.getDni()+"'";
+		String query = "UPDATE pacientes SET dni='"+paciente.getDni()+"', nombre='"+paciente.getNombre()+"', apellido='"+paciente.getApellido()+"', sexo = '"+paciente.getSexo()+"', nacionalidad = '"+paciente.getNacionalidad()+"', fechaNac='"+fechaComoCadena+"', direccion='"+paciente.getDireccion()+"', localidad = '"+paciente.getLocalidad()+"', provincia = '"+paciente.getProvincia()+"', telefono='"+paciente.getTelefono()+"', celular = '"+paciente.getCelular()+"', correo='"+paciente.getCorreo()+"', estado = '"+paciente.isEstado()+"' WHERE dni='"+paciente.getDni()+"'";
 		try
 		 {
 			estado=cn.execute(query);

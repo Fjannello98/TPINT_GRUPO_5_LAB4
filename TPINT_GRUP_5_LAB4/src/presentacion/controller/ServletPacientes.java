@@ -156,18 +156,18 @@ public class ServletPacientes extends HttpServlet {
 	    {
 	    	Paciente x = new Paciente();
 	
-				x.setNombre(request.getParameter("txtNombre"));
-				x.setApellido(request.getParameter("txtApellido"));
-				x.setDni(request.getParameter("txtDNI"));
-				x.setTelefono(request.getParameter("txtTelefono"));
-				x.setCelular(request.getParameter("txtCelular"));
-				x.setCorreo(request.getParameter("txtCorreo"));
-				x.setDireccion(request.getParameter("txtDireccion"));
-				x.setNacionalidad(request.getParameter("txtNacionalidad"));
-				x.setLocalidad(request.getParameter("txtLocalidad"));
-				x.setProvincia(request.getParameter("txtProvincia"));
+		    	x.setDni(request.getParameter("TxtDNI"));
+				x.setNombre(request.getParameter("TxtNombre"));
+				x.setApellido(request.getParameter("TxtApellido"));
+				x.setTelefono(request.getParameter("TxtTelefono"));
+				x.setCelular(request.getParameter("TxtCelular"));
+				x.setCorreo(request.getParameter("TxtCorreo"));
+				x.setDireccion(request.getParameter("TxtDireccion"));
+				x.setNacionalidad(request.getParameter("TxtNacionalidad"));
+				x.setLocalidad(request.getParameter("TxtLocalidad"));
+				x.setProvincia(request.getParameter("TxtProvincia"));
 				
-				int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+				int sexo = Integer.parseInt(request.getParameter("ComboSexo"));
 				switch (sexo) {
 				case 1:
 					x.setSexo("Masculino");	
@@ -188,7 +188,7 @@ public class ServletPacientes extends HttpServlet {
 				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 				Date fecha;
 				try {
-					fecha = formato.parse(request.getParameter("txtFechaNac"));
+					fecha = formato.parse(request.getParameter("TxtFechaNac"));
 					x.setFechaNac(fecha);						
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block

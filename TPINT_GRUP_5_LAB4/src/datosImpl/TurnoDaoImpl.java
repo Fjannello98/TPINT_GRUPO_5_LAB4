@@ -36,8 +36,8 @@ public class TurnoDaoImpl implements TurnoDao{
 			 rs.next();
 			 		
 			 turno.setId(rs.getInt("T.id"));			 
-			 //turno.setFecha(rs.getDate("T.fecha"));
-			 //turno.setHora(rs.getDateTime("T.hora"));
+			 turno.setFecha(rs.getDate("T.fecha"));
+			 turno.setHora(rs.getDate("T.hora"));
 			 
 			 Paciente paciente = new Paciente();
 			 paciente.setDni(rs.getString("T.dni_paciente"));

@@ -46,10 +46,9 @@
 	<h3>Turnos</h3>
 	</div>
 	
-	<form method="post" action="ServletTurnos">
 	
 
-	
+	<form method="post" action="ServletTurnos">
 	 <label>Buscar por DNI Paciente: </label>
 	          <input type="text" class="form-control" name="txtBuscar">
 	        </div>
@@ -72,6 +71,7 @@
 	         <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscarEstado">
 	        </div>
+	        </form>
 	
 	<table class="table-fill">
 	<thead>
@@ -96,8 +96,9 @@
 		%>
 			
 			<tr>
-				<td><%= a.getId() %></td>
-				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %></td>
+			<form method="post" action="ServletTurnos">
+				<td><%= a.getId() %><input type="hidden" name="idTurno" value="<%=a.getId()%>" ></td>
+				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %> <input type="hidden" name="dniPaciente" value="<%= a.getDNI_paciente().getDni()%>" ></td>
 				<td><%=a.getDNI_medico().getApellido() +", "+ a.getDNI_medico().getNombre()%></td>
 				<td><%=a.getID_especialidad().getDescripcion()%></td>
 				<td><%=a.getFecha() %></td>
@@ -105,7 +106,10 @@
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
 				
-				
+				<td> <input type="submit" name="btnPaciente" value="PACIENTE" class="btn btn-primary"></td>
+				<td> <input type="submit" name="btnPresente" value="PRESENTE" class="btn btn-warning"></td>
+				<td> <input type="submit" name="btnAusente" value="AUSENTE" class="btn btn-danger"></td>
+			</form>
 				
 			</tr>
 
@@ -115,16 +119,19 @@
 	</tbody>
 	</table>
 	<br>
-	<div align="center">
-		<button type="button" style="background-color: #f44336;">
-		  <i class="glyphicon glyphicon-trash"></i> Datos del Paciente
-		</button>
-		<button type="button" style="background-color: #008CBA;">
-		  <i class="glyphicon glyphicon-trash"></i> Agregar Observación
-		</button>
-	</div>
 	
-	</form>
+
+	
+	  
+	      <%
+		if (request.getAttribute("estadoTurno") != null) {
+	%>
+	Turno modificado como AUSENTE
+	<%
+		}
+	%>
+
+	
 
 </body>
 </html>
