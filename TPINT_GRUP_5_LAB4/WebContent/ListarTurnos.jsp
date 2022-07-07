@@ -48,10 +48,9 @@
 	
 	
 
-	<form method="post" action="ServletTurnos">
 	 <label>Buscar por DNI Paciente: </label>
 	          <input type="text" class="form-control" name="txtBuscar">
-	        </div>
+	        
 	        
 	        <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscar">
@@ -71,7 +70,7 @@
 	         <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscarEstado">
 	        </div>
-	        </form>
+	       
 	
 	<table class="table-fill">
 	<thead>

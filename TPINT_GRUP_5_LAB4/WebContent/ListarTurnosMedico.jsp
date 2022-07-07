@@ -35,8 +35,12 @@
 	 	request.getRequestDispatcher("ServletTurnosMedico?buscarLista=1").forward(request, response);
 	 }
 	 else {
+		 if (request.getAttribute("listaTurnosMedico") != null){
      	listaT = (List<Turno>) request.getAttribute("listaTurnosMedico");
+		 }
 	 }
+	 
+	
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 		<div class="table-title">
@@ -63,12 +67,19 @@
 		%>
 			
 			<tr>
-				<td><%= a.getId() %></td>
-				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %></td>
+				<form method="post" action="ServletTurnosMedico">
+				
+				<td><%= a.getId() %><input type="hidden" name="idTurno" value="<%=a.getId()%>" ></td>
+				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %><input type="hidden" name="dniPaciente" value="<%= a.getDNI_paciente().getDni()%>" ></td>
 				<td><%=a.getFecha() %></td>
 				<td><%=a.getHora() %></td>
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
+				<td> <input type="submit" name="btnPacienteM" value="PACIENTE" class="btn btn-primary"></td>
+				<td> <input type="submit" name="btnPresenteM" value="PRESENTE" class="btn btn-warning"></td>
+				<td> <input type="submit" name="btnAusenteM" value="AUSENTE" class="btn btn-danger"></td>
+			</form>
+				
 			</tr>
 
 			<%
@@ -77,14 +88,16 @@
 	</tbody>
 	</table>
 	<br>
-	<div align="center">
-		<button type="button" style="background-color: #f44336;">
-		  <i class="glyphicon glyphicon-trash"></i> Datos del Paciente
-		</button>
-		<button type="button" style="background-color: #008CBA;">
-		  <i class="glyphicon glyphicon-trash"></i> Agregar Observación
-		</button>
-	</div>
+	
+	  
+	      <%
+		if (request.getAttribute("estadoTurno") != null) {
+	%>
+	Turno modificado como AUSENTE
+	<%
+		}
+	%>
+	
 	
 </body>
 </html>

@@ -70,6 +70,7 @@ public class ServletTurnos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			
 			default:
 				break;
 			}
@@ -184,7 +185,7 @@ public class ServletTurnos extends HttpServlet {
 					
 		 }
 		 
-		 	//PARA CAMBIAR A PRESENTE
+		 	//PARA CAMBIAR A PRESENTE - ADMINISTRADOR
 			if(request.getParameter("btnPresente")!=null) 
 			{
 				int id = Integer.parseInt(request.getParameter("idTurno"));								
@@ -199,7 +200,54 @@ public class ServletTurnos extends HttpServlet {
 				dispatcher.forward(request, response);					
 			}
 			
-			//PARA AGREGAR OBSERVACION
+			//PARA CAMBIAR A AUSENTE - ADMINISTRADOR
+			if(request.getParameter("btnAusente")!=null) 
+			{
+				int id = Integer.parseInt(request.getParameter("idTurno"));									
+				boolean estado = negTur.cambiarEstadoAusente(id);							
+				request.setAttribute("estadoTurno", estado);		
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");	
+				dispatcher.forward(request, response);					
+			}
+			
+			//PARA CAMBIAR A PRESENTE - MEDICO
+			if(request.getParameter("btnPresenteM")!=null) 
+			{
+				int id = Integer.parseInt(request.getParameter("idTurno"));								
+				Turno turno = new Turno();
+				turno = negTur.obtenerUno(id);
+				
+				boolean estado = negTur.cambiarEstadoPresente(id);		
+					
+				request.setAttribute("datosTurno", turno);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarObservacion.jsp");
+				dispatcher.forward(request, response);					
+			}
+			
+			//PARA CAMBIAR A AUSENTE - MEDICO
+			if(request.getParameter("btnAusenteM")!=null) 
+			{
+				int id = Integer.parseInt(request.getParameter("idTurno"));									
+				boolean estado = negTur.cambiarEstadoAusente(id);							
+				request.setAttribute("estadoTurno", estado);		
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnosMedicos.jsp");	
+				dispatcher.forward(request, response);					
+			}
+			
+			//DATOS DE PACIENTE - AMBOS USUARIOS
+			if(request.getParameter("btnPacienteM")!=null) 
+			{
+				String dni = request.getParameter("dniPaciente");	
+				Paciente paciente = new Paciente();
+				paciente = negPac.obtenerUno(dni);									
+				request.setAttribute("dniPac", paciente);		
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/DatosPaciente.jsp");	
+				dispatcher.forward(request, response);					
+			}
+			
+			
+			//PARA AGREGAR OBSERVACION - AMBOS USUARIOS
 			if(request.getParameter("btnAgregarObservacion")!=null) 
 			{
 				int id = Integer.parseInt(request.getParameter("idTurno"));								
@@ -212,28 +260,6 @@ public class ServletTurnos extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarObservacion.jsp");
 				dispatcher.forward(request, response);					
 			}
-			
-			//PARA CAMBIAR A AUSENTE
-			if(request.getParameter("btnAusente")!=null) 
-			{
-				int id = Integer.parseInt(request.getParameter("idTurno"));									
-				boolean estado = negTur.cambiarEstadoAusente(id);							
-				request.setAttribute("estadoTurno", estado);		
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");	
-				dispatcher.forward(request, response);					
-			}
-			
-			//DATOS DE PACIENTE
-			if(request.getParameter("btnPaciente")!=null) 
-			{
-				String dni = request.getParameter("dniPaciente");	
-				Paciente paciente = new Paciente();
-				paciente = negPac.obtenerUno(dni);									
-				request.setAttribute("dniPac", paciente);		
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/DatosPaciente.jsp");	
-				dispatcher.forward(request, response);					
-			}
-			
 	}
 
 }

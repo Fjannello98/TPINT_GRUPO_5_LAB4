@@ -24,15 +24,15 @@
 
 </head>
 <body>
-	<% if (request.getSession().getAttribute("usuario") == null) { 
+		<% if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
-		} 
+	} 
 	 Usuario user = (Usuario)request.getSession().getAttribute("usuario");
-	 if (user.getTipo_usuario().getID() != 1) { 
+	 if (user.getTipo_usuario().getID() != 2) { 
 			request.getRequestDispatcher("Home.jsp").forward(request, response);
 			throw new UsuarioSinPermisoException();
-	} 
+	}
 	%>
 	
 	
