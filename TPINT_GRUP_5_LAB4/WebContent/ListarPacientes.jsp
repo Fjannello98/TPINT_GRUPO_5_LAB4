@@ -21,7 +21,7 @@
 	crossorigin="anonymous">
 	
 	<style type="text/css">
-	<jsp:include page="css\StyleSheetHome.css"></jsp:include>
+	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
 	
 	<style type="text/css">

@@ -32,7 +32,7 @@ public class TurnoDaoImpl implements TurnoDao{
 		Turno turno = new Turno();
 		try
 		 {
-			ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad AND T.id = "+id);
+			ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, P.sexo, P.nacionalidad, P.fechaNac, P.direccion, P.localidad, P.provincia, P.telefono, P.celular, P.correo, P.estado, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T, Pacientes P, Medicos M, Estados E, Especialidades ES WHERE T.dni_paciente = P.dni AND T.dni_medico = M.dni AND T.id_estado = E.ID AND ES.ID = T.ID_Especialidad AND T.id = "+id);
 			 rs.next();
 			 		
 			 turno.setId(rs.getInt("T.id"));			 
@@ -43,6 +43,16 @@ public class TurnoDaoImpl implements TurnoDao{
 			 paciente.setDni(rs.getString("T.dni_paciente"));
 			 paciente.setNombre(rs.getString("P.nombre"));
 			 paciente.setApellido(rs.getString("P.apellido"));
+			 paciente.setSexo(rs.getString("P.sexo"));
+			 paciente.setNacionalidad(rs.getString("P.nacionalidad"));
+			 paciente.setFechaNac(rs.getDate("P.fechaNac"));
+			 paciente.setDireccion(rs.getString("P.direccion"));
+			 paciente.setProvincia(rs.getString("P.provincia"));
+			 paciente.setTelefono(rs.getString("P.telefono"));
+			 paciente.setCelular(rs.getString("P.celular"));
+			 paciente.setCorreo(rs.getString("P.correo"));
+			 paciente.setEstado(rs.getInt("P.estado"));
+			 
 			 
 			 Medico medico = new Medico();
 			 medico.setDni(rs.getString("T.dni_medico"));
@@ -313,7 +323,7 @@ public class TurnoDaoImpl implements TurnoDao{
 		 List<Turno> list = new ArrayList<Turno>();
 		 try
 		 {
-			 ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T inner join Pacientes P on T.dni_paciente = P.dni inner join Medicos M on T.dni_medico = M.dni inner join Estados E on T.id_estado = E.ID inner join Especialidades ES on ES.ID = T.ID_Especialidad where T.dni_medico = '"+ dniMedico+"'");
+			 ResultSet rs= cn.query("Select T.id, T.dni_paciente, P.nombre, P.apellido, P.sexo, P.nacionalidad, P.fechaNac, P.direccion, P.localidad, P.provincia, P.telefono, P.celular, P.correo, P.estado, T.dni_medico, M.nombre, M.apellido, T.id_estado, E.descripcion, T.ID_especialidad, ES.descripcion, T.fecha, T.hora, T.observacion from Turnos T inner join Pacientes P on T.dni_paciente = P.dni inner join Medicos M on T.dni_medico = M.dni inner join Estados E on T.id_estado = E.ID inner join Especialidades ES on ES.ID = T.ID_Especialidad where T.dni_medico = '"+ dniMedico+"'");
 			 while(rs.next())
 			 {
 				 Turno turno = new Turno();
@@ -325,6 +335,15 @@ public class TurnoDaoImpl implements TurnoDao{
 				 paciente.setDni(rs.getString("T.dni_paciente"));
 				 paciente.setNombre(rs.getString("P.nombre"));
 				 paciente.setApellido(rs.getString("P.apellido"));
+				 paciente.setSexo(rs.getString("P.sexo"));
+				 paciente.setNacionalidad(rs.getString("P.nacionalidad"));
+				 paciente.setFechaNac(rs.getDate("P.fechaNac"));
+				 paciente.setDireccion(rs.getString("P.direccion"));
+				 paciente.setProvincia(rs.getString("P.provincia"));
+				 paciente.setTelefono(rs.getString("P.telefono"));
+				 paciente.setCelular(rs.getString("P.celular"));
+				 paciente.setCorreo(rs.getString("P.correo"));
+				 paciente.setEstado(rs.getInt("P.estado"));
 				 
 				 Medico medico = new Medico();
 				 medico.setDni(rs.getString("T.dni_medico"));

@@ -18,7 +18,7 @@
 	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 	crossorigin="anonymous">
 <style type="text/css">
-	<jsp:include page="css\StyleSheetHome.css"></jsp:include>
+	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
 	
 	<style type="text/css">

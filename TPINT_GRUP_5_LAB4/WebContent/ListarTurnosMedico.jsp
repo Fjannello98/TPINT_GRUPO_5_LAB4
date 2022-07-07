@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.Turno"%>
 <%@page import="java.util.List"%>
@@ -14,7 +15,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style type="text/css">
-	<jsp:include page="css\StyleSheetHome.css"></jsp:include>
+	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
 <style type="text/css">
 	<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
@@ -44,7 +45,7 @@
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 		<div class="table-title">
-	<h3>Tus turnos asignados</h3>
+	<h3 class="mb-4">Tus turnos asignados</h3>
 	</div>
 	<table class="table-fill">
 	<thead>
@@ -61,8 +62,11 @@
 	<tbody class="table-hover">
 	
 	<tr>
-				<%
+		<%
 			for (Turno a : listaT) {
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");		
+				String fechaComoCadena = ""; 
+			    fechaComoCadena = formato.format(a.getDNI_paciente().getFechaNac());
 		%>
 			
 			<tr>
@@ -74,20 +78,49 @@
 				<td><%=a.getHora() %></td>
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
-					<td> <input type="submit" name="btnPacienteM" value="PACIENTE" class="btn btn-primary"></td>
+				<td>   
+					<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#form">
+    							Información de paciente
+  					</button>     
+               </td>
 					<td> <input type="submit" name="btnPresenteM" value="PRESENTE" class="btn btn-warning"></td>
 					<td> <input type="submit" name="btnAusenteM" value="AUSENTE" class="btn btn-danger"></td>
 				</form>
 				
 			</tr>
-
-			<%
+			<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header border-bottom-0">
+				        <h5 class="modal-title text-dark">Ficha de paciente</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+                      <div class="modal-body">
+			          		<ul class="text-dark">
+			          			<li>Nombre completo: <%= a.getDNI_paciente().getNombre()+" "+ a.getDNI_paciente().getApellido() %></li>
+						        <li>DNI: <%= a.getDNI_paciente().getDni() %></li>
+						        <li>Correo electrónico: <%= a.getDNI_paciente().getCorreo() %></li>
+						        <li>Teléfono fijo: <%= a.getDNI_paciente().getTelefono() %></li>
+						        <li>Celular: <%= a.getDNI_paciente().getCelular() %></li>
+						        <li>Fecha de nacimiento: <%= fechaComoCadena %></li>
+								<li>Nacionalidad: <%= a.getDNI_paciente().getNacionalidad() %></li>
+						        <li>Localidad: <%= a.getDNI_paciente().getLocalidad() %></li>
+								<li>Provincia: <%= a.getDNI_paciente().getProvincia() %></li>
+						        <li>Dirección: <%= a.getDNI_paciente().getDireccion() %></li>
+						        <li>Sexo: <%= a.getDNI_paciente().getSexo() %></li>
+			          		</ul>
+			          </div>
+				    </div>
+				  </div>
+			</div>
+		<%
 			}
 		%>
 	</tbody>
 	</table>
 	<br>
-	
 	  
 	      <%
 		if (request.getAttribute("estadoTurno") != null) {
