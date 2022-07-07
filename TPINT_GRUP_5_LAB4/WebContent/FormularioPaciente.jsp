@@ -35,54 +35,54 @@
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre">
+	          <input type="text" class="form-control" name="txtNombre" title="Ingrese su nombre" required />
 	        </div>
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido">
+	          <input type="text" class="form-control" name="txtApellido" required>
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control" name="txtDNI">
+	          <input type="number" class="form-control" name="txtDNI" required>
 	        </div>
 	        <div class="form-group">
 	          <label>Correo electrónico: </label>
-	          <input type="email" class="form-control" name="txtCorreo">
+	          <input type="email" class="form-control" name="txtCorreo" required>
 	        </div>
 	        
 	        
 	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control" name="txtTelefono">
+	          <input type="phone" class="form-control" name="txtTelefono" required>
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="txtCelular">
+	          <input type="phone" class="form-control" name="txtCelular" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8" name="txtFechaNac">
+	          <input type="date" class="form-control col-8" name="txtFechaNac" required>
 	        </div>
 	        <div class="form-group">
 	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="txtNacionalidad">
+	          <input type="text" class="form-control" name="txtNacionalidad" required>
 	        </div>
 	       <div class="form-group">
 	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="txtLocalidad">
+	          <input type="text" class="form-control" name="txtLocalidad" required>
 	        </div>
 	      
 	        <div class="form-group">
 	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="txtProvincia">
+	          <input type="text" class="form-control" name="txtProvincia" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
-	          <input type="text" class="form-control" name="txtDireccion">
+	          <input type="text" class="form-control" name="txtDireccion" required>
 	        </div>
 	        
 	        <div class="form-group">

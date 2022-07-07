@@ -57,7 +57,7 @@
 		<h3>Tabla Pacientes</h3>
 	</div>
 	
-	<form method="post" action="ServletPacientes">
+	
 	
 	<div class="form-group">
 	
@@ -122,7 +122,7 @@
 		</button>
 	</div>
 	
-	</form>
+	
 
 </body>
 </html>

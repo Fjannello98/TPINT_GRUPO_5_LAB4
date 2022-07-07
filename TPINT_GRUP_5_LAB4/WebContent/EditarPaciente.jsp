@@ -52,54 +52,54 @@
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre" value="<%p.getNombre();%>">
+	          <input type="text" class="form-control" name="txtNombre" value="<%p.getNombre();%>" required >
 	        </div>
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido" value="<%p.getApellido();%>">
+	          <input type="text" class="form-control" name="txtApellido" value="<%p.getApellido();%>" required >
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" disabled="disabled" class="form-control" name="txtDNI" value="<%p.getDni();%>">
+	          <input type="text" disabled="disabled" class="form-control" name="txtDNI" value="<%p.getDni();%>" required >
 	        </div>
 	        <div class="form-group">
 	          <label>Correo electrónico: </label>
-	          <input type="email" class="form-control" name="txtCorreo" value="<%p.getCorreo();%>">
+	          <input type="email" class="form-control" name="txtCorreo" value="<%p.getCorreo();%>" required >
 	        </div>
 	        
 	        
 	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control" name="txtTelefono" value="">
+	          <input type="phone" class="form-control" name="txtTelefono" value="" required >
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="txtCelular" value="">
+	          <input type="phone" class="form-control" name="txtCelular" value="" required >
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8" name="txtFechaNac" value="">
+	          <input type="date" class="form-control col-8" name="txtFechaNac" value="" required>
 	        </div>
 	        <div class="form-group">
 	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="txtNacionalidad" value="">
+	          <input type="text" class="form-control" name="txtNacionalidad" value="" required >
 	        </div>
 	       <div class="form-group">
 	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="txtLocalidad" value="">
+	          <input type="text" class="form-control" name="txtLocalidad" value="" required >
 	        </div>
 	      
 	        <div class="form-group">
 	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="txtProvincia" value="">
+	          <input type="text" class="form-control" name="txtProvincia" value="" required>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
-	          <input type="text" class="form-control" name="txtDireccion" value="">
+	          <input type="text" class="form-control" name="txtDireccion" value="" required >
 	        </div>
 	        
 	        <div class="form-group">
