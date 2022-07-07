@@ -41,10 +41,12 @@
 			throw new UsuarioSinPermisoException();
 	} 
 	%>
+	
 	<%
 	 if (request.getParameter("buscarLista") == null) {
 		 	request.getRequestDispatcher("ServletPacientes?Param=list").forward(request, response);
      }
+	
 		List<Paciente> listaM = new ArrayList<Paciente>();
 		if (request.getAttribute("listaPac") != null) {
 			listaM = (List<Paciente>)request.getAttribute("listaPac");
@@ -57,7 +59,7 @@
 		<h3>Tabla Pacientes</h3>
 	</div>
 	
-	<form method="post" action="ServletPacientes">
+	
 	
 	<div class="form-group">
 	
@@ -83,27 +85,33 @@
 				<th class="text-left">Nacionalidad</th>
 				
 			</tr>
+			
 		</thead>
+		
 		<tbody class="table-hover">
 
 			<tr>
+			
 				<%
 			for (Paciente a : listaM) {
 		%>
 			
+			
 			<tr>
-				<form action="ServletPacientes" method="post">
+				<form method="post" action="ServletPacientes">
+				
 				<td><%=a.getNombre()%></td>
 				<td><%=a.getApellido()%></td>
-				<td><%=a.getDni()%> <input type="hidden" name="dniPaciente" value="<%=a.getDni()%>" ></td>
+				<td><%=a.getDni()%><input type="hidden" name="dniPaciente" value="<%=a.getDni()%>" ></td>
 				<td><%=a.getSexo()%></td>
 				<td><%=a.getDireccion()%></td>
 				<td><%=a.getFechaNac()%></td>
 				<td><%=a.getCorreo()%></td>
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
+				
 				<td> <input type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
-				<td> <a href="ServletPacientes?Param=editar&dni=<%a.getDni();%>"><input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></a></td>
+				<td> <input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></td>
 				</form>
 				
 			</tr>
@@ -115,14 +123,9 @@
 		</tbody>
 	</table>
 	<br>
-	<div align="center">
-		
-		<button type="button" style="background-color: #008CBA;">
-			<i class="glyphicon glyphicon-trash"></i> Modificar
-		</button>
-	</div>
 	
-	</form>
+	
+	
 
 </body>
 </html>

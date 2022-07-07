@@ -21,7 +21,8 @@
 </head>
 <body>
 
-	<% if (request.getSession().getAttribute("usuario") == null) { 
+	<% 
+	if (request.getSession().getAttribute("usuario") == null) { 
 		request.getRequestDispatcher("Login.jsp").forward(request, response);
 		throw new UsuarioNoLoggeadoException();
 	} 
@@ -37,69 +38,78 @@
 			listaM = (List<Paciente>)request.getAttribute("listaPac");
 		}
 		
-	
+		
+	//PARA EDITAR
 	Paciente p = new Paciente();
-	if(request.getAttribute("dniPaciente")!=null){
-		p = (Paciente)request.getAttribute("dniPac");
-	}
+	p = (Paciente)request.getAttribute("dniPac");
+	
 	 
 	%>
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1 class="h1 mb-5" >Editar paciente</h1>
 	  <div class="row">
 	    <div class="col-6">
-	     <form method="post" action="ServletPacientes?Param=editar&dni=<%p.getDni();%>">
+	    
+	     <form method="post" action="ServletPacientes">
 	      
+	      
+	          <div class="form-group">
+	          <label>DNI: </label>
+	          <input type="text" class="form-control" name="txtDNI" value="<%=p.getDni()%>">
+	        </div>
+	      
+	        
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre" value="<%p.getNombre();%>">
+	          <input type="text" class="form-control" name="txtNombre" value="<%=p.getNombre()%>">
 	        </div>
+	        
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido" value="<%p.getApellido();%>">
+	          <input type="text" class="form-control" name="txtApellido" value="<%=p.getApellido()%>">
 	        </div>
-	        <div class="form-group">
-	          <label>DNI: </label>
-	          <input type="text" disabled="disabled" class="form-control" name="txtDNI" value="<%p.getDni();%>">
-	        </div>
+	        
 	        <div class="form-group">
 	          <label>Correo electr√≥nico: </label>
-	          <input type="email" class="form-control" name="txtCorreo" value="<%p.getCorreo();%>">
+	          <input type="email" class="form-control" name="txtCorreo" value="<%=p.getCorreo()%>">
 	        </div>
 	        
 	        
 	        
 	        <div class="form-group">
-	          <label>Tel√©fono: </label>
-	          <input type="phone" class="form-control" name="txtTelefono" value="">
+	          <label>TelÈfono: </label>
+	          <input type="phone" class="form-control" name="txtTelefono" value="<%=p.getTelefono()%>">
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="txtCelular" value="">
+	          <input type="phone" class="form-control" name="txtCelular" value="<%=p.getCelular()%>">
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8" name="txtFechaNac" value="">
+	          <input type="date" class="form-control col-8" name="txtFechaNac" value="<%=p.getFechaNac()%>">
 	        </div>
+	        
 	        <div class="form-group">
 	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="txtNacionalidad" value="">
+	          <input type="text" class="form-control" name="txtNacionalidad" value="<%=p.getNacionalidad()%>">
 	        </div>
+	        
 	       <div class="form-group">
 	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="txtLocalidad" value="">
+	          <input type="text" class="form-control" name="txtLocalidad" value="<%=p.getLocalidad()%>">
 	        </div>
 	      
 	        <div class="form-group">
 	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="txtProvincia" value="">
+	          <input type="text" class="form-control" name="txtProvincia" value="<%=p.getProvincia()%>">
 	        </div>
 	        
 	        <div class="form-group">
-	          <label>Direcci√≥n:</label>
-	          <input type="text" class="form-control" name="txtDireccion" value="">
+	          <label>DirecciÛn:</label>
+	          <input type="text" class="form-control" name="txtDireccion" value="<%=p.getDireccion()%>">
 	        </div>
 	        
 	        <div class="form-group">
@@ -111,21 +121,24 @@
 	            <option value="3">Otro</option>
 	          </select>
 	        </div>
+	        
 	        <div class="col-12">
-	        	<input type="submit" class="btn btn-success" value="Guardar" name="btnGuardar">
-	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
+	        
+	        	<input type="submit" class="btn btn-success" value="Modificar" name="btnModificar">	        	
 	        </div>
 	      </form>
+	      
 	       <%
 		if (request.getAttribute("estadoPaciente") != null) {
 	%>
-	Paciente agregado con exito
+	
+	Paciente modificado con exito
 	<%
 		}
 	%>
 	    </div>
 	  </div>
-	</div>
+	
 
 </body>
 </html>

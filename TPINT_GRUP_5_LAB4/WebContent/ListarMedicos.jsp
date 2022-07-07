@@ -93,7 +93,7 @@
 				<form action="ServletMedicos" method="post">
 				<td><%=a.getNombre()%></td>
 				<td><%=a.getApellido()%></td>
-				<td><%=a.getDni()%><input type="hidden" name="dniMedico" value="<%=a.getDni()%>" ></td>
+				<td><%=a.getDni()%><input type="hidden" name="dniMedico" value="<%=a.getDni()%>"></td>
 				<td><%=a.getSexo()%></td>
 				<td><%=a.getDireccion()%></td>
 				<td><%=a.getFechaNac()%></td>

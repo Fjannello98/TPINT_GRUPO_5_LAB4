@@ -57,18 +57,7 @@ public class ServletPacientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "editar":
-			{
-				
-				Paciente p = new Paciente();
-				p = negPac.obtenerUno(request.getParameter("dniPaciente"));
-				
-				request.setAttribute("dniPac", p);	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
-				dispatcher.forward(request, response);
-				
-				break;
-			}
+			
 			default:
 				break;
 			}
@@ -136,81 +125,96 @@ public class ServletPacientes extends HttpServlet {
 		 
 		 
 		 
-		 if(request.getParameter("btnGuardar")!=null)
-		    {
-		    	Paciente x = new Paciente();
-		    
-		    	
-			
-					x.setNombre(request.getParameter("txtNombre"));
-					x.setApellido(request.getParameter("txtApellido"));
-					x.setDni(request.getParameter("txtDNI"));
-					x.setTelefono(request.getParameter("txtTelefono"));
-					x.setCelular(request.getParameter("txtCelular"));
-					x.setCorreo(request.getParameter("txtCorreo"));
-					x.setDireccion(request.getParameter("txtDireccion"));
-					x.setNacionalidad(request.getParameter("txtNacionalidad"));
-					x.setLocalidad(request.getParameter("txtLocalidad"));
-					x.setProvincia(request.getParameter("txtProvincia"));
-					
-					int sexo = Integer.parseInt(request.getParameter("comboSexo"));
-					switch (sexo) {
-					case 1:
-						x.setSexo("Masculino");	
-						break;
-					case 2:
-						x.setSexo("Femenino");	
-						break;
-					case 3:
-						x.setSexo("Otro");	
-						break;
-					default:
-						break;
-					}
-					
-				
-					
-					//IMPORTANTISIMO PARA FECHA					
-					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
-					Date fecha;
-					try {
-						fecha = formato.parse(request.getParameter("txtFechaNac"));
-						x.setFechaNac(fecha);						
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}				
-					
-				
-					
-					x.setEstado(1);
-					boolean estado=true;
-					estado = negPac.editar(x);
-					request.setAttribute("estadoPaciente", estado);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
-					dispatcher.forward(request, response);
-					
-		    }
 		
+		//PARA ELIMINAR
 		if(request.getParameter("btnEliminar")!=null) 
 		{
 			String dni = request.getParameter("dniPaciente");
 			
-			if(negPac.borrar(dni)) {
-			ArrayList<Paciente> lista = negPac.listarPacientes();
-			request.setAttribute("listaPac", lista);
-			
+			boolean estado = true;
+			estado = negPac.borrar(dni);
+			request.setAttribute("estadoPaciente", estado);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
 			dispatcher.forward(request, response);
-			}
 		}
 		
 		
+		//PARA MODIFICAR
+		if(request.getParameter("btnEditar")!=null) 
+		{
+			String dni = request.getParameter("dniPaciente");					
+			Paciente p = new Paciente();
+			
+			p = negPac.obtenerUno(dni);			
+			request.setAttribute("dniPac", p);	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
+			dispatcher.forward(request, response);
+					
+		}
 		
+		if(request.getParameter("btnModificar")!=null)
+	    {
+	    	Paciente x = new Paciente();
+	
+				x.setNombre(request.getParameter("txtNombre"));
+				x.setApellido(request.getParameter("txtApellido"));
+				x.setDni(request.getParameter("txtDNI"));
+				x.setTelefono(request.getParameter("txtTelefono"));
+				x.setCelular(request.getParameter("txtCelular"));
+				x.setCorreo(request.getParameter("txtCorreo"));
+				x.setDireccion(request.getParameter("txtDireccion"));
+				x.setNacionalidad(request.getParameter("txtNacionalidad"));
+				x.setLocalidad(request.getParameter("txtLocalidad"));
+				x.setProvincia(request.getParameter("txtProvincia"));
+				
+				int sexo = Integer.parseInt(request.getParameter("comboSexo"));
+				switch (sexo) {
+				case 1:
+					x.setSexo("Masculino");	
+					break;
+				case 2:
+					x.setSexo("Femenino");	
+					break;
+				case 3:
+					x.setSexo("Otro");	
+					break;
+				default:
+					break;
+				}
+				
+			
+				
+				//IMPORTANTISIMO PARA FECHA					
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+				Date fecha;
+				try {
+					fecha = formato.parse(request.getParameter("txtFechaNac"));
+					x.setFechaNac(fecha);						
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+				
+			
+				
+				x.setEstado(1);
+				boolean estado=true;
+				estado = negPac.editar(x);
+				request.setAttribute("estadoPaciente", estado);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
+				dispatcher.forward(request, response);
+				
+	    }
+		
+		
+		}
+	
+	
+			
 			
 	}
 	
-}
+
 
 
 
