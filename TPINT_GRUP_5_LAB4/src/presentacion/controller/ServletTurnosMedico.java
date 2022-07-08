@@ -76,7 +76,7 @@ public class ServletTurnosMedico extends HttpServlet {
 			turno.setObservacion(observaciones);
 			negTur.agregarObservacion(turno);
 		}
-		response.sendRedirect("ListarTurnosMedico.jsp");
+		response.sendRedirect("ListarTurnosMedico.jsp?cambioExitoso=1");
 	}
 
 }

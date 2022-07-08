@@ -20,6 +20,7 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<% if (request.getSession().getAttribute("usuario") == null) { 
@@ -146,7 +147,7 @@
 									</div>
 									 <div class="form-group">
 									    <label for="observaciones">Observaciones: </label>
-									    <textarea class="form-control" id="observaciones" name="observaciones" value="<%= a.getObservacion() %>" rows="3"></textarea>
+									    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"><%= a.getObservacion() %></textarea>
 									 </div>
 									 <div class="d-flex justify-content-center">
 									 	<input class="d-none" name="idTurno" value="<%= a.getId() %>">
@@ -163,15 +164,12 @@
 		</tbody>
 		</table>
 	</div>	
-	<br>
 	  
-	      <%
-		if (request.getAttribute("estadoTurno") != null) {
-	%>
-	Turno modificado como AUSENTE
-	<%
-		}
-	%>
+   <% if(request.getParameter("cambioExitoso")!= null) { %>
+   	<script type="text/javascript">
+   		swal("¡Listo!", "El turno se ha modificado exitosamente", "success");
+   	</script>
+   <% } %>
 	
 	
 </body>

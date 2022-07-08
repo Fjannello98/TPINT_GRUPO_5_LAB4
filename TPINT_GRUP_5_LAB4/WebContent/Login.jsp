@@ -60,7 +60,7 @@
            
         </div>
    </div>   
-   <% if(request.getAttribute("errorLogin")!= null) { %>
+   <% if(request.getParameter("errorLogin")!= null) { %>
    	<script type="text/javascript">
    		swal("¡Error!", "Datos ingresados inválidos", "error");
    	</script>
