@@ -58,6 +58,13 @@ public class ServletMedicos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "listaBM":
+			{
+				request.setAttribute("listaMed", negMed.listarMedicos());	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaMedicos.jsp?buscarBMLista=1");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}

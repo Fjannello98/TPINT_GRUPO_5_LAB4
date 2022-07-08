@@ -42,7 +42,7 @@
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="FormularioPaciente.jsp">Dar de alta</a>
 	          <a class="dropdown-item text-light" href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a>
-	          <a class="dropdown-item text-light" href="ServletPacientes?Param=listaB">Busqueda</a>
+	          <a class="dropdown-item text-light" href="ServletPacientes?Param=listaBP">Busqueda</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
@@ -52,6 +52,7 @@
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="ServletMedicos?Param=previoInsert">Dar de alta</a>
 	          <a class="dropdown-item text-light" href="ServletMedicos?Param=list">Listar/Modificar/Eliminar</a>
+	          <a class="dropdown-item text-light" href="ServletMedicos?Param=listaBM">Busqueda</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">

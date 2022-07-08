@@ -51,19 +51,6 @@
 	</div>
 	
 
-	
-	<div class="form-group">
-	
-	          <label>Buscar: </label>
-	          <input type="text" class="form-control" name="txtBuscar">
-	        </div>
-	        
-	        <div class="col-12">
-	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscar">
-	        </div>
-	        
-	         
-	        
 	       
 	        
 	<table class="table-fill">
@@ -113,12 +100,6 @@
 		</tbody>
 	</table>
 	<br>
-	<div align="center">
-		<button type="button" style="background-color: #008CBA;">
-			<i class="glyphicon glyphicon-trash"></i> Modificar
-		</button>
-	</div>
-
 
 </body>
 </html>
