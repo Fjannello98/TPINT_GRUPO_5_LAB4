@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Menu</title>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style type="text/css">
 	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
@@ -40,6 +42,7 @@
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="FormularioPaciente.jsp">Dar de alta</a>
 	          <a class="dropdown-item text-light" href="ServletPacientes?Param=list">Listar/Modificar/Eliminar</a>
+	          <a class="dropdown-item text-light" href="ServletPacientes?Param=listaB">Busqueda</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
@@ -65,7 +68,7 @@
 	      	{
 	      %>
 	      	<li class="nav-item">
-	        	<a class="nav-link" href="ListarTurnosMedico.jsp"><i class="fa-solid fa-calendar-check"></i> Mis Turnos</a>
+	        	<a class="nav-link" href="ServletTurnosMedico?buscarLista=1"><i class="fa-solid fa-calendar-check"></i> Mis Turnos</a>
 	      	</li>
 	      <% } %>	
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">

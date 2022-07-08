@@ -57,7 +57,13 @@ public class ServletPacientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			
+			case "listaB":
+			{
+				request.setAttribute("listaPac", negPac.listarPacientes());	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaPacientes.jsp?buscarBLista=1");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}
@@ -218,16 +224,8 @@ public class ServletPacientes extends HttpServlet {
 				
 	    }
 		
-		
 		}
 	
-	
-			
 			
 	}
 	
-
-
-
-
-
