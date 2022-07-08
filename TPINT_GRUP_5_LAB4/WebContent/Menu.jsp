@@ -65,7 +65,7 @@
 	      	{
 	      %>
 	      	<li class="nav-item">
-	        	<a class="nav-link" href="ServletTurnosMedico?buscarLista=1"><i class="fa-solid fa-calendar-check"></i> Mis Turnos</a>
+	        	<a class="nav-link" href="ListarTurnosMedico.jsp"><i class="fa-solid fa-calendar-check"></i> Mis Turnos</a>
 	      	</li>
 	      <% } %>	
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
