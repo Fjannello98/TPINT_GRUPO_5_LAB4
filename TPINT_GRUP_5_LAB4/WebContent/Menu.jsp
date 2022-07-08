@@ -47,7 +47,7 @@
 	      </li>
 	      <li class="nav-item dropdown form-inline my-2 my-lg-0">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          <i class="fa-solid fa-user-doctor"></i> Médicos
+	          <i class="fa-solid fa-user-doctor"></i> MÃ©dicos
 	        </a>
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="ServletMedicos?Param=previoInsert">Dar de alta</a>
@@ -78,6 +78,9 @@
 	        </a>
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="ServletLogin?logout=1">Logout</a>
+	          <%if (user.getTipo_usuario().getID()==1){ %>
+	          <a class="dropdown-item text-light" href="ServletUsuarios?Param=previoInsert">Dar de alta</a>
+	          <%} %>
 	        </div>
 	      </li>
 	    </ul>
