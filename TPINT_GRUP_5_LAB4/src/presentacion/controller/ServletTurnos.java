@@ -62,8 +62,8 @@ public class ServletTurnos extends HttpServlet {
 			case "previoInsert":
 			{
 				request.setAttribute("listaEsp", negEsp.listarEspecialidades());
-				request.setAttribute("listaMed", negMed.listarMedicos());
 				request.setAttribute("listaPac", negPac.listarPacientes());
+				//request.setAttribute("listaMed", negMed.listarMedicos());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
 				dispatcher.forward(request, response);
 				break;
@@ -98,6 +98,15 @@ public class ServletTurnos extends HttpServlet {
 		    		Especialidad especialidad = new Especialidad();
 					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
 					x.setID_especialidad(especialidad);
+					
+					//PARA EL COMBO DE MEDICOS
+					if(especialidad != null) {
+					request.setAttribute("listaMed", negMed.obtenerxEspecialidad(especialidad.getID()));
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
+					dispatcher.forward(request, response);
+					}
+					
+					
 					
 					Medico medico = new Medico();
 					medico.setDni(request.getParameter("comboMedico"));

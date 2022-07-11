@@ -14,5 +14,8 @@ public interface MedicoNeg {
 	public boolean editar(Medico medico);
 	public boolean borrar(String dni);
 	
+	//PARA OBTENER MEDICOS POR ESPECIALIDAD
+	public List<Medico> obtenerxEspecialidad(int id);
+	
 	public List<Medico> obtenerBusqueda(String parametro);
 }

@@ -52,5 +52,10 @@ public class MedicoNegImpl implements MedicoNeg{
 		return (ArrayList<Medico>) medicoDao.obtenerBusqueda(parametro);
 	}
 	
+	//PARA OBTENER MEDICOS POR ESPECIALIDAD
+		public List<Medico> obtenerxEspecialidad(int id){
+			return (ArrayList<Medico>) medicoDao.obtenerxEspecialidad(id);
+		}
+	
 	
 }

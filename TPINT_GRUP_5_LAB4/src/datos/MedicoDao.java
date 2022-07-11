@@ -11,6 +11,9 @@ public interface MedicoDao{
 	public boolean editar(Medico medico);
 	public boolean borrar(String dni);
 	
+	//PARA OBTENER MEDICOS POR ESPECIALIDAD
+	public List<Medico> obtenerxEspecialidad(int id);
+	
 	//PARA BUSQUEDA DINAMICA
 	public List<Medico> obtenerBusqueda(String parametro);
 }
