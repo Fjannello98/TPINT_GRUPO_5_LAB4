@@ -58,7 +58,7 @@
 	
 	<jsp:include page="Menu.jsp"></jsp:include>
 
- 		<form method="post" action="ServletTurnos">
+ 		<form onSubmit="confirmarAgregar()" method="post" action="ServletTurnos">
 	 		<!-- ESPECIALIDAD  -->
 	        <div class="form-group">
 	          <label>Seleccione una Especialidad: </label>
@@ -153,7 +153,18 @@
 		<%
 			}
 		%>
-	  
+	  <script>
+		  function confirmarAgregar(event){
+					
+					var result = confirm("Esta seguro que desea agregar este Turno?");
+					
+							if (result === false) {
+							    event.preventDefault();
+							    
+							  }
+					
+				}
+	  </script>
 
 </body>
 </html>

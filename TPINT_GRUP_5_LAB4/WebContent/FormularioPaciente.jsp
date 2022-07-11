@@ -33,7 +33,7 @@
 	<h1 class="h1 mb-5" >Ingresar nuevo paciente</h1>
 	  <div class="row">
 	    <div class="col-6">
-	     <form onSubmit="confirmarEditar(event)" method="post" action="ServletPacientes">
+	     <form onSubmit="confirmarAgregar(event)" method="post" action="ServletPacientes">
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
@@ -119,9 +119,9 @@
 	
 	<script>
 		
-		function confirmarEditar(event) {
+		function confirmarAgregar(event) {
 			
-			  var result = confirm("Esta seguro que desea editar este Paciente?");
+			  var result = confirm("Esta seguro que desea agregar este Paciente?");
 			  if (result === false) {
 			    event.preventDefault();
 			    
