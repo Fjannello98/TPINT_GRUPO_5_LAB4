@@ -1,11 +1,11 @@
-package datos;
+package negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entidad.DisponibilidadxMedico;
 
-
-public interface DisponibilidadxMedicoDao {
+public interface DisponibilidadxMedicoNeg {
 	public List<DisponibilidadxMedico> obtenerTodos();
 	public DisponibilidadxMedico obtenerUno(int id );
 	
@@ -18,5 +18,6 @@ public interface DisponibilidadxMedicoDao {
 	//ESTOS DOS SE VAN A USAR PARA EDITAR LOS PACIENTES
 	public boolean insertar(DisponibilidadxMedico dxmedico);
 	public boolean borrar(String dni); //ES BAJA FISICA
+
 
 }

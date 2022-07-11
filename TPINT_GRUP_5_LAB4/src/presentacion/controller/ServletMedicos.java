@@ -24,12 +24,18 @@ import negocio.MedicoNeg;
 import negocioImpl.EspecialidadNegImpl;
 import negocioImpl.MedicoNegImpl;
 
+import entidad.DisponibilidadxMedico;
+import negocio.DisponibilidadxMedicoNeg;
+import negocioImpl.DisponibilidadxMedicoNegImpl;
+
 
 @WebServlet("/ServletMedicos")
 public class ServletMedicos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EspecialidadNeg negEsp = new EspecialidadNegImpl(); 
 	MedicoNeg negMed = new MedicoNegImpl();
+	DisponibilidadxMedicoNeg negDxMed = new DisponibilidadxMedicoNegImpl();
+	
     public ServletMedicos() {
         super();
         
@@ -118,6 +124,9 @@ public class ServletMedicos extends HttpServlet {
 					x.setID_especialidad(especialidad);
 				
 					
+				
+					
+					
 					//IMPORTANTISIMO PARA FECHA					
 					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 					Date fecha;
@@ -132,8 +141,49 @@ public class ServletMedicos extends HttpServlet {
 				
 					
 					x.setEstado(1);
-					boolean estado=true;				
+					boolean estado=true;	
+					
 					estado = negMed.insertar(x);
+					
+					//LOGICA PARA INSERTAR DISPONIBILIDADES POR MEDICO
+					if(estado) {
+						String dias[] = request.getParameterValues("dia");
+						if(dias != null) {
+							for(int i=0; i<dias.length; i++) {
+								
+								DisponibilidadxMedico dxmedico = new DisponibilidadxMedico();
+								Medico medDia = new Medico();
+								medDia.setDni(request.getParameter("txtDNI"));
+								dxmedico.setDNI_medico(medDia);
+								
+								//SE OBTIENEN LOS NUMEROS DEL 0 AL 6, SIENDO 0 DOMINGO Y 6 SABADO
+								switch (dias[i]) {
+								case "0": dxmedico.setDia(0);											  										  
+									break;
+								case "1": dxmedico.setDia(1);							
+									break;
+								case "2": dxmedico.setDia(2);	
+									break;
+								case "3": dxmedico.setDia(3);	
+									break;
+								case "4": dxmedico.setDia(4);	
+									break;
+								case "5": dxmedico.setDia(5);	
+									break;
+								case "6": dxmedico.setDia(6);	
+									break;
+								default: dxmedico.setDia(-1); //SIN DISPONIBILIDAD NINGUN DIA
+									break;
+								}
+								
+								negDxMed.insertar(dxmedico);
+								System.out.println("dia agregado");
+								
+							}
+						}
+					}
+					
+					
 					request.setAttribute("estadoMedico","Medico agregado con exito");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
 					dispatcher.forward(request, response);
@@ -226,6 +276,49 @@ public class ServletMedicos extends HttpServlet {
 				x.setEstado(1);
 				boolean estado=true;
 				estado = negMed.editar(x);
+				
+				//LOGICA PARA INSERTAR DISPONIBILIDADES POR MEDICO
+				if(estado) {
+					//ELIMINA TODAS LAS DISPONIBILIDADES DEL DIA
+					negDxMed.borrar(request.getParameter("txtDNI"));
+					
+					//INSERTA TODAS LAS DISPONIBILIDADES NUEVAS
+					String dias[] = request.getParameterValues("dia");
+					if(dias != null) {
+						for(int i=0; i<dias.length; i++) {
+							
+							DisponibilidadxMedico dxmedico = new DisponibilidadxMedico();
+							Medico medDia = new Medico();
+							medDia.setDni(request.getParameter("txtDNI"));
+							dxmedico.setDNI_medico(medDia);
+							
+							//SE OBTIENEN LOS NUMEROS DEL 0 AL 6, SIENDO 0 DOMINGO Y 6 SABADO
+							switch (dias[i]) {
+							case "0": dxmedico.setDia(0);											  										  
+								break;
+							case "1": dxmedico.setDia(1);							
+								break;
+							case "2": dxmedico.setDia(2);	
+								break;
+							case "3": dxmedico.setDia(3);	
+								break;
+							case "4": dxmedico.setDia(4);	
+								break;
+							case "5": dxmedico.setDia(5);	
+								break;
+							case "6": dxmedico.setDia(6);	
+								break;
+							default: dxmedico.setDia(-1); //SIN DISPONIBILIDAD NINGUN DIA
+								break;
+							}
+							
+							negDxMed.insertar(dxmedico);
+							System.out.println("dia agregado");
+							
+						}
+					}
+				}
+				
 				request.setAttribute("estadoMedico", estado);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarMedico.jsp");
 				dispatcher.forward(request, response);

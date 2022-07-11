@@ -79,6 +79,33 @@
 	          </select>
 	        </div>
 	        
+	        
+	         <!-- PARA DISPONIBILIDAD POR MEDICO  -->
+	        <div class="form-group">
+	          <label>Disponibilidad:</label>
+	          <br>
+	          <input type="checkbox" id="lunes" name="dia" value="1">
+ 			 <label for="vehicle1"> Lunes </label><br>
+ 			 
+ 			 <input type="checkbox" id="martes" name="dia" value="2">
+ 			 <label for="martes"> Martes </label><br>
+ 			 
+ 			<input type="checkbox" id="miercoles" name="dia" value="3">
+ 			 <label for="miercoles"> Miercoles </label><br>
+ 			 
+ 			 <input type="checkbox" id="jueves" name="dia" value="4">
+ 			 <label for="jueves"> Jueves </label><br>
+ 			 
+ 			 <input type="checkbox" id="viernes" name="dia" value="5">
+ 			 <label for="viernes"> Viernes </label><br>
+ 			 
+ 			 <input type="checkbox" id="miercoles" name="dia" value="6">
+ 			 <label for="miercoles"> Sabado </label><br>
+ 			 
+ 			 <input type="checkbox" id="domingo" name="dia" value="0">
+ 			 <label for="domingo"> Domingo </label><br>
+	        </div>
+	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
 	          <input type="phone" class="form-control" name="txtTelefono" required>
@@ -111,6 +138,8 @@
 	          <label>Dirección:</label>
 	          <input type="text" class="form-control" name="txtDireccion" required>
 	        </div>
+	        
+	        
 	        
 	        <div class="form-group">
 	          <label>Sexo: </label>

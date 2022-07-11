@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidad.DisponibilidadxMedico;
 import entidad.Especialidad;
 import entidad.Medico;
 import entidad.Paciente;
@@ -22,8 +23,10 @@ import negocio.TurnoNeg;
 import negocioImpl.TurnoNegImpl;
 import negocio.PacienteNeg;
 import negocioImpl.PacienteNegImpl;
+import negocio.DisponibilidadxMedicoNeg;
 import negocio.EspecialidadNeg;
 import negocio.MedicoNeg;
+import negocioImpl.DisponibilidadxMedicoNegImpl;
 import negocioImpl.EspecialidadNegImpl;
 import negocioImpl.MedicoNegImpl;
 
@@ -39,6 +42,8 @@ public class ServletTurnos extends HttpServlet {
 	private static final EspecialidadNeg negEsp = new EspecialidadNegImpl(); 
     private static final MedicoNeg negMed = new MedicoNegImpl();
     private static final PacienteNeg negPac = new PacienteNegImpl();
+    private static final DisponibilidadxMedicoNeg negDxMed = new DisponibilidadxMedicoNegImpl();
+  
 
     public ServletTurnos() {
         super();
@@ -77,6 +82,7 @@ public class ServletTurnos extends HttpServlet {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//PARA AGREGAR TURNO
@@ -105,14 +111,34 @@ public class ServletTurnos extends HttpServlet {
 		    															
 					//IMPORTANTISIMO PARA FECHA					
 					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
-					Date fecha;
+					Date fecha = null;
 					try {
 						fecha = formato.parse(request.getParameter("txtFecha"));
 						x.setFecha(fecha);						
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}		
+					}	
+					
+					
+					//LOGICA PARA VERIFICAR SI EL MEDICO PUEDE ATENDER EN ESE DIA
+					int dia = fecha.getDay();
+					DisponibilidadxMedico dxmedico = new DisponibilidadxMedico();
+					dxmedico.setDNI_medico(medico);
+					dxmedico.setDia(dia);
+					boolean puede = negDxMed.verificar(dxmedico);
+					
+					if(puede) {
+						System.out.println("EL MEDICO PUEDE ATENDER ESE DIA DE SEMANA");
+					}
+					else {
+						String mensaje = "";
+						mensaje = "El médico no puede atender ese día de la semana.";
+						request.setAttribute("estadoTurno", mensaje);
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
+						dispatcher.forward(request, response);						
+					}
+								
 					
 					//IMPORTANTISIMO PARA HORA	
 					SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 

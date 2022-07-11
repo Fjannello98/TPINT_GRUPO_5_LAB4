@@ -109,9 +109,7 @@ create table DisponibilidadxMedico
 ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 DNI_Medico VARCHAR(25) NOT NULL,
 FOREIGN KEY(DNI_Medico) REFERENCES Medicos(dni),
-dia VARCHAR(10),
-horario_inicio TIME,
-horario_fin TIME
+dia INT
 );
 
 /*ESTA TABLA CREO QUE QUEDA AL PEDO */
@@ -184,3 +182,10 @@ insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO, dni) values ("Al
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("MateoGhidini", "1234", 1);
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("PabloCaero", "1234", 1);
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("DiameDevia", "1234", 1);
+
+
+insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 1);
+insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 2);
+insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 3);
+
+select * from disponibilidadxmedico
