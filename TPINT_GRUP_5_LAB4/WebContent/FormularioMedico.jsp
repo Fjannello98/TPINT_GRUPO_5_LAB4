@@ -45,7 +45,7 @@
 	  <div class="row">
 	    <div class="col-6">
 	    
-	      <form method="post" action="ServletMedicos">
+	      <form onSubmit="confirmarEditar(event)" method="post" action="ServletMedicos">
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
@@ -151,8 +151,8 @@
 	          </select>
 	        </div>
 	        <div class="col-12">
-	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
-	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
+	        	<input  type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
+	        	<button  type="submit" class="btn btn-outline-info">Limpiar campos</button>
 	        </div>
 	      </form>
 	      
@@ -165,7 +165,23 @@
 		%>
 	    </div>
 	  </div>
-
+		
+		<script>
+		
+			function confirmarEditar(event){
+				
+				var result = confirm("Esta seguro que desea editar este Medico?");
+				
+						if (result === false) {
+						    event.preventDefault();
+						    
+						  }
+				
+			}
+		
+		
+		
+		</script>
 
 </body>
 </html>

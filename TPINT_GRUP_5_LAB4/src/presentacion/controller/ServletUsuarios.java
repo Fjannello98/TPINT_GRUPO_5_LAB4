@@ -56,6 +56,7 @@ public class ServletUsuarios extends HttpServlet {
 
 				//Se quiere insertar entonces cargo la lista de categorias
 				request.setAttribute("listaTipoU", negTu.listarTiposUsuarios());
+				request.setAttribute("listaMed", negMed.listarMedicos());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioUsuarios.jsp");
 				dispatcher.forward(request, response);
 
@@ -80,22 +81,22 @@ public class ServletUsuarios extends HttpServlet {
 
 	    	Medico consulta = new Medico();
 	    		    	
-	    		consulta = negMed.obtenerUno(request.getParameter("txtDni"));
+	    		consulta = negMed.obtenerUno(request.getParameter("comboMedicos"));
 	    	
-		    	u = negU.obtenerUno(request.getParameter("txtDni"));
+		    	u = negU.obtenerUno(request.getParameter("comboMedicos"));
 		    	
 	    		if(consulta.getDni()!=null) {
 	    			
 	    			if(u.getDni()==null) {
-	    			u.setDni(request.getParameter("txtDni"));
+	    			//u.setDni(request.getParameter("txtDni"));
 	    			
 	    			u.setNombre_usuario(request.getParameter("txtNombre"));
 	    			
 	    				
 	    			u.setContrasena(request.getParameter("txtPassword"));				
 	    			
-	    			
-	    			u.setDni(request.getParameter("txtDni"));				
+	    			consulta.setDni(request.getParameter("comboMedicos"));
+	    			//u.setDni(request.getParameter("txtDni"));				
 	    			//u.setCorreo(request.getParameter("txtCorreo"));				
 	    			
 	    			TiposUsuario tu = new TiposUsuario();
@@ -107,10 +108,11 @@ public class ServletUsuarios extends HttpServlet {
 	    			u.setEstado(1);
 	    			boolean estado=true;
 	    			estado = negU.insertar(u);
-	    			request.setAttribute("estadoUsuario", estado);
+	    			request.setAttribute("estadoUsuario", "El Usuario se agrego correctamente");
 	    			RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioUsuarios.jsp");
 	    			dispatcher.forward(request, response);
 	    			}
+	    			
 	    			else {
 	    				boolean estado=false;
 						request.setAttribute("estadoUsuario", "Usuario repetido, no se pudo cargar");

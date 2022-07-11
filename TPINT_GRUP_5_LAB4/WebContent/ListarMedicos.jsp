@@ -88,7 +88,7 @@
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
 				<th><%=a.getID_especialidad().getDescripcion() %></th>
-				<td> <input type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
+				<td> <input onclick="confirmarEliminar(event)" type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
 				<td> <input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></td>
 				</form>
 			</tr>
@@ -101,5 +101,22 @@
 	</table>
 	<br>
 
+
+	<script>
+	
+		function confirmarEliminar(event){
+			
+			var result = confirm("Esta seguro que desea eliminar este Medico?");
+			
+					if (result === false) {
+					    event.preventDefault();
+					    
+					  }
+			
+		}
+	
+	
+	
+	</script>
 </body>
 </html>

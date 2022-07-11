@@ -1,5 +1,6 @@
 <%@page import="excepciones.UsuarioSinPermisoException"%>
 <%@page import="entidad.Usuario"%>
+<%@page import="entidad.Medico"%>
 <%@page import="entidad.TiposUsuario"%>
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
 <%@page import="java.util.List"%>
@@ -35,11 +36,19 @@
 			listaTu = (List<TiposUsuario>)request.getAttribute("listaTipoU");
 		}
 	%>
+	
+	<%
+		List<Medico> listaM = new ArrayList<Medico>();
+		if (request.getAttribute("listaMed") != null) {
+			listaM = (List<Medico>)request.getAttribute("listaMed");
+		}
+	%>
+	
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1 class="h1 mb-5" >Ingresar nuevo Usuario</h1>
 	  <div class="row">
 	    <div class="col-6">
-	     <form method="post" action="ServletUsuarios">
+	     <form onSubmit="Validaciones(event)" method="post" action="ServletUsuarios">
 	      
 	        <div class="form-group">
 	          <label>Nombre de Usuario: </label>
@@ -47,15 +56,26 @@
 	        </div>
 	        <div class="form-group">
 	          <label>Contraseña: </label>
-	          <input type="password" class="form-control" name="txtPassword" required>
+	          <input type="password" class="form-control password" name="txtPassword" required>
 	        </div>
 	        <div class="form-group">
 	          <label>Repetir Contraseña: </label>
-	          <input type="password" class="form-control" name="txtConfirmarPassword" required>
+	          <input type="password" class="form-control confirmPassword"  name="txtConfirmarPassword" required>
 	        </div>
 	         <div class="form-group">
-	          <label>DNI: </label>
-	          <input type="number" class="form-control" name="txtDni" required>
+	          <label>Médico: </label>
+	          <select class="form-control col-8" name="comboMedicos" >
+	          	<!-- Esto debería leerlo desde una DB -->
+	          	
+	          			<option selected value="">Seleccionar...</option>
+	            		<%
+							for (Medico m : listaM) {
+						%>
+						<option value="<%=m.getDni()%>"><%=m.getApellido() + ", " + m.getNombre() %></option>
+						<%
+							}
+						%>
+	          </select>
 	        </div>
 	        
 	        
@@ -99,15 +119,40 @@
 
 	<script>
 	
-		function confirmarAlta(){
-			
-			var result = confirm("Esta seguro que desea crear este usuario?");
-			
-			if(result == false){
-				event.preventDefault();
-			}
-		}
+		function confirmarAlta(event) {
 	
+			  var result = confirm("Esta seguro que desea crear este usuario?");
+			  if (result === false) {
+			    event.preventDefault();
+			    
+			  }			  
+			  
+			  			  
+			}
+	
+			function verificarPassword() {
+			  var pass = document.querySelector(".password").value;
+			  var confirmPass = document.querySelector(".confirmPassword").value;
+			  
+	
+			  if (pass != confirmPass) {
+			    alert("Las contraseñas no coinciden");
+			    pass = "";
+			    confirmPass = "";
+			    return false
+			  }
+			  return true;
+	
+			}
+	
+			function Validaciones(event) {
+				  if (verificarPassword() === true) {
+					  confirmarAlta(event);
+				  } else {
+				    event.preventDefault();
+				 }
+			}
+			
 	</script>
 
 	<script></script>
