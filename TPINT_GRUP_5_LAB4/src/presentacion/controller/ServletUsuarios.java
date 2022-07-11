@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import entidad.Medico;
 import entidad.TiposUsuario;
 import entidad.Usuario;
-
+import negocio.MedicoNeg;
 import negocio.TiposUsuarioNeg;
 import negocio.UsuarioNeg;
-
+import negocioImpl.MedicoNegImpl;
 import negocioImpl.TiposUsuarioNegImpl;
 import negocioImpl.UsuarioNegImpl;
 
@@ -32,6 +32,7 @@ public class ServletUsuarios extends HttpServlet {
 	//EspecialidadNeg negEsp = new EspecialidadNegImpl(); 
 	TiposUsuarioNeg negTu = new TiposUsuarioNegImpl();
 	UsuarioNeg negU = new UsuarioNegImpl();
+	MedicoNeg negMed = new MedicoNegImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -76,10 +77,17 @@ public class ServletUsuarios extends HttpServlet {
 		if(request.getParameter("btnAceptar")!=null)
 	    {
 	    	Usuario u = new Usuario();
+
+	    	Medico consulta = new Medico();
 	    		    	
-	    		u = negU.obtenerUno(request.getParameter("txtDni"));
+	    		consulta = negMed.obtenerUno(request.getParameter("txtDni"));
 	    	
-	    		if(u.getDni()==null) {
+		    	u = negU.obtenerUno(request.getParameter("txtDni"));
+		    	
+	    		if(consulta.getDni()!=null) {
+	    			
+	    			if(u.getDni()==null) {
+	    			u.setDni(request.getParameter("txtDni"));
 	    			
 	    			u.setNombre_usuario(request.getParameter("txtNombre"));
 	    			
@@ -102,11 +110,19 @@ public class ServletUsuarios extends HttpServlet {
 	    			request.setAttribute("estadoUsuario", estado);
 	    			RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioUsuarios.jsp");
 	    			dispatcher.forward(request, response);
+	    			}
+	    			else {
+	    				boolean estado=false;
+						request.setAttribute("estadoUsuario", "Usuario repetido, no se pudo cargar");
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioUsuarios.jsp");
+						dispatcher.forward(request, response);
+	    			}
+	    			
 	    		
 	    		} else {
 
 		    		boolean estado=false;
-					request.setAttribute("estadoUsuario", "DNI repetido, no se pudo cargar");
+					request.setAttribute("estadoUsuario", "DNI NO EXISTE");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioUsuarios.jsp");
 					dispatcher.forward(request, response);
 		    	} 

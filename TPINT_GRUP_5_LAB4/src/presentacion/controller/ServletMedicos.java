@@ -238,7 +238,7 @@ public class ServletMedicos extends HttpServlet {
 	 {
 	    	String parametro = request.getParameter("txtBuscar");	    				
 	    	request.setAttribute("listaMed", negMed.obtenerBusqueda(parametro));	
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaMedicos.jsp?buscarBMLista=1");
 			dispatcher.forward(request, response);
 				
 	 }

@@ -57,7 +57,7 @@
 	      <form method="post" action="ServletMedicos">
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control" name="txtDNI" value="<%=m.getDni()%>" readonly>
+	          <input type="number" class="form-control" name="txtDNI" value="<%=m.getDni()%>" readonly>
 	        </div>
 	      
 	        <div class="form-group">

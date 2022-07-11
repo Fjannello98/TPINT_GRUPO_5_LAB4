@@ -48,6 +48,8 @@
 			listaMedicos = (List<Medico>) request.getAttribute("listaMed");
 		}
 	%>
+	
+	<form action="ServletMedicos" method="post">
 	<div class="table-title">
 		<h3>Tabla Medicos</h3>
 	</div>
@@ -92,7 +94,7 @@
 		%>
 			
 			<tr>
-				<form action="ServletMedicos" method="post">
+				
 				<td><%=a.getNombre()%></td>
 				<td><%=a.getApellido()%></td>
 				<td><%=a.getDni()%><input type="hidden" name="dniMedico" value="<%=a.getDni()%>"></td>
@@ -103,7 +105,7 @@
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
 				<th><%=a.getID_especialidad().getDescripcion() %></th>
-				</form>
+				
 			</tr>
 
 			<%
@@ -114,7 +116,7 @@
 	</table>
 	<br>
 		
-		
+	</form>	
 		
 		
 </body>
