@@ -13,6 +13,9 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
+	<style type="text/css">
+		<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
+	</style>
 <script src="https://kit.fontawesome.com/dc241c5998.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -99,7 +102,7 @@
 	        
 	        <div class="col-12">
 	        	<input  type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
-	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
+	        	<button type="submit" class="btn btn-outline-primary">Limpiar campos</button>
 	        </div>
 	      </form>
 	      
