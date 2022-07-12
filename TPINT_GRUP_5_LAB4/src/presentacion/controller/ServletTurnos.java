@@ -63,7 +63,6 @@ public class ServletTurnos extends HttpServlet {
 			{
 				request.setAttribute("listaEsp", negEsp.listarEspecialidades());
 				request.setAttribute("listaPac", negPac.listarPacientes());
-				//request.setAttribute("listaMed", negMed.listarMedicos());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
 				dispatcher.forward(request, response);
 				break;
@@ -85,8 +84,10 @@ public class ServletTurnos extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Turno x = new Turno();
 		//PARA BUSCAR MEDICOS SEGUN ESPECIALIDAD
+		Turno x = new Turno();
+
+		
 		if(request.getParameter("btnBuscarMedicos")!=null)
 	    {	
 			Especialidad especialidad = new Especialidad();
@@ -99,6 +100,7 @@ public class ServletTurnos extends HttpServlet {
 			request.setAttribute("espSeleccionada", especialidad.getDescripcion());//CARGO LA DESCRIPCION DE LA ESPECIALIDAD
 			request.setAttribute("listaMed", negMed.obtenerxEspecialidad(especialidad.getID()));//BUSCO EL LISTADO DE MEDICOS CON ESA ESPECIALIDAD
 			request.setAttribute("listaPac", negPac.listarPacientes());
+			request.setAttribute("idEspecialidad", especialidad.getID()); //ENVIO A LA PAGINA EL ID DE ESPECIALIDAD
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");//ENVIO TODO A TURNOS
 			dispatcher.forward(request, response);
 	    }
@@ -106,6 +108,9 @@ public class ServletTurnos extends HttpServlet {
 		//PARA AGREGAR TURNO
 		if(request.getParameter("btnAceptar")!=null)
 		    {		 
+					Especialidad especialidad = new Especialidad();
+					especialidad = negEsp.obtenerUno(Integer.parseInt(request.getParameter("seleccionEspecialidad")));
+					x.setID_especialidad(especialidad); //SETEO LA ESPECIALIDAD EN EL TURNO
 		    			
 		    		Estado estado = new Estado();
 		    		estado.setID(2); //CORRESPONDE A "OCUPADO"
@@ -146,9 +151,12 @@ public class ServletTurnos extends HttpServlet {
 					else {
 						String mensaje = "";
 						mensaje = "El médico no puede atender ese día de la semana.";
+						request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+						request.setAttribute("listaPac", negPac.listarPacientes());
 						request.setAttribute("estadoTurno", mensaje);
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
-						dispatcher.forward(request, response);						
+						dispatcher.forward(request, response);		
+						response.sendRedirect("Turnos.jsp");
 					}
 								
 					
@@ -170,16 +178,24 @@ public class ServletTurnos extends HttpServlet {
 					String mensaje = "";
 					if(status){
 						mensaje = "El médico ya tiene un turno asignado para la hora indicada. Seleccione otro horario.";
+						request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+						request.setAttribute("listaPac", negPac.listarPacientes());
 						request.setAttribute("estadoTurno", mensaje);
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
 						dispatcher.forward(request, response);
+						response.sendRedirect("Turnos.jsp");
 					}
-					else {				
+					else {		
+						
 					negTur.insertar(x);
 					mensaje = "Turno asignado con éxito.";
+					request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+					request.setAttribute("listaPac", negPac.listarPacientes());
 					request.setAttribute("estadoTurno", mensaje);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
 					dispatcher.forward(request, response);
+					response.sendRedirect("Turnos.jsp");
+					
 					}
 					
 		    }
@@ -235,6 +251,22 @@ public class ServletTurnos extends HttpServlet {
 					
 		 }
 		 
+		 
+		    //PARA LIMPIAR CAMPOS Y EMPEZAR OTRA VEZ
+			if(request.getParameter("btnPresente")!=null) 
+			{
+				int id = Integer.parseInt(request.getParameter("idTurno"));								
+				Turno turno = new Turno();
+				turno = negTur.obtenerUno(id);
+				
+				boolean estado = negTur.cambiarEstadoPresente(id);		
+					
+				request.setAttribute("datosTurno", turno);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarObservacion.jsp");
+				dispatcher.forward(request, response);					
+			}
+		 
 		 	//PARA CAMBIAR A PRESENTE - ADMINISTRADOR
 			if(request.getParameter("btnPresente")!=null) 
 			{
@@ -255,38 +287,28 @@ public class ServletTurnos extends HttpServlet {
 			{
 				int id = Integer.parseInt(request.getParameter("idTurno"));									
 				boolean estado = negTur.cambiarEstadoAusente(id);							
-				request.setAttribute("estadoTurno", estado);		
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");	
-				dispatcher.forward(request, response);					
+				request.setAttribute("estadoTurno", "Turno cambiado como AUSENTE");	
+				request.setAttribute("listaTurno", negTur.listarTurnos());	
+				response.sendRedirect("ListarTurnos.jsp");
+				/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");	
+				dispatcher.forward(request, response);	*/				
 			}
 			
-			//PARA CAMBIAR A PRESENTE - MEDICO
-			if(request.getParameter("btnPresenteM")!=null) 
-			{
-				int id = Integer.parseInt(request.getParameter("idTurno"));								
-				Turno turno = new Turno();
-				turno = negTur.obtenerUno(id);
-				
-				boolean estado = negTur.cambiarEstadoPresente(id);		
-					
-				request.setAttribute("datosTurno", turno);
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarObservacion.jsp");
-				dispatcher.forward(request, response);					
-			}
-			
-			//PARA CAMBIAR A AUSENTE - MEDICO
-			if(request.getParameter("btnAusenteM")!=null) 
+			//PARA CAMBIAR A LIBRE - ADMINISTRADOR
+			if(request.getParameter("btnLibre")!=null) 
 			{
 				int id = Integer.parseInt(request.getParameter("idTurno"));									
-				boolean estado = negTur.cambiarEstadoAusente(id);							
-				request.setAttribute("estadoTurno", estado);		
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnosMedicos.jsp");	
-				dispatcher.forward(request, response);					
+				boolean estado = negTur.cambiarEstadoLibre(id);							
+				request.setAttribute("estadoTurno", "Turno cambiado como LIBRE");
+				request.setAttribute("listaTurno", negTur.listarTurnos());	
+				response.sendRedirect("ListarTurnos.jsp");
+				/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");	
+				dispatcher.forward(request, response);	*/				
 			}
 			
+	
 			//DATOS DE PACIENTE - AMBOS USUARIOS
-			if(request.getParameter("btnPacienteM")!=null) 
+			if(request.getParameter("btnPaciente")!=null) 
 			{
 				String dni = request.getParameter("dniPaciente");	
 				Paciente paciente = new Paciente();

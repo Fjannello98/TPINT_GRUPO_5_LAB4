@@ -118,5 +118,13 @@
 	
 	
 	</script>
+	
+	 <%if (request.getAttribute("estadoMedico") != null) { %>
+		
+		<%=request.getAttribute("estadoMedico")%>
+		
+		<%
+			}
+		%>
 </body>
 </html>

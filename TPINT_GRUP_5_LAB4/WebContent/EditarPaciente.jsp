@@ -131,14 +131,10 @@
 	        </div>
 	      </form>
 	      
-	       <%
-		if (request.getAttribute("estadoPaciente") != null) {
-	%>
-	
-	Paciente modificado con exito
-	<%
-		}
-	%>
+	    
+	    
+	    
+	    
 	    </div>
 	  </div>
 	

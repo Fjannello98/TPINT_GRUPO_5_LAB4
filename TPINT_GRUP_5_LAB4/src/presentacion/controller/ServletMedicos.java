@@ -198,6 +198,7 @@ public class ServletMedicos extends HttpServlet {
 					
 		    }
 		 
+		 //PARA ELIMINAR
 		 if(request.getParameter("btnEliminar")!=null) 
 			{
 				String dni = request.getParameter("dniMedico");
@@ -206,8 +207,9 @@ public class ServletMedicos extends HttpServlet {
 				ArrayList<Medico> lista = negMed.listarMedicos();
 				request.setAttribute("listaMed", lista);
 				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect("ListarMedicos.jsp");
+				/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp");
+				dispatcher.forward(request, response);*/
 			}
 		 
 		//PARA MODIFICAR
@@ -275,7 +277,7 @@ public class ServletMedicos extends HttpServlet {
 				
 				x.setEstado(1);
 				boolean estado=true;
-				estado = negMed.editar(x);
+				estado = negMed.editar(x); //EDITO AL MEDICO
 				
 				//LOGICA PARA INSERTAR DISPONIBILIDADES POR MEDICO
 				if(estado) {
@@ -319,8 +321,9 @@ public class ServletMedicos extends HttpServlet {
 					}
 				}
 				
-				request.setAttribute("estadoMedico", estado);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarMedico.jsp");
+				request.setAttribute("estadoMedico", "Médico DNI "+ x.getDni() + " - " + x.getApellido()+", " + x.getNombre()+" modificado exitosamente");
+				request.setAttribute("listaMed", negMed.listarMedicos());	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarMedicos.jsp?buscarLista=1");			
 				dispatcher.forward(request, response);
 					
 		    }

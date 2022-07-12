@@ -152,8 +152,9 @@ public class ServletPacientes extends HttpServlet {
 			boolean estado = true;
 			estado = negPac.borrar(dni);
 			request.setAttribute("listaPac", negPac.listarPacientes());	
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("ListarPacientes.jsp");
+			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
+			dispatcher.forward(request, response);*/
 		}
 		
 		
@@ -219,9 +220,11 @@ public class ServletPacientes extends HttpServlet {
 				x.setEstado(1);
 				boolean estado=true;
 				estado = negPac.editar(x);
-				request.setAttribute("estadoPaciente", estado);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");				
+				request.setAttribute("estadoPaciente", "Paciente DNI "+ x.getDni() + " - " + x.getApellido()+", " + x.getNombre()+" modificado exitosamente");
+				request.setAttribute("listaPac", negPac.listarPacientes());	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp?buscarLista=1");			
 				dispatcher.forward(request, response);
+				
 				
 	    }
 		

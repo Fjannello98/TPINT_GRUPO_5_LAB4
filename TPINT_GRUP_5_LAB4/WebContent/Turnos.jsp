@@ -5,6 +5,9 @@
 <%@page import="entidad.Paciente"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="excepciones.UsuarioNoLoggeadoException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -54,6 +57,16 @@
 		}
 	%>
 	
+		<%
+		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+
+        Date dateObj = calendar.getTime();
+        String formattedDate = dtf.format(dateObj);
+      
+		%>
+	
+	
 	
      
 	
@@ -91,7 +104,17 @@
 				%>
 				
  		<form onSubmit="confirmarAgregar()" method="post" action="ServletTurnos">
-	                
+	             
+	             	<!-- ESPECIALIDAD TOMADA DEL FORM ANTERIOR -->
+	             <%
+	             int idEsp = 0;	
+				if (request.getAttribute("idEspecialidad") != null) {
+					idEsp = (int)request.getAttribute("idEspecialidad");
+				}
+				%>
+		
+				<input type="hidden" name="seleccionEspecialidad" value="<%=idEsp%>">
+	              
 	        
 	        <!-- MEDICOS  -->
 	        <div class="form-group">
@@ -127,7 +150,7 @@
 	         <!-- FECHA  -->
 	         <div class="form-group">
 	          <label>Fecha: </label>
-	          <input type="date" class="form-control col-8" name="txtFecha" required >
+	          <input type="date" class="form-control col-8" value="<%=formattedDate%>" min="<%=formattedDate%>" name="txtFecha" required >
 	        </div>
 	        
 	        <!-- HORA  -->	      
@@ -159,8 +182,8 @@
 	           
 	       <div class="col-12">
 	        	<input type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
-	        	<button type="submit" class="btn btn-outline-info">Limpiar campos</button>
-	        </div></p>
+	        	
+	        </div>
 	      </form>
 	      
 	      

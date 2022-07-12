@@ -47,31 +47,6 @@
 	</div>
 	
 	
-
-	 <label>Buscar por DNI Paciente: </label>
-	          <input type="text" class="form-control" name="txtBuscar">
-	        
-	        
-	        <div class="col-12">
-	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscar">
-	        </div>
-	        
-	        <div class="form-group">
-	          <label>Buscar por Estado: </label>
-	          <select class="form-control col-8" name="comboEstado" >
-	         
-	            <option value="1">LIBRE</option>
-	            <option value="2">OCUPADO</option>
-	            <option value="3">AUSENTE</option>
-	            <option value="4">PRESENTE</option>
-	          </select>
-	        </div>
-	        
-	         <div class="col-12">
-	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscarEstado">
-	        </div>
-	       
-	
 	<table class="table-fill">
 	<thead>
 	<tr>
@@ -106,8 +81,9 @@
 				<td><%=a.getObservacion()%></td>
 				
 				<td> <input type="submit" name="btnPaciente" value="PACIENTE" class="btn btn-primary"></td>
-				<td> <input type="submit" name="btnPresente" value="PRESENTE" class="btn btn-warning"></td>
+				<td> <input type="submit" name="btnPresente" value="PRESENTE" class="btn btn-success"></td>
 				<td> <input type="submit" name="btnAusente" value="AUSENTE" class="btn btn-danger"></td>
+				<td> <input type="submit" name="btnLibre" value="LIBRE" class="btn btn-warning"></td>
 			</form>
 				
 			</tr>
@@ -121,15 +97,14 @@
 	
 
 	
-	  
-	      <%
-		if (request.getAttribute("estadoTurno") != null) {
-	%>
-	Turno modificado como AUSENTE
-	<%
-		}
-	%>
-
+	           
+		 <%if (request.getAttribute("estadoTurno") != null) { %>
+		
+		<%=request.getAttribute("estadoTurno")%>
+		
+		<%
+			}
+		%>
 	
 
 </body>
