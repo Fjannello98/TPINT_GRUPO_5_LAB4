@@ -55,24 +55,43 @@
 	%>
 	
 	
+     
+	
+	
 	
 	<jsp:include page="Menu.jsp"></jsp:include>
 
- 		<form onSubmit="confirmarAgregar()" method="post" action="ServletTurnos">
+	<form method="post" action="ServletTurnos">
 	 		<!-- ESPECIALIDAD  -->
 	        <div class="form-group">
-	          <label>Seleccione una Especialidad: </label>
+	          <label>Seleccione una Especialidad: </label>	          
 	          <select class="form-control col-8" name="comboEspecialidad" >
 	          	<!-- Esto debería leerlo desde una DB -->
 	            		<%
-							for (Especialidad e : listaE) {
+							for (Especialidad e : listaE) {								
 						%>
 						<option value="<%=e.getID()%>"><%=e.getDescripcion() %></option>
 						<%
 							}
 						%>
 	          </select>
+	          
+	          <input type="submit" class="btn btn-success" value="Buscar" name="btnBuscarMedicos">
 	        </div>
+	       </form>
+	        
+	           <%
+				if (request.getAttribute("espSeleccionada") != null) {
+				%>
+		
+				<%="Especialidad Seleccionada: " + request.getAttribute("espSeleccionada")%>
+		
+				<%
+				}
+				%>
+				
+ 		<form onSubmit="confirmarAgregar()" method="post" action="ServletTurnos">
+	                
 	        
 	        <!-- MEDICOS  -->
 	        <div class="form-group">
@@ -146,13 +165,14 @@
 	      
 	      
 	           
-		 <%
-		if (request.getAttribute("estadoTurno") != null) {
-		%>
+		 <%if (request.getAttribute("estadoTurno") != null) { %>
+		
 		<%=request.getAttribute("estadoTurno")%>
+		
 		<%
 			}
 		%>
+		
 	  <script>
 		  function confirmarAgregar(event){
 					

@@ -85,45 +85,48 @@ public class ServletTurnos extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Turno x = new Turno();
+		//PARA BUSCAR MEDICOS SEGUN ESPECIALIDAD
+		if(request.getParameter("btnBuscarMedicos")!=null)
+	    {	
+			Especialidad especialidad = new Especialidad();
+			especialidad = negEsp.obtenerUno(Integer.parseInt(request.getParameter("comboEspecialidad")));
+			x.setID_especialidad(especialidad); //SETEO LA ESPECIALIDAD EN EL TURNO
+				
+			System.out.println(especialidad.getDescripcion());
+			
+			request.setAttribute("listaEsp", negEsp.listarEspecialidades());//VUELVO A CARGAR LAS ESPECIALIDADADES
+			request.setAttribute("espSeleccionada", especialidad.getDescripcion());//CARGO LA DESCRIPCION DE LA ESPECIALIDAD
+			request.setAttribute("listaMed", negMed.obtenerxEspecialidad(especialidad.getID()));//BUSCO EL LISTADO DE MEDICOS CON ESA ESPECIALIDAD
+			request.setAttribute("listaPac", negPac.listarPacientes());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");//ENVIO TODO A TURNOS
+			dispatcher.forward(request, response);
+	    }
+				
 		//PARA AGREGAR TURNO
 		if(request.getParameter("btnAceptar")!=null)
 		    {		 
-		    		Turno x = new Turno();
-		    		    	
-			
+		    			
 		    		Estado estado = new Estado();
 		    		estado.setID(2); //CORRESPONDE A "OCUPADO"
-		    		x.setID_estado(estado);
-		    		
-		    		Especialidad especialidad = new Especialidad();
-					especialidad.setID(Integer.parseInt(request.getParameter("comboEspecialidad")));
-					x.setID_especialidad(especialidad);
-					
-					//PARA EL COMBO DE MEDICOS
-					if(especialidad != null) {
-					request.setAttribute("listaMed", negMed.obtenerxEspecialidad(especialidad.getID()));
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/Turnos.jsp");
-					dispatcher.forward(request, response);
-					}
-					
-					
-					
+		    		x.setID_estado(estado);//SETEO EL ESTADO DEL TURNO
+		    									
 					Medico medico = new Medico();
 					medico.setDni(request.getParameter("comboMedico"));
-					x.setDNI_medico(medico);
+					x.setDNI_medico(medico); //SETEO EL MEDICO SEGUN LA ESPECIALIDAD
 					
 					Paciente paciente = new Paciente();
 					paciente.setDni(request.getParameter("comboPaciente"));
-					x.setDNI_paciente(paciente);
+					x.setDNI_paciente(paciente); //SETEO EL PACIENTE
 					
-					x.setObservacion(request.getParameter("txtObservacion"));
+					x.setObservacion(request.getParameter("txtObservacion")); //SETEO LA OBSERVACION
 		    															
 					//IMPORTANTISIMO PARA FECHA					
 					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 					Date fecha = null;
 					try {
 						fecha = formato.parse(request.getParameter("txtFecha"));
-						x.setFecha(fecha);						
+						x.setFecha(fecha);//SETEO LA FECHA			 			
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -154,8 +157,7 @@ public class ServletTurnos extends HttpServlet {
 					Date hora;
 					try {
 						hora = formatoHora.parse(request.getParameter("comboHora"));
-						x.setHora(hora);						
-	
+						x.setHora(hora);//SETEO LA HORA
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

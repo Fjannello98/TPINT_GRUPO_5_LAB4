@@ -50,8 +50,27 @@ public class EspecialidadDaoImpl  implements EspecialidadDao{
 
 	@Override
 	public Especialidad obtenerUno(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		cn = new Conexion();
+		cn.Open();
+		Especialidad especialidad = new Especialidad();
+		try
+		 {
+			 ResultSet rs= cn.query("Select id, descripcion from especialidades where id = " + id);
+			 rs.next();
+			 
+			 especialidad.setID(rs.getInt("id"));
+			 especialidad.setDescripción(rs.getString("descripcion"));
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 finally
+		 {
+			 cn.close();
+		 }
+		return especialidad;
 	}
 
 
