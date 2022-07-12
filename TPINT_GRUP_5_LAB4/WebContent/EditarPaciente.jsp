@@ -65,12 +65,12 @@
 	        
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="TxtNombre" value="<%=p.getNombre()%>">
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="TxtNombre" value="<%=p.getNombre()%>">
 	        </div>
 	        
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="TxtApellido" value="<%=p.getApellido()%>">
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="TxtApellido" value="<%=p.getApellido()%>">
 	        </div>
 	        
 	        <div class="form-group">
@@ -82,12 +82,12 @@
 	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control" name="TxtTelefono" value="<%=p.getTelefono()%>">
+	          <input type="text" onkeypress="return check(event)" class="form-control" name="TxtTelefono" value="<%=p.getTelefono()%>">
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="TxtCelular" value="<%=p.getCelular()%>">
+	          <input type="text" onkeypress="return check(event)"class="form-control" name="TxtCelular" value="<%=p.getCelular()%>">
 	        </div>
 	        
 	        <div class="form-group">
@@ -95,21 +95,28 @@
 	          <input type="date" class="form-control col-8" name="TxtFechaNac" value="<%=p.getFechaNac()%>">
 	        </div>
 	        
-	        <div class="form-group">
-	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="TxtNacionalidad" value="<%=p.getNacionalidad()%>">
-	        </div>
+	          <div class="form-group">
+                    <label for="departamento" > Nacionalidad</label>
+                    <select name="comboNacionalidad" id="departamento" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia"> Provincias</label>
+                    <select name="comboProvincia" id="provincia" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="distrito" > Localidades</label>
+                    <select name="comboLocalidad" id="distrito" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
 	        
-	       <div class="form-group">
-	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="TxtLocalidad" value="<%=p.getLocalidad()%>">
-	        </div>
 	      
-	        <div class="form-group">
-	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="TxtProvincia" value="<%=p.getProvincia()%>">
-	        </div>
-	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
 	          <input type="text" class="form-control" name="TxtDireccion" value="<%=p.getDireccion()%>">
@@ -137,6 +144,98 @@
 	    
 	    </div>
 	  </div>
+	
+		<script type="text/javascript">
+		 let $departemento = document.getElementById('departamento')
+		 let $provincia = document.getElementById('provincia')
+		 let $distrito = document.getElementById('distrito')
+
+		 let departamentos = ['Argentina', 'Brasil']
+		 let provincias = ['Bs As', 'Cordoba', 'San Pablo']
+		 let distritos = ['San Miguel', 'San Nicolas', 'Tigre', 'Belgrano', 'Calamuchita', 'La falda', 'Gral Belgrano', 'Santa Marta', 'Loa Loa']
+
+		 function mostrarLugares(arreglo, lugar) {
+		     let elementos = '<option selected disables>--Seleccione--</option>'
+
+		     for(let i = 0; i < arreglo.length; i++) {
+		         elementos += '<option value="' + arreglo[i] +'">' + arreglo[i] +'</option>'
+		     }
+
+		     lugar.innerHTML = elementos
+		 }
+
+		 mostrarLugares(departamentos, $departemento)
+
+		 function recortar(array, inicio, fin, lugar) {
+		     let recortar = array.slice(inicio, fin)
+		     mostrarLugares(recortar, lugar)
+		 }
+
+		 $departemento.addEventListener('change', function() {
+		     let valor = $departemento.value
+
+		     switch(valor) {
+		         case 'Argentina':
+		             recortar(provincias, 0, 2, $provincia)
+		         break
+		         case 'Brasil':
+		             recortar(provincias, 2, 3, $provincia)
+		         break
+		     }
+
+		     $distrito.innerHTML = ''
+		 })
+
+		 $provincia.addEventListener('change', function() {
+		     let valor = $provincia.value
+
+		     if(valor == 'Bs As') {
+		         recortar(distritos, 0, 4, $distrito)
+		     } else if(valor == 'Cordoba') {
+		         recortar(distritos, 4, 7, $distrito)
+		     } else {
+		         recortar(distritos, 7, 9, $distrito)
+		     }
+		 })
+		 
+		 </script>
+		 
+		 <script>
+		
+	
+		
+		
+		//PARA NO ACEPTAR LETRAS Y SIMBOLOS
+		function check(e) {
+		    tecla = (document.all) ? e.keyCode : e.which;
+
+		    //Tecla de retroceso para borrar, siempre la permite
+		    if (tecla == 8) {
+		        return true;
+		    }
+
+		    // Patrón de entrada, en este caso solo acepta numeros 
+		    patron = /[0-9]/;
+		    tecla_final = String.fromCharCode(tecla);
+		    return patron.test(tecla_final);
+		}
+		
+		//PARA NO ACEPTAR SIMBOLOS Y NUMEROS
+		function checkLetras(e) {
+			 tecla = (document.all) ? e.keyCode : e.which;
+
+			 //Tecla de retroceso para borrar, siempre la permite
+			 if (tecla == 8) {
+   		 return true;
+			}
+
+			  // Patrón de entrada, en este caso solo acepta numeros y letras
+			  patron = /[A-Za-z]/;
+			tecla_final = String.fromCharCode(tecla);
+			  return patron.test(tecla_final);
+			}
+
+	</script>
 	
 
 </body>

@@ -100,9 +100,9 @@ public class ServletMedicos extends HttpServlet {
 					x.setCelular(request.getParameter("txtCelular"));
 					x.setCorreo(request.getParameter("txtCorreo"));
 					x.setDireccion(request.getParameter("txtDireccion"));
-					x.setNacionalidad(request.getParameter("txtNacionalidad"));
-					x.setLocalidad(request.getParameter("txtLocalidad"));
-					x.setProvincia(request.getParameter("txtProvincia"));
+					x.setNacionalidad(request.getParameter("comboNacionalidad"));
+					x.setLocalidad(request.getParameter("comboLocalidad"));
+					x.setProvincia(request.getParameter("comboProvincia"));
 					
 					int sexo = Integer.parseInt(request.getParameter("comboSexo"));
 					switch (sexo) {
@@ -238,9 +238,9 @@ public class ServletMedicos extends HttpServlet {
 				x.setCelular(request.getParameter("txtCelular"));
 				x.setCorreo(request.getParameter("txtCorreo"));
 				x.setDireccion(request.getParameter("txtDireccion"));
-				x.setNacionalidad(request.getParameter("txtNacionalidad"));
-				x.setLocalidad(request.getParameter("txtLocalidad"));
-				x.setProvincia(request.getParameter("txtProvincia"));
+				x.setNacionalidad(request.getParameter("comboNacionalidad"));
+				x.setLocalidad(request.getParameter("comboLocalidad"));
+				x.setProvincia(request.getParameter("comboProvincia"));
 				
 				int sexo = Integer.parseInt(request.getParameter("comboSexo"));
 				switch (sexo) {

@@ -88,7 +88,7 @@
 	          <label>Disponibilidad:</label>
 	          <br>
 	          <input type="checkbox" id="lunes" name="dia" value="1">
- 			 <label for="vehicle1"> Lunes </label><br>
+ 			 <label for="lunes"> Lunes </label><br>
  			 
  			 <input type="checkbox" id="martes" name="dia" value="2">
  			 <label for="martes"> Martes </label><br>
@@ -103,7 +103,7 @@
  			 <label for="viernes"> Viernes </label><br>
  			 
  			 <input type="checkbox" id="miercoles" name="dia" value="6">
- 			 <label for="miercoles"> Sabado </label><br>
+ 			 <label for="sabado"> Sabado </label><br>
  			 
  			 <input type="checkbox" id="domingo" name="dia" value="0">
  			 <label for="domingo"> Domingo </label><br>
@@ -123,19 +123,28 @@
 	          <label>Fecha de nacimiento: </label>
 	          <input type="date" class="form-control col-8" name="txtFechaNac" required>
 	        </div>
-	        <div class="form-group">
-	          <label>Nacionalidad: </label>
-	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtNacionalidad" required>
-	        </div>
-	       <div class="form-group">
-	          <label>Localidad: </label>
-	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtLocalidad" required>
-	        </div>
-	      
-	        <div class="form-group">
-	          <label>Provincia: </label>
-	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtProvincia" required>
-	        </div>
+	        
+	            
+	         <div class="form-group">
+                    <label for="departamento" > Nacionalidad</label>
+                    <select name="comboNacionalidad" id="departamento" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia"> Provincias</label>
+                    <select name="comboProvincia" id="provincia" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="distrito" > Localidades</label>
+                    <select name="comboLocalidad" id="distrito" class="form-control col-8">
+                        <!-- cargaremos las etiquetas de option con javascript -->
+                    </select>
+                </div>
 	        
 	        <div class="form-group">
 	          <label>Dirección:</label>
@@ -168,6 +177,62 @@
 		%>
 	    </div>
 	  </div>
+	  
+	  <script type="text/javascript">
+		 let $departemento = document.getElementById('departamento')
+		 let $provincia = document.getElementById('provincia')
+		 let $distrito = document.getElementById('distrito')
+
+		 let departamentos = ['Argentina', 'Brasil']
+		 let provincias = ['Bs As', 'Cordoba', 'San Pablo']
+		 let distritos = ['San Miguel', 'San Nicolas', 'Tigre', 'Belgrano', 'Calamuchita', 'La falda', 'Gral Belgrano', 'Santa Marta', 'Loa Loa']
+
+		 function mostrarLugares(arreglo, lugar) {
+		     let elementos = '<option selected disables>--Seleccione--</option>'
+
+		     for(let i = 0; i < arreglo.length; i++) {
+		         elementos += '<option value="' + arreglo[i] +'">' + arreglo[i] +'</option>'
+		     }
+
+		     lugar.innerHTML = elementos
+		 }
+
+		 mostrarLugares(departamentos, $departemento)
+
+		 function recortar(array, inicio, fin, lugar) {
+		     let recortar = array.slice(inicio, fin)
+		     mostrarLugares(recortar, lugar)
+		 }
+
+		 $departemento.addEventListener('change', function() {
+		     let valor = $departemento.value
+
+		     switch(valor) {
+		         case 'Argentina':
+		             recortar(provincias, 0, 2, $provincia)
+		         break
+		         case 'Brasil':
+		             recortar(provincias, 2, 3, $provincia)
+		         break
+		     }
+
+		     $distrito.innerHTML = ''
+		 })
+
+		 $provincia.addEventListener('change', function() {
+		     let valor = $provincia.value
+
+		     if(valor == 'Bs As') {
+		         recortar(distritos, 0, 4, $distrito)
+		     } else if(valor == 'Cordoba') {
+		         recortar(distritos, 4, 7, $distrito)
+		     } else {
+		         recortar(distritos, 7, 9, $distrito)
+		     }
+		 })
+		 
+		 </script>
+	
 		
 		<script>
 		
@@ -181,6 +246,8 @@
 						  }
 				
 			}
+			
+			
 			
 			//PARA NO ACEPTAR LETRAS Y SIMBOLOS
 			function check(e) {
