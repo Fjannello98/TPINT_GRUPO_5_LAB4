@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class Conexion {
 	final String host = "jdbc:mysql://localhost:3306/";
 	final String user = "root";
-	final String pass = "roor";
+	final String pass = "root";
 	final String dbName = "bdTurnos";
 	final String driver = "com.mysql.jdbc.Driver";
 	final String sslParam = "?useSSL=false";
