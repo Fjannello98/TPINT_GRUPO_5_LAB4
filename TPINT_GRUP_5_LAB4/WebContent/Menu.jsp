@@ -62,6 +62,7 @@
 	        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item text-light" href="ServletTurnos?Param=previoInsert">Asignar turno</a>
 	          <a class="dropdown-item text-light" href="ServletTurnos?Param=list">Listar/Modificar/Eliminar</a>
+	          <a class="dropdown-item text-light" href="ServletTurnos?Param=listBT">Busqueda</a>
 	        </div>
 	      </li>
 	      <% } 

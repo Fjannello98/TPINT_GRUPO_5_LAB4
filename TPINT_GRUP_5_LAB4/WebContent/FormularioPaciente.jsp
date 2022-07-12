@@ -39,12 +39,12 @@
 	     <form onSubmit="confirmarAgregar(event)" method="post" action="ServletPacientes">
 	      
 	        <div class="form-group">
-	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre" title="Ingrese su nombre" required />
+	          <div> Nombre: <input type="text" class="form-control" name="txtNombre" title="Ingrese su nombre" required /> </div>
+	          <div>Apellido: <input type="text" class="form-control" name="txtApellido" required=""></div>
 	        </div>
 	        <div class="form-group">
-	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido" required>
+	          
+	          
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
@@ -132,12 +132,8 @@
 			  
 			  			  
 			}
-		
-		
-		
+
 	</script>
-	
-	
 	
 
 </body>

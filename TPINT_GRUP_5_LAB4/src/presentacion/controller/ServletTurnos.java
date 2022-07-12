@@ -75,7 +75,13 @@ public class ServletTurnos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			
+			case "listBT":
+			{
+				request.setAttribute("listaTurno", negTur.listarTurnos());	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp?buscarBTLista=1");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}
@@ -189,7 +195,7 @@ public class ServletTurnos extends HttpServlet {
 		 {
 		    	String parametro = request.getParameter("txtBuscar");	    				
 		    	request.setAttribute("listaTurno", negTur.obtenerBusqueda(parametro));	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp");
 				dispatcher.forward(request, response);
 					
 		 }
@@ -230,7 +236,7 @@ public class ServletTurnos extends HttpServlet {
 				}
 		    	
 				request.setAttribute("listaTurno", negTur.obtenerBusquedaxEstado(parametro));	
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarTurnos.jsp");
+		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp");
 				dispatcher.forward(request, response);
 					
 		 }

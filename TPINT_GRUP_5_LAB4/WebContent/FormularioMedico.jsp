@@ -17,6 +17,9 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
+<style type="text/css">
+		<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
+	</style>
 <script src="https://kit.fontawesome.com/dc241c5998.js" crossorigin="anonymous"></script>
 </head>
 <body>
