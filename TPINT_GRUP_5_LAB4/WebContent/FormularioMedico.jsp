@@ -52,15 +52,15 @@
 	      
 	        <div class="form-group">
 	          <label>Nombre: </label>
-	          <input type="text" class="form-control" name="txtNombre" required>
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtNombre" required>
 	        </div>
 	        <div class="form-group">
 	          <label>Apellido: </label>
-	          <input type="text" class="form-control" name="txtApellido" required>
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtApellido" required>
 	        </div>
 	        <div class="form-group">
 	          <label>DNI: </label>
-	          <input type="text" class="form-control" name="txtDNI" required>
+	          <input type="text" onkeypress="return check(event)" maxlength="8" minlength="7" class="form-control" name="txtDNI"  required>
 	        </div>
 	        <div class="form-group">
 	          <label>Correo electrónico: </label>
@@ -111,12 +111,12 @@
 	        
 	        <div class="form-group">
 	          <label>Teléfono: </label>
-	          <input type="phone" class="form-control" name="txtTelefono" required>
+	          <input type="text" onkeypress="return check(event)" class="form-control" name="txtTelefono" required>
 	        </div>
 	        
 	         <div class="form-group">
 	          <label>Celular: </label>
-	          <input type="phone" class="form-control" name="txtCelular" required>
+	          <input type="text" onkeypress="return check(event)" class="form-control" name="txtCelular" required>
 	        </div>
 	        
 	        <div class="form-group">
@@ -125,16 +125,16 @@
 	        </div>
 	        <div class="form-group">
 	          <label>Nacionalidad: </label>
-	          <input type="text" class="form-control" name="txtNacionalidad" required>
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtNacionalidad" required>
 	        </div>
 	       <div class="form-group">
 	          <label>Localidad: </label>
-	          <input type="text" class="form-control" name="txtLocalidad" required>
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtLocalidad" required>
 	        </div>
 	      
 	        <div class="form-group">
 	          <label>Provincia: </label>
-	          <input type="text" class="form-control" name="txtProvincia" required>
+	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtProvincia" required>
 	        </div>
 	        
 	        <div class="form-group">
@@ -181,6 +181,36 @@
 						  }
 				
 			}
+			
+			//PARA NO ACEPTAR LETRAS Y SIMBOLOS
+			function check(e) {
+			    tecla = (document.all) ? e.keyCode : e.which;
+
+			    //Tecla de retroceso para borrar, siempre la permite
+			    if (tecla == 8) {
+			        return true;
+			    }
+
+			    // Patrón de entrada, en este caso solo acepta numeros 
+			    patron = /[0-9]/;
+			    tecla_final = String.fromCharCode(tecla);
+			    return patron.test(tecla_final);
+			}
+			
+			//PARA NO ACEPTAR SIMBOLOS Y NUMEROS
+			function checkLetras(e) {
+   			 tecla = (document.all) ? e.keyCode : e.which;
+
+   			 //Tecla de retroceso para borrar, siempre la permite
+   			 if (tecla == 8) {
+       		 return true;
+    			}
+
+  			  // Patrón de entrada, en este caso solo acepta numeros y letras
+  			  patron = /[A-Za-z]/;
+    			tecla_final = String.fromCharCode(tecla);
+  			  return patron.test(tecla_final);
+				}
 		
 		
 		

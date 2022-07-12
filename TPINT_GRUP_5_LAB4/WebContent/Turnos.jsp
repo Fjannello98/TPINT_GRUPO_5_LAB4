@@ -23,6 +23,12 @@
 </style>
 <style type="text/css">
 	<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
+	
+	
+	
+	
+	
+	
 </style>
 
 </head>
