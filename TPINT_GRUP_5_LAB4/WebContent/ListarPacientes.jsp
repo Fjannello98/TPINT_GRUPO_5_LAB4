@@ -16,19 +16,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Listar Pacientes</title>
-
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
 	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 	crossorigin="anonymous">
 	
 	<style type="text/css">
-	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
-</style>
+		<jsp:include page="css\StyleSheetMain.css"></jsp:include>
+	</style>
 	
 	<style type="text/css">
-	<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
-</style>
+		<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
+	</style>
 
 </head>
 
@@ -59,7 +60,7 @@
 		<h3>Tabla Pacientes</h3>
 	</div>
 	
-	
+	<div class="col-md-6 offset-md-3">
 	<table class="table-fill">
 		
 			<tr>
@@ -72,6 +73,8 @@
 				<th class="text-left">Email</th>
 				<th class="text-left">Telefono</th>
 				<th class="text-left">Nacionalidad</th>
+				<th></th>
+				<th></th>
 				
 			</tr>
 			
@@ -102,7 +105,8 @@
 				<td> <input onclick="confirmarEliminar(event)" type="submit" name="btnEliminar" value="Eliminar" class="btn btn-danger"></td>
 				<td> <input type="submit" name="btnEditar" value="Editar" class="btn btn-warning"></td>
 				</form>
-				
+				<v-pagination v-model="pagination.page" :length="pages">
+				</v-pagination>
 			</tr>
 
 			<%
@@ -111,6 +115,7 @@
 
 		</tbody>
 	</table>
+	</div>
 	<br>
 	
 	<script>

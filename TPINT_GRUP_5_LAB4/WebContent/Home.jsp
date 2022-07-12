@@ -23,7 +23,7 @@
 	%>
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<h1> ¡Bienvenido/a, <%=user.getNombre_usuario()  %>!</h1>
-	<h3> Permisos de usuario: <%=user.getTipo_usuario().getDescripcion() %></h3>
+	<h4><footer class="blockquote-footer" style="color: #a1cdc1;"> Permisos de usuario: <%=user.getTipo_usuario().getDescripcion() %></footer></h4>
 	<div class="d-flex flex-row justify-content-center">
 		<img class="col-8 mt-5" src="images/utn.svg" alt="logo de la utn" width="300" height="200">
 	</div>
