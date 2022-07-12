@@ -198,6 +198,15 @@ public class ServletMedicos extends HttpServlet {
 					
 		    }
 		 
+		 
+		 //PARA LIMPIAR CAMPOS
+		 if(request.getParameter("btnLimpiarCampos")!=null) 
+			{	
+			    request.setAttribute("listaEsp", negEsp.listarEspecialidades());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/FormularioMedico.jsp");
+				dispatcher.forward(request, response);
+			}
+				
 		 //PARA ELIMINAR
 		 if(request.getParameter("btnEliminar")!=null) 
 			{

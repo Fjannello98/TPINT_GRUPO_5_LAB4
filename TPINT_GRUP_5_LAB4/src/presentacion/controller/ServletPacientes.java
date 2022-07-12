@@ -142,7 +142,11 @@ public class ServletPacientes extends HttpServlet {
 		    }
 		 
 		 
-		 
+		//PARA LIMPIAR CAMPOS
+		 if(request.getParameter("btnLimpiarCampos")!=null) 
+			{	
+			 response.sendRedirect("FormularioPaciente.jsp");
+			}
 		
 		//PARA ELIMINAR
 		if(request.getParameter("btnEliminar")!=null) 

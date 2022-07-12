@@ -121,11 +121,17 @@
 	        
 	        <div class="col-12">
 	        	<input onclick="confirmarAgregar(event)"  type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
-	        	<button  type="" class="btn btn-outline-primary btnClear">Limpiar campos</button>
+	        	
 	        </div>
 	       </div> 
 	      </form>
 	      
+	       <!-- PARA LIMPIAR CAMPOS  -->
+	       <form  method="post" action="ServletPacientes">
+	       <div class="col-12 ">
+	       <input  type="submit" class="btn btn-danger" value="Limpiar Campos" name="btnLimpiarCampos">
+	       </div>
+	       </form>
 	      
 	    </div>
 	  </div>

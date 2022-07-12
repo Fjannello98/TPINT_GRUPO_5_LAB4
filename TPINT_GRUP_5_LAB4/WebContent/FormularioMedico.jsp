@@ -181,10 +181,18 @@
 	        </div>
 	        <div class="col-12 ">
 	        	<input  type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
-	        	<button  type="submit" class="btn btn-outline-info">Limpiar campos</button>
+	        	
 	        </div>
 	       </div>
 	      </form>
+	      
+	      <!-- PARA LIMPIAR CAMPOS  -->
+	       <form  method="post" action="ServletMedicos">
+	       <div class="col-12 ">
+	       <input  type="submit" class="btn btn-danger" value="Limpiar Campos" name="btnLimpiarCampos">
+	       </div>
+	       </form>
+	      
 	      
 		 <%
 		if (request.getAttribute("estadoMedico") != null) {
