@@ -45,10 +45,11 @@
 	%>
 	
 	<jsp:include page="Menu.jsp"></jsp:include>
-	<h1 class="h1 mb-5" >Ingresar nuevo Usuario</h1>
+	<div class="container">
 	  <div class="row">
-	    <div class="col-6">
+	    <div class="col-12">
 	     <form onSubmit="Validaciones(event)" method="post" action="ServletUsuarios">
+			<h1 class="h1 mb-5" >Ingresar nuevo Usuario</h1>
 	      
 	        <div class="form-group">
 	          <label>Nombre de Usuario: </label>
@@ -64,7 +65,7 @@
 	        </div>
 	         <div class="form-group">
 	          <label>Médico: </label>
-	          <select class="form-control col-8" name="comboMedicos" >
+	          <select class="form-control" name="comboMedicos" >
 	          	<!-- Esto debería leerlo desde una DB -->
 	          	
 	          			<option selected value="">Seleccionar...</option>
@@ -87,8 +88,9 @@
 	        
 	         <div class="form-group">
 	          <label>Tipo de Usuario: </label>
-	          <select class="form-control col-8" name="comboTipoUsuario" >
+	          <select class="form-control " name="comboTipoUsuario" >
 	          	<!-- Esto debería leerlo desde una DB -->
+	          			<option value="" selected>Seleccionar...</option>
 	            		<%
 							for (TiposUsuario tu : listaTu) {
 						%>
@@ -116,7 +118,7 @@
 	    </div>
 	  </div>
 	</div>
-
+	
 	<script>
 	
 		function confirmarAlta(event) {

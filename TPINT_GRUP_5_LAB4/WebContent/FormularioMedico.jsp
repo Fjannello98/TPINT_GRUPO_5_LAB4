@@ -12,14 +12,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ingresar Médico</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <style type="text/css">
 	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
-<style type="text/css">
-		<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
-	</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 <script src="https://kit.fontawesome.com/dc241c5998.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -44,34 +42,36 @@
 	
 	
 	<jsp:include page="Menu.jsp"></jsp:include>
-	<h1 class="h1 mb-5" >Ingresar Nuevo Médico</h1>
+	<div class="container">
 	  <div class="row">
-	    <div class="col-6">
+	    <div class="col-12">
 	    
 	      <form onSubmit="confirmarAgregar(event)" method="post" action="ServletMedicos">
-	      
-	        <div class="form-group">
+			<h1 class="h1 mb-5" >Ingresar Nuevo Médico</h1>
+	      	<div class="form-row">
+	        <div class="form-group col-md-4">
 	          <label>Nombre: </label>
 	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtNombre" required>
 	        </div>
-	        <div class="form-group">
+	        <div class="form-group col-md-4">
 	          <label>Apellido: </label>
 	          <input type="text" onkeypress="return checkLetras(event)" class="form-control" name="txtApellido" required>
 	        </div>
-	        <div class="form-group">
+	        <div class="form-group col-md-4">
 	          <label>DNI: </label>
 	          <input type="text" onkeypress="return check(event)" maxlength="8" minlength="7" class="form-control" name="txtDNI"  required>
 	        </div>
-	        <div class="form-group">
+	        <div class="form-group col-md-6">
 	          <label>Correo electrónico: </label>
 	          <input type="email" class="form-control" name="txtCorreo" required>
 	        </div>
 	        
 	        <!-- ESTO TIENE QUE SER UN COMBOBOX!!! -->
-	        <div class="form-group">
+	        <div class="form-group col-md-6">
 	          <label>Especialidad: </label>
-	          <select class="form-control col-8" name="comboEspecialidad" >
+	          <select class="form-control " name="comboEspecialidad" >
 	          	<!-- Esto debería leerlo desde una DB -->
+	          			<option value="" selected>Seleccionar...</option>
 	            		<%
 							for (Especialidad e : listaE) {
 						%>
@@ -84,88 +84,106 @@
 	        
 	        
 	         <!-- PARA DISPONIBILIDAD POR MEDICO  -->
-	        <div class="form-group">
+	        <div class="form-group col-md-12 disponibilidad">
 	          <label>Disponibilidad:</label>
 	          <br>
+	          <div class="form-row">
+	          <div class="form-group col-md-4">
 	          <input type="checkbox" id="lunes" name="dia" value="1">
  			 <label for="lunes"> Lunes </label><br>
+ 			 </div>
  			 
+ 			 <div class="form-group col-md-4">
  			 <input type="checkbox" id="martes" name="dia" value="2">
  			 <label for="martes"> Martes </label><br>
+ 			 </div>
  			 
- 			<input type="checkbox" id="miercoles" name="dia" value="3">
+ 			 <div class="form-group col-md-4">
+ 			 <input type="checkbox" id="miercoles" name="dia" value="3">
  			 <label for="miercoles"> Miercoles </label><br>
+ 			 </div>
  			 
+ 			 <div class="form-group col-md-4">
  			 <input type="checkbox" id="jueves" name="dia" value="4">
  			 <label for="jueves"> Jueves </label><br>
+ 			 </div>
  			 
+ 			 <div class="form-group col-md-4">
  			 <input type="checkbox" id="viernes" name="dia" value="5">
  			 <label for="viernes"> Viernes </label><br>
+ 			 </div>
  			 
+ 			 <div class="form-group col-md-4">
  			 <input type="checkbox" id="miercoles" name="dia" value="6">
  			 <label for="sabado"> Sabado </label><br>
+ 			 </div>
  			 
+ 			 <div class="form-group col-md-4">
  			 <input type="checkbox" id="domingo" name="dia" value="0">
  			 <label for="domingo"> Domingo </label><br>
+ 			 </div>
+ 			 </div>
 	        </div>
 	        
-	        <div class="form-group">
+	        <div class="form-group col-md-3">
 	          <label>Teléfono: </label>
 	          <input type="text" onkeypress="return check(event)" class="form-control" name="txtTelefono" required>
 	        </div>
 	        
-	         <div class="form-group">
+	         <div class="form-group col-md-3">
 	          <label>Celular: </label>
 	          <input type="text" onkeypress="return check(event)" class="form-control" name="txtCelular" required>
 	        </div>
 	        
-	        <div class="form-group">
+	        <div class="form-group col-md-3">
 	          <label>Fecha de nacimiento: </label>
-	          <input type="date" class="form-control col-8" name="txtFechaNac" required>
+	          <input type="date" class="form-control " name="txtFechaNac" required>
 	        </div>
 	        
 	            
-	         <div class="form-group">
+	         <div class="form-group col-md-3">
                     <label for="departamento" > Nacionalidad</label>
-                    <select name="comboNacionalidad" id="departamento" class="form-control col-8">
+                    <select name="comboNacionalidad" id="departamento" class="form-control ">
                         <!-- cargaremos las etiquetas de option con javascript -->
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-3">
                     <label for="provincia"> Provincias</label>
-                    <select name="comboProvincia" id="provincia" class="form-control col-8">
+                    <select name="comboProvincia" id="provincia" class="form-control ">
                         <!-- cargaremos las etiquetas de option con javascript -->
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-3">
                     <label for="distrito" > Localidades</label>
-                    <select name="comboLocalidad" id="distrito" class="form-control col-8">
+                    <select name="comboLocalidad" id="distrito" class="form-control ">
                         <!-- cargaremos las etiquetas de option con javascript -->
                     </select>
                 </div>
 	        
-	        <div class="form-group">
+	        <div class="form-group col-md-3">
 	          <label>Dirección:</label>
 	          <input type="text" class="form-control" name="txtDireccion" required>
 	        </div>
 	        
 	        
 	        
-	        <div class="form-group">
+	        <div class="form-group col-md-3">
 	          <label>Sexo: </label>
-	          <select class="form-control col-8" name="comboSexo"  >
+	          <select class="form-control " name="comboSexo"  >
 	          	<!-- Esto debería leerlo desde una DB -->
+	          	<option value="" selected>Seleccionar...</option>
 	            <option value="1">Masculino</option>
 	            <option value="2">Femenino</option>
 	            <option value="3">Otro</option>
 	          </select>
 	        </div>
-	        <div class="col-12">
+	        <div class="col-12 ">
 	        	<input  type="submit" class="btn btn-success" value="Aceptar" name="btnAceptar">
 	        	<button  type="submit" class="btn btn-outline-info">Limpiar campos</button>
 	        </div>
+	       </div>
 	      </form>
 	      
 		 <%
@@ -177,6 +195,7 @@
 		%>
 	    </div>
 	  </div>
+	 </div>
 	  
 	  <script type="text/javascript">
 		 let $departemento = document.getElementById('departamento')
