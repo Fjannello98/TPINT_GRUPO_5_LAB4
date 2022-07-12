@@ -46,10 +46,7 @@
 	<h3>Turnos</h3>
 	</div>
 	
-<<<<<<< HEAD
-=======
-	       
->>>>>>> 8854274bfb0a5e1ab959d474a4d59138ee7edd59
+
 	
 	<table class="table-fill">
 	<thead>

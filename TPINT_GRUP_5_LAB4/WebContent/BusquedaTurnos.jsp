@@ -49,6 +49,7 @@
 	</div>
 	
 	
+	<form method="post" action="ServletTurnos">
 
 	 <label>Buscar por DNI Paciente: </label>
 	          <input type="text" class="form-control" name="txtBuscar">
@@ -73,7 +74,6 @@
 	        	<input type="submit" class="btn btn-success" value="Buscar" name="btnBuscarEstado">
 	        </div>
 	 
-	<form method="post" action="ServletTurnos">
 	
 	<table class="table-fill">
 	<thead>
@@ -107,11 +107,7 @@
 				<td><%=a.getHora() %></td>
 				<td><%=a.getID_estado().getDescripcion()%></td>
 				<td><%=a.getObservacion()%></td>
-				
-				<td> <input type="submit" name="btnPaciente" value="PACIENTE" class="btn btn-primary"></td>
-				<td> <input type="submit" name="btnPresente" value="PRESENTE" class="btn btn-warning"></td>
-				<td> <input type="submit" name="btnAusente" value="AUSENTE" class="btn btn-danger"></td>
-			
+	
 				
 			</tr>
 

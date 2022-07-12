@@ -211,8 +211,9 @@ public class ServletTurnos extends HttpServlet {
 		 {
 		    	String parametro = request.getParameter("txtBuscar");	    				
 		    	request.setAttribute("listaTurno", negTur.obtenerBusqueda(parametro));	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp?buscarBTLista=1");
 				dispatcher.forward(request, response);
+				
 					
 		 }
 		 
@@ -252,13 +253,14 @@ public class ServletTurnos extends HttpServlet {
 				}
 		    	
 				request.setAttribute("listaTurno", negTur.obtenerBusquedaxEstado(parametro));	
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp");
+		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaTurnos.jsp?buscarBTLista=1");
 				dispatcher.forward(request, response);
+				
 					
 		 }
 		 
 		 
-		    //PARA LIMPIAR CAMPOS Y EMPEZAR OTRA VEZ
+		    
 			if(request.getParameter("btnPresente")!=null) 
 			{
 				int id = Integer.parseInt(request.getParameter("idTurno"));								
