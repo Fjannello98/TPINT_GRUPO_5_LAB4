@@ -162,7 +162,7 @@ public class PacienteDaoImpl implements PacienteDao{
 		boolean estado=true;
 		cn = new Conexion();
 		cn.Open();		 
-		String query = "UPDATE Pacientes SET estado=0 WHERE dni="+"'"+dni+"'";
+		String query = "UPDATE Pacientes SET estado=0 WHERE dni= '"+dni+"'";
 		try
 		 {
 			estado=cn.execute(query);

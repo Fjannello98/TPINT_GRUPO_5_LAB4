@@ -75,6 +75,8 @@ public class ServletUsuarios extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//CREACION DE USUARIO
 		if(request.getParameter("btnAceptar")!=null)
 	    {
 	    	Usuario u = new Usuario();
@@ -82,6 +84,8 @@ public class ServletUsuarios extends HttpServlet {
 	    	Medico consulta = new Medico();
 	    		    	
 	    		consulta = negMed.obtenerUno(request.getParameter("comboMedicos"));
+	    		
+	    		//System.out.println(consulta.getDni());
 	    	
 		    	u = negU.obtenerUno(request.getParameter("comboMedicos"));
 		    	
@@ -95,7 +99,8 @@ public class ServletUsuarios extends HttpServlet {
 	    				
 	    			u.setContrasena(request.getParameter("txtPassword"));				
 	    			
-	    			consulta.setDni(request.getParameter("comboMedicos"));
+	    			u.setDni(request.getParameter("comboMedicos"));
+	    		
 	    			//u.setDni(request.getParameter("txtDni"));				
 	    			//u.setCorreo(request.getParameter("txtCorreo"));				
 	    			

@@ -95,7 +95,7 @@
 		%>
 			
 			<tr>
-			<form onSubmit="confirmarEliminar()" method="post" action="ServletTurnos">
+			<form method="post" action="ServletTurnos">
 				<td><%= a.getId() %><input type="hidden" name="idTurno" value="<%=a.getId()%>" ></td>
 				<td><%= a.getDNI_paciente().getApellido()+", "+ a.getDNI_paciente().getNombre() %> <input type="hidden" name="dniPaciente" value="<%= a.getDNI_paciente().getDni()%>" ></td>
 				<td><%=a.getDNI_medico().getApellido() +", "+ a.getDNI_medico().getNombre()%></td>
@@ -130,22 +130,7 @@
 		}
 	%>
 
-	<script>
 	
-		function confirmarEliminar(event){
-			
-			var result = confirm("Esta seguro que desea eliminar este Turno?");
-			
-					if (result === false) {
-					    event.preventDefault();
-					    
-					  }
-			
-		}
-	
-	
-	
-	</script>
 
 </body>
 </html>

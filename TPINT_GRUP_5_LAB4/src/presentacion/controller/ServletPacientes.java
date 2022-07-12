@@ -151,7 +151,7 @@ public class ServletPacientes extends HttpServlet {
 			
 			boolean estado = true;
 			estado = negPac.borrar(dni);
-			request.setAttribute("estadoPaciente", estado);
+			request.setAttribute("listaPac", negPac.listarPacientes());	
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarPacientes.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -170,6 +170,7 @@ public class ServletPacientes extends HttpServlet {
 					
 		}
 		
+		//EDITAR PACIENTE
 		if(request.getParameter("btnModificar")!=null)
 	    {
 	    	Paciente x = new Paciente();
@@ -219,7 +220,7 @@ public class ServletPacientes extends HttpServlet {
 				boolean estado=true;
 				estado = negPac.editar(x);
 				request.setAttribute("estadoPaciente", estado);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarPaciente.jsp");				
 				dispatcher.forward(request, response);
 				
 	    }
