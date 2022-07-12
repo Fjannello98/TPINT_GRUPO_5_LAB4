@@ -103,6 +103,6 @@ td:last-child {
   border-right: 0px;
 }
 
-pagination: {
-   rowsPerPage: 2;
+input.form-control{
+	width: 65%;
 }

@@ -24,7 +24,20 @@
 
 </head>
 <body>
-	
+
+	<% if (request.getSession().getAttribute("usuario") == null) { 
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			throw new UsuarioNoLoggeadoException();
+		} 
+		 Usuario user = (Usuario)request.getSession().getAttribute("usuario");
+		 if (user.getTipo_usuario().getID() != 1) { 
+				request.getRequestDispatcher("Home.jsp").forward(request, response);
+				throw new UsuarioSinPermisoException();
+		} 
+	%>
+
+	<jsp:include page="Menu.jsp"></jsp:include>
+
 	<%
 	 if (request.getParameter("buscarBPLista") == null) {
 		 	request.getRequestDispatcher("ServletPacientes?Param=listaBP").forward(request, response);
@@ -36,7 +49,7 @@
 		}
 	%>
 	
-	<jsp:include page="Menu.jsp"></jsp:include>
+	<form method="post" action="ServletPacientes">
 
 	<div class="table-title">
 		<h3>Tabla Pacientes</h3>
@@ -66,7 +79,6 @@
 				<th class="text-left">Email</th>
 				<th class="text-left">Telefono</th>
 				<th class="text-left">Nacionalidad</th>
-				
 			</tr>
 		</thead>
 		<tbody class="table-hover">
@@ -79,7 +91,7 @@
 			
 			
 			<tr>
-				<form method="post" action="ServletPacientes">
+				
 				
 				<td><%=a.getNombre()%></td>
 				<td><%=a.getApellido()%></td>
@@ -91,7 +103,7 @@
 				<td><%=a.getTelefono()%></td>
 				<td><%=a.getNacionalidad()%></td>
 				
-				</form>
+				
 				
 			</tr>
 
@@ -102,6 +114,7 @@
 		</tbody>
 	</table>
 	<br>
+	</form>
 	
 </body>
 </html>

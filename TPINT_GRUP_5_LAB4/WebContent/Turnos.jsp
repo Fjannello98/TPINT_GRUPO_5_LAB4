@@ -21,6 +21,9 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheetMain.css"></jsp:include>
 </style>
+<style type="text/css">
+	<jsp:include page="css\StyleSheetListarPacientes.css"></jsp:include>
+</style>
 
 </head>
 <body>

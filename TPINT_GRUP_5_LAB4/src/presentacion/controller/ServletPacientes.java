@@ -228,8 +228,19 @@ public class ServletPacientes extends HttpServlet {
 				
 	    }
 		
+		//BUSQUEDA DINAMICA
+		 if(request.getParameter("btnBuscar")!=null)
+		 {
+		    	String parametro = request.getParameter("txtBuscar");	    				
+		    	request.setAttribute("listaPac", negPac.obtenerBusqueda(parametro));	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/BusquedaPacientes.jsp?buscarBPLista=1");
+				dispatcher.forward(request, response);
+					
+		 }
+		
+		
+		
 		}
-	
-			
+		
 	}
 	
