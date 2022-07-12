@@ -183,9 +183,37 @@ insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("MateoGh
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("PabloCaero", "1234", 1);
 insert into Usuarios (NOMBRE_USUARIO, CONTRASENA, TIPO_USUARIO) values ("DiameDevia", "1234", 1);
 
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('24000998',1);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('24004322',2);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('26443333',3);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('26443346',4);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('27009888',5);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('27009999',5);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('40216447',6);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('40676442',0);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('40676447',6);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('4121242',4);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('41213322',2);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('41213434',1);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('41213444',4);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('41215514',6);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('41666777',1);
+INSERT INTO DisponibilidadxMedico (DNI_medico, dia) VALUES ('42666533',4);
 
-insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 1);
-insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 2);
-insert into DisponibilidadxMedico (DNI_medico, dia) values ("41215514", 3);
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('25009999','40676442','2', '1', '2022-07-17', '11:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('25009999','24004322','2', '9', '2022-07-19', '13:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('33213444','26443333','2', '10', '2022-07-27', '15:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('33676442','26443346','2', '7', '2022-07-21', '09:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('22666533','27009888','2', '8', '2022-08-19', '11:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('3121242','27009999','2', '7', '2022-07-29', '08:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('27676447','40216447','2', '4', '2022-07-30', '11:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('37443346','40676442','2', '1', '2022-07-17', '08:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('27213322','40676447','2', '2', '2022-09-17', '13:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('47213434','4121242','2', '2', '2022-08-18', '11:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('25009999','41213322','2', '7', '2022-09-06', '16:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('47213434','41213434','2', '4', '2022-07-25', '10:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('33213444','41213444','2', '4', '2022-09-22', '07:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('24666777','41215514','2', '1', '2022-09-10', '10:00', 'sin observacion');
+INSERT INTO TURNOS (dni_paciente, dni_medico, id_estado, id_especialidad, fecha, hora, observacion) VALUES ('27676447','42666533','2', '5', '2022-10-20', '12:00', 'sin observacion');
 
-select * from disponibilidadxmedico
+
