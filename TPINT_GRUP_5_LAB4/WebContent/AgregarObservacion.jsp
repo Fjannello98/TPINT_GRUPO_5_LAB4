@@ -57,6 +57,9 @@
 	
 	<jsp:include page="Menu.jsp"></jsp:include>
 
+	 	<div class="container">
+	  <div class="row">
+	    <div class="col-12">
 	 	
  		<form method="post" action="ServletTurnos">
 	 		<label>ID:  <%=turno.getId() %> </label>  
@@ -76,7 +79,9 @@
 	        </div>
 	      </form>
 	      
-	     
+	      </div> 
+	      </div>
+	       </div>
  <%
 	if (request.getAttribute("estadoObservacionTurno") != null) {
 	%>
